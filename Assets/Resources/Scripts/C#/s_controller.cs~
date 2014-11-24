@@ -1,0 +1,80 @@
+﻿using UnityEngine;
+using System.Collections;
+
+public class s_controller : MonoBehaviour {
+
+	public static bool actionOnRight = false;
+	public static bool actionOnUp = false;
+	public static bool actionOnLeft = false;
+	public static bool actionOnDown = false;
+	public GUIText arrows;
+	public GUIText cumultext;
+	private float speed = 2;
+	private int clock;
+	private int clockEnd;
+	private int cumul = 0;
+	
+	
+	void Start () {
+		actionOnRight = false;
+//		clock = (int)(Time.fixedTime) + 3;	
+	}
+	
+	void Update () {
+		arrows.text = s_feedback_scheme.arrow_up + "\n" + s_feedback_scheme.arrow_down + "\n" + s_feedback_scheme.arrow_left + "\n" + s_feedback_scheme.arrow_right;
+
+	/*	clockEnd = clock - (int)(Time.fixedTime);
+
+		if (Input.GetKeyUp(KeyCode.Alpha7))
+		{
+			s_pep_pressureB.arrow_up = 3;
+			s_pep_pressureB.arrow_down = 0;
+			s_pep_pressureB.arrow_left = 1;
+			s_pep_pressureB.arrow_right = 2;
+		}
+		
+
+		if (Input.GetKeyUp(KeyCode.Alpha6))
+		{
+			cumultext.color = Color.green; 
+			cumultext.text += "IIIIIIIIIIIII";
+			cumul = 13;
+		}
+		
+		if (Input.GetKeyUp(KeyCode.Space))
+		{
+			if ((cumul < 14) && (clockEnd <= 0))
+			{
+				cumultext.color = Color.green; 
+				cumultext.text += "I";
+				cumul++;
+				clock = (int)(Time.fixedTime) + 3;
+			}
+			else if ((cumul < 14) && (clockEnd > 0))
+				cumultext.color = Color.red;
+			else
+			{
+				cumultext.color = Color.green;
+				cumultext.text = "";
+				actionOnRight = true;
+				Screen.showCursor = false;
+				Screen.lockCursor = true;
+			}	
+		}*/
+		if (Input.GetKeyUp(KeyCode.Space))
+		{
+			actionOnRight = true;
+			Screen.showCursor = false;
+			Screen.lockCursor = true;
+		}
+
+		if (actionOnRight)
+			transform.Translate(speed * Time.deltaTime,0,0);
+		if (actionOnUp)
+			transform.Translate(0,speed * Time.deltaTime,0);
+		if (actionOnLeft)
+			transform.Translate(-speed * Time.deltaTime,0,0);
+		if (actionOnDown)
+			transform.Translate(0,-speed * Time.deltaTime,0);
+	}
+}

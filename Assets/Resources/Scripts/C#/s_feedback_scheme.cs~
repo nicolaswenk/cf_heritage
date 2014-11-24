@@ -1,0 +1,126 @@
+﻿using UnityEngine;
+using System.Collections;
+
+public class s_feedback_scheme : MonoBehaviour {
+
+	public static int arrow_up = 0;
+	public static int arrow_down = 0;
+	public static int arrow_left = 0;
+	public static int arrow_right = 0;
+
+	public GameObject dot;
+	public GameObject dot_red;
+	public GameObject fleche;
+	public GUIText g_text_1;
+	public GUIText g_text_2;
+	public GUIText g_text_total;
+	private float[] breathing = new float[799];
+	private float dot_height;
+	private float dot_height_saved;
+	private float clock;
+	private float clockEnd;
+	private float clockExhaleEnd;
+	private int x = 0;
+	private int i_text_total = 14;
+	private int turn = 0;
+	private int turn_arrow = 0;
+	private bool startBreath = true;
+	private bool endBreath = true;
+
+
+	void Start () {
+		clock =  Time.fixedTime + 0.1f;
+	}
+
+	void Update () {
+		clockEnd = clock - Time.fixedTime;
+		
+		if (clockEnd < 0f)
+		{
+			if (x > 20)
+			{
+				dot_height = s_feedback_sphere.pressureDone;
+				g_text_1.text = (Mathf.Round(dot_height * 10) / 10).ToString();
+				dot_height = Mathf.Clamp(dot_height, 0, 1);
+				if (dot_height < 0.15f)
+					dot_height = 0f;
+				breathing[x] = Mathf.Round(dot_height * 100f) / 100f;
+				dot_height_saved = dot_height;
+				dot_height -= 4.6f;
+				Instantiate (dot, new Vector3 (-8.0f + (x * 0.02f), dot_height, -1), Quaternion.Euler(0, 0, 0));
+				clock = Time.fixedTime + 0.1f;
+			}
+			x++;
+		}
+		
+		
+		if ((clockExhaleEnd < Time.fixedTime) && (x > 20))
+		{
+			g_text_2.text = ":-)";
+			
+			if (startBreath == true)
+			{
+				i_text_total -= 1;
+				
+				switch (turn) {
+				case 0:  turn_arrow = Random.Range(1,5); break;
+				case 1:  turn_arrow = 1; break;
+				case 2:  turn_arrow = 3; break;
+				case 3:  turn_arrow = Random.Range(1,5); break;
+				case 4:  turn_arrow = 4; break;
+				case 5:  turn_arrow = Random.Range(1,5); break;
+				case 6:  turn_arrow = Random.Range(1,5); break;
+				case 7:  turn_arrow = 4; break;
+				case 8:  turn_arrow = 2; break;
+				case 9:  turn_arrow = Random.Range(1,5); break;
+				case 10: turn_arrow = 1; break;
+				case 11: turn_arrow = Random.Range(1,5); break;
+				case 12: turn_arrow = 1; break;
+				case 13: turn_arrow = 4; break;
+				case 14: turn_arrow = Random.Range(1,5); break;
+				}
+				
+				switch (turn_arrow) {
+				case 1:
+					Instantiate (fleche, new Vector3 (Random.Range(5.3f, 7.4f), Random.Range(-2.2f, 4.5f), -1), Quaternion.Euler(0 , 90 , 270));
+					arrow_up++;
+					break;
+				case 2:
+					Instantiate (fleche, new Vector3 (Random.Range(5.3f, 7.4f), Random.Range(-2.2f, 4.5f), -1), Quaternion.Euler(0 , 270 , -270));
+					arrow_down++;
+					break;
+				case 3:
+					Instantiate (fleche, new Vector3 (Random.Range(5.3f, 7.4f), Random.Range(-2.2f, 4.5f), -1), Quaternion.Euler(270 , 0 , 0));
+					arrow_left++;
+					break;
+				case 4:
+					Instantiate (fleche, new Vector3 (Random.Range(5.3f, 7.4f), Random.Range(-2.2f, 4.5f), -1), Quaternion.Euler(90 , 180 , 0));
+					arrow_right++;
+					break;
+				}
+				startBreath = false;
+				turn++;
+			}
+		}
+		g_text_total.text = i_text_total.ToString() + " expirations à faire";
+		
+		if (dot_height_saved <= 0.3f)
+		{
+			g_text_2.text = " ";
+			startBreath = true;
+			endBreath = true;
+			clockExhaleEnd = Time.fixedTime + 5f;
+		}
+		else
+		{
+			if (endBreath == true) {
+				Instantiate (dot_red, new Vector3 (-7.45f + (x * 0.02f), -4.3f, -1), Quaternion.Euler(0, 0, 0));
+				endBreath = false;
+			}
+		}
+		
+		
+		if ((arrow_up + arrow_down + arrow_left + arrow_right) == 15)
+			Application.LoadLevel(2);
+	}
+}

@@ -1,0 +1,24 @@
+﻿using UnityEngine;
+using System.Collections;
+
+public class s_end_stage : MonoBehaviour {
+
+	public GameObject party;
+	public GameObject next;
+
+	void Start() {
+	}
+	
+	void Update() {
+	}
+
+	void OnTriggerEnter(Collider other){
+		if(other.gameObject.tag == "Player"){
+			other.gameObject.GetComponent<s_controller>().enabled = false;
+			party.SetActive(true);
+			next.SetActive(true);
+			Screen.showCursor = true;
+			Screen.lockCursor = false;
+		}
+	}
+}

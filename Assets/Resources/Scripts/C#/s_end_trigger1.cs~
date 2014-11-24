@@ -1,0 +1,19 @@
+﻿using UnityEngine;
+using System.Collections;
+
+public class s_end_trigger1 : MonoBehaviour {
+
+	static public bool trig01 = false;
+
+	void Start () {
+		trig01 = false;
+	}
+	
+	void Update() {
+	}
+
+	void OnTriggerExit(Collider other){
+		if(other.gameObject.tag == "Player")
+			trig01 = true;
+	}
+}

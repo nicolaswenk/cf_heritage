@@ -1,0 +1,26 @@
+﻿using UnityEngine;
+using System.Collections;
+
+public class s_feedback_sphere : MonoBehaviour {
+
+	public static float pressureDone;
+
+	void Start () {
+	
+	}
+
+	void Update () {
+		pressureDone = Mathf.Abs (s_input.pressure - s_input.normalPressure);
+		
+		if (pressureDone > 0.3f){
+			Vector3 newPlayerPosition = transform.position;
+			newPlayerPosition = new Vector3(transform.position.x, ((s_input.pressure - s_input.normalPressure) * 4.0f)  - 3.5f, transform.position.z);		//sets horizontal and vertical limit
+			transform.position = newPlayerPosition;
+		}
+		if (pressureDone <= 0.3f){
+			Vector3 newPlayerPosition = transform.position;
+			newPlayerPosition = new Vector3(transform.position.x, - 3.5f, transform.position.z);
+			transform.position = newPlayerPosition;
+		}
+	}
+}

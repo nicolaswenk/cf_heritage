@@ -1,0 +1,49 @@
+﻿using UnityEngine;
+using System.Collections;
+
+public class s_arrow_left : MonoBehaviour {
+	
+	public GameObject camPointer;
+	public GameObject mouseChangeDown;
+	public GameObject mouseChangeUp;
+	public GameObject mouseChangeLeft;
+	public GameObject mouseChangeRight;
+
+	
+	void Start() {
+	}
+	
+	void Update() {
+	}
+	
+	void OnMouseDown() {
+		if(s_cursor.n == true){
+			mouseChangeLeft.SetActive(true);
+			s_feedback_scheme.arrow_left = s_feedback_scheme.arrow_left - 1;
+		}
+		else if (s_cursor.n == false && s_cursor.b == true){
+			mouseChangeLeft.SetActive(false);
+			mouseChangeUp.SetActive(true);
+		}
+		else if (s_cursor.n == false && s_cursor.m == true){
+			mouseChangeLeft.SetActive(false);
+			mouseChangeDown.SetActive(true);
+		}
+		else if (s_cursor.n == false && s_cursor.v == true){
+			mouseChangeLeft.SetActive(false);
+			mouseChangeRight.SetActive(true);
+		}
+		else if (s_cursor.n == false && s_cursor.c == true){
+			mouseChangeLeft.SetActive(false);
+		}
+	}
+	
+	void OnTriggerEnter(Collider other) {
+		if(other.gameObject.tag == "Player"){
+			s_controller.actionOnRight = false;
+			s_controller.actionOnUp = false;
+			s_controller.actionOnLeft = true;
+			s_controller.actionOnDown = false;
+		}
+	}
+}

@@ -1,0 +1,30 @@
+﻿using UnityEngine;
+using System.Collections;
+
+public class s_input_onatha : MonoBehaviour {
+
+	public static float pressure;
+	public static float normalPressure = 0;
+
+	void Start () {
+	}
+
+	void Update () {
+		pressure = Input.GetAxisRaw("Breath");  //Breath is defined as a Joystick Z-Axis input through the Unity interface
+		
+	/*	float height = 0;
+		if(pressure < -0.38378)     //A joystick value of -0.38378 corresponds to approximately 7.8cmH20, meaning the user isn't exhaling at a pressure high enough above ambient to be considered a rep
+		{
+			height = 25;     //The player coasts near the bottom of the screen while not performing a rep
+		}
+		else if(pressure < -0.21569)   //A joystick value of -0.21569 corresponds to 10cmH20, this code will run if they're exhaling during a rep, but not within the recommended bound
+		{
+			height = 594.9194f*pressure + 303.3182f;   //The player's height is linearized to follow the exhalation strength
+		}
+		else  //A joystick value of 0.56863 corresponds to 20cmH20, this code will run if they're between 10 and 20cmH20, the optimal zone for PEP therapy
+		{
+			height = 382.4969f*pressure + 257.5008f;   //The player's height is linearized to follow the exhalation strength
+			print (height);
+		}*/
+	}
+}

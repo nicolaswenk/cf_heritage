@@ -1,0 +1,44 @@
+﻿using UnityEngine;
+using System.Collections;
+
+public class s_pep_breathing : MonoBehaviour {
+
+	public static float presfl;
+	public float pressureBuffer = 0.01f;
+	public float pressureMultiplier = 2.0f;
+	public float minYPosition = 0f;
+
+	public GUIText g_text1;
+	public GUIText g_text2;
+	public GUIText g_text3;
+	public GUIText g_text4;
+	public GUIText g_text5;
+	
+
+	
+	void Update () {
+	/*	s_pep_pressure sp = s_pep_pressure.GetSceneInstance ();
+		s_pep_pressure.pressurePosition = sp.pressure;
+		s_pep_pressure.pressureFixed = sp.normalPressure;
+		;
+		g_text3.text = "Buf " + pressureBuffer;
+		g_text4.text = "Mul " + pressureMultiplier;
+		g_text5.text = "Min " + minYPosition;
+
+
+		if (Mathf.Abs (s_pep_pressure.pressurePosition - s_pep_pressure.pressureFixed) > pressureBuffer)
+			presfl = (s_pep_pressure.pressurePosition - s_pep_pressure.pressureFixed) * pressureMultiplier;*/
+
+		/*if (Mathf.Abs (s_pep_pressure.pressurePosition - s_pep_pressure.pressureFixed) > pressureBuffer){
+			Vector3 newPlayerPosition = transform.position;
+			newPlayerPosition = new Vector3(transform.position.x, (s_pep_pressure.pressurePosition - s_pep_pressure.pressureFixed) * pressureMultiplier, transform.position.z);		//sets horizontal and vertical limit
+			transform.position = newPlayerPosition;
+		}
+		if (Mathf.Abs (s_pep_pressure.pressurePosition - s_pep_pressure.pressureFixed) < pressureBuffer){
+			Vector3 newPlayerPosition = transform.position;
+			newPlayerPosition = new Vector3(transform.position.x, minYPosition, transform.position.z);		//sets horizontal and vertical limit
+			transform.position = newPlayerPosition;
+		}*/
+
+	}
+}

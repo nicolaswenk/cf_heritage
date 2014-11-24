@@ -1,0 +1,60 @@
+﻿using UnityEngine;
+using System.Collections;
+using System.IO.Ports;
+
+
+public class s_pep_pressure : MonoBehaviour { /*
+
+	SerialPort stream = new SerialPort("/dev/tty.usbmodem621", 9600);		// open serial Mac = /dev/tty.usbmodem621, PC = COM3 or COM4 ; baud = 9600
+
+	public static float pressure = 0f;
+	public GameObject dot;
+	private float[] breathing = new float[90];								// array to save pressure each 0.5 sec.
+	private float dot_height;
+	private float pressure_init = 0f;
+	private int x = 0;
+	
+	public GUIText g_text10;
+	public GUIText g_text11;
+
+	void Start () {
+		stream.Open();
+		stream.ReadTimeout = 5;												// delay if no data received
+		InvokeRepeating("streamIn", 0.5f, 0.5f);							// frees memory by reading serial port each 0.5 sec.
+	}
+
+	void Update () {
+		print (breathing[0] + " " + breathing[1] + " " + breathing[9] + " " + breathing[19] + " " + breathing[29] + " " + breathing[49] + " " + breathing[69] + " " + breathing[88]);
+	}
+
+	void streamIn () {
+		if (stream.IsOpen)
+		{
+			try {
+				string value = stream.ReadLine();							// reads serial port
+				g_text10.text = value;
+				pressure = float.Parse(value);
+
+				breathing[x] = pressure;
+
+				if (x > 1)													// routine for each data read - data nr 0 never correct
+				{
+					dot_height = pressure - pressure_init;					// calibrating pressure
+					g_text11.text = "| " + dot_height;
+					dot_height = Mathf.Clamp(dot_height, -200, 200);
+					dot_height = (dot_height / 100);
+					if (dot_height < 0.3f)
+						dot_height = 0f;
+					dot_height -= 3.8f;
+					Instantiate (dot, new Vector3 (-5.8f + (x * 0.05f), dot_height, -1), Quaternion.Euler(0, 0, 0));
+				}
+				else if (x == 1)											// saving first valid data for calibration
+					pressure_init = pressure - 10;
+				x++;
+			}
+			catch(System.Exception){										// exit the reading if no value to avoid infinite run
+
+			}
+		}		
+	}*/
+}
