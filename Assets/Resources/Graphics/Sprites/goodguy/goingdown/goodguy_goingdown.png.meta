@@ -1,0 +1,718 @@
+fileFormatVersion: 2
+guid: e71426ea65f6b2c4ba8cfafd82a4f94a
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: goodguy_goingdown_0
+    21300002: goodguy_goingdown_1
+    21300004: goodguy_goingdown_2
+    21300006: goodguy_goingdown_3
+    21300008: goodguy_goingdown_4
+    21300010: goodguy_goingdown_5
+    21300012: goodguy_goingdown_6
+    21300014: goodguy_goingdown_7
+    21300016: goodguy_goingdown_8
+    21300018: goodguy_goingdown_9
+    21300020: goodguy_goingdown_10
+    21300022: goodguy_goingdown_11
+    21300024: goodguy_goingdown_12
+    21300026: goodguy_goingdown_13
+    21300028: goodguy_goingdown_14
+    21300030: goodguy_goingdown_15
+    21300032: goodguy_goingdown_16
+    21300034: goodguy_goingdown_17
+    21300036: goodguy_goingdown_18
+    21300038: goodguy_goingdown_19
+    21300040: goodguy_goingdown_20
+    21300042: goodguy_goingdown_21
+    21300044: goodguy_goingdown_22
+    21300046: goodguy_goingdown_23
+    21300048: goodguy_goingdown_24
+    21300050: goodguy_goingdown_25
+    21300052: goodguy_goingdown_26
+    21300054: goodguy_goingdown_27
+    21300056: goodguy_goingdown_28
+    21300058: goodguy_goingdown_29
+    21300060: goodguy_goingdown_30
+    21300062: goodguy_goingdown_31
+    21300064: goodguy_goingdown_32
+    21300066: goodguy_goingdown_33
+    21300068: goodguy_goingdown_34
+    21300070: goodguy_goingdown_35
+    21300072: goodguy_goingdown_36
+    21300074: goodguy_goingdown_37
+    21300076: goodguy_goingdown_38
+    21300078: goodguy_goingdown_39
+    21300080: goodguy_goingdown_40
+    21300082: goodguy_goingdown_41
+    21300084: goodguy_goingdown_42
+    21300086: goodguy_goingdown_43
+    21300088: goodguy_goingdown_44
+    21300090: goodguy_goingdown_45
+    21300092: goodguy_goingdown_46
+    21300094: goodguy_goingdown_47
+    21300096: goodguy_goingdown_48
+    21300098: goodguy_goingdown_49
+    21300100: goodguy_goingdown_50
+    21300102: goodguy_goingdown_51
+    21300104: goodguy_goingdown_52
+    21300106: goodguy_goingdown_53
+    21300108: goodguy_goingdown_54
+    21300110: goodguy_goingdown_55
+    21300112: goodguy_goingdown_56
+    21300114: goodguy_goingdown_57
+    21300116: goodguy_goingdown_58
+    21300118: goodguy_goingdown_59
+    21300120: goodguy_goingdown_60
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 1024
+  textureSettings:
+    filterMode: -1
+    aniso: 1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: goodguy_goingdown_0
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 1839
+        width: 180
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: goodguy_goingdown_1
+      rect:
+        serializedVersion: 2
+        x: 237
+        y: 1839
+        width: 180
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: goodguy_goingdown_2
+      rect:
+        serializedVersion: 2
+        x: 445
+        y: 1839
+        width: 180
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: goodguy_goingdown_3
+      rect:
+        serializedVersion: 2
+        x: 653
+        y: 1839
+        width: 180
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: goodguy_goingdown_4
+      rect:
+        serializedVersion: 2
+        x: 861
+        y: 1839
+        width: 180
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: goodguy_goingdown_5
+      rect:
+        serializedVersion: 2
+        x: 1069
+        y: 1839
+        width: 180
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: goodguy_goingdown_6
+      rect:
+        serializedVersion: 2
+        x: 1277
+        y: 1839
+        width: 180
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: goodguy_goingdown_7
+      rect:
+        serializedVersion: 2
+        x: 1485
+        y: 1839
+        width: 180
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: goodguy_goingdown_8
+      rect:
+        serializedVersion: 2
+        x: 1693
+        y: 1839
+        width: 180
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: goodguy_goingdown_9
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 1635
+        width: 180
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: goodguy_goingdown_10
+      rect:
+        serializedVersion: 2
+        x: 237
+        y: 1635
+        width: 180
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: goodguy_goingdown_11
+      rect:
+        serializedVersion: 2
+        x: 445
+        y: 1635
+        width: 180
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: goodguy_goingdown_12
+      rect:
+        serializedVersion: 2
+        x: 653
+        y: 1635
+        width: 180
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: goodguy_goingdown_13
+      rect:
+        serializedVersion: 2
+        x: 861
+        y: 1635
+        width: 180
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: goodguy_goingdown_14
+      rect:
+        serializedVersion: 2
+        x: 1069
+        y: 1635
+        width: 180
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: goodguy_goingdown_15
+      rect:
+        serializedVersion: 2
+        x: 1277
+        y: 1635
+        width: 180
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: goodguy_goingdown_16
+      rect:
+        serializedVersion: 2
+        x: 1485
+        y: 1635
+        width: 180
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: goodguy_goingdown_17
+      rect:
+        serializedVersion: 2
+        x: 1693
+        y: 1635
+        width: 180
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: goodguy_goingdown_18
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 1431
+        width: 180
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: goodguy_goingdown_19
+      rect:
+        serializedVersion: 2
+        x: 237
+        y: 1431
+        width: 180
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: goodguy_goingdown_20
+      rect:
+        serializedVersion: 2
+        x: 445
+        y: 1431
+        width: 180
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: goodguy_goingdown_21
+      rect:
+        serializedVersion: 2
+        x: 653
+        y: 1431
+        width: 180
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: goodguy_goingdown_22
+      rect:
+        serializedVersion: 2
+        x: 861
+        y: 1431
+        width: 180
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: goodguy_goingdown_23
+      rect:
+        serializedVersion: 2
+        x: 1069
+        y: 1431
+        width: 180
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: goodguy_goingdown_24
+      rect:
+        serializedVersion: 2
+        x: 1277
+        y: 1431
+        width: 180
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: goodguy_goingdown_25
+      rect:
+        serializedVersion: 2
+        x: 1485
+        y: 1431
+        width: 180
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: goodguy_goingdown_26
+      rect:
+        serializedVersion: 2
+        x: 1693
+        y: 1431
+        width: 180
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: goodguy_goingdown_27
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 1227
+        width: 180
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: goodguy_goingdown_28
+      rect:
+        serializedVersion: 2
+        x: 237
+        y: 1227
+        width: 180
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: goodguy_goingdown_29
+      rect:
+        serializedVersion: 2
+        x: 445
+        y: 1227
+        width: 180
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: goodguy_goingdown_30
+      rect:
+        serializedVersion: 2
+        x: 653
+        y: 1227
+        width: 180
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: goodguy_goingdown_31
+      rect:
+        serializedVersion: 2
+        x: 861
+        y: 1227
+        width: 180
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: goodguy_goingdown_32
+      rect:
+        serializedVersion: 2
+        x: 1069
+        y: 1227
+        width: 180
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: goodguy_goingdown_33
+      rect:
+        serializedVersion: 2
+        x: 1277
+        y: 1227
+        width: 180
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: goodguy_goingdown_34
+      rect:
+        serializedVersion: 2
+        x: 1485
+        y: 1227
+        width: 180
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: goodguy_goingdown_35
+      rect:
+        serializedVersion: 2
+        x: 1693
+        y: 1227
+        width: 180
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: goodguy_goingdown_36
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 1023
+        width: 180
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: goodguy_goingdown_37
+      rect:
+        serializedVersion: 2
+        x: 237
+        y: 1023
+        width: 180
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: goodguy_goingdown_38
+      rect:
+        serializedVersion: 2
+        x: 445
+        y: 1023
+        width: 180
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: goodguy_goingdown_39
+      rect:
+        serializedVersion: 2
+        x: 653
+        y: 1023
+        width: 180
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: goodguy_goingdown_40
+      rect:
+        serializedVersion: 2
+        x: 861
+        y: 1023
+        width: 180
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: goodguy_goingdown_41
+      rect:
+        serializedVersion: 2
+        x: 1069
+        y: 1023
+        width: 180
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: goodguy_goingdown_42
+      rect:
+        serializedVersion: 2
+        x: 1277
+        y: 1023
+        width: 180
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: goodguy_goingdown_43
+      rect:
+        serializedVersion: 2
+        x: 1485
+        y: 1023
+        width: 180
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: goodguy_goingdown_44
+      rect:
+        serializedVersion: 2
+        x: 1693
+        y: 1023
+        width: 180
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: goodguy_goingdown_45
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 819
+        width: 180
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: goodguy_goingdown_46
+      rect:
+        serializedVersion: 2
+        x: 237
+        y: 819
+        width: 180
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: goodguy_goingdown_47
+      rect:
+        serializedVersion: 2
+        x: 445
+        y: 819
+        width: 180
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: goodguy_goingdown_48
+      rect:
+        serializedVersion: 2
+        x: 653
+        y: 819
+        width: 180
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: goodguy_goingdown_49
+      rect:
+        serializedVersion: 2
+        x: 861
+        y: 819
+        width: 180
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: goodguy_goingdown_50
+      rect:
+        serializedVersion: 2
+        x: 1069
+        y: 819
+        width: 180
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: goodguy_goingdown_51
+      rect:
+        serializedVersion: 2
+        x: 1277
+        y: 819
+        width: 180
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: goodguy_goingdown_52
+      rect:
+        serializedVersion: 2
+        x: 1485
+        y: 819
+        width: 180
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: goodguy_goingdown_53
+      rect:
+        serializedVersion: 2
+        x: 1693
+        y: 819
+        width: 180
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: goodguy_goingdown_54
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 615
+        width: 180
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: goodguy_goingdown_55
+      rect:
+        serializedVersion: 2
+        x: 237
+        y: 615
+        width: 180
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: goodguy_goingdown_56
+      rect:
+        serializedVersion: 2
+        x: 445
+        y: 615
+        width: 180
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: goodguy_goingdown_57
+      rect:
+        serializedVersion: 2
+        x: 653
+        y: 615
+        width: 180
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: goodguy_goingdown_58
+      rect:
+        serializedVersion: 2
+        x: 861
+        y: 615
+        width: 180
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: goodguy_goingdown_59
+      rect:
+        serializedVersion: 2
+        x: 1069
+        y: 615
+        width: 180
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: goodguy_goingdown_60
+      rect:
+        serializedVersion: 2
+        x: 1277
+        y: 615
+        width: 180
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
