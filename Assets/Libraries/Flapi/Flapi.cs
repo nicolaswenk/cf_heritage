@@ -22,7 +22,6 @@
 //			add a public variable for this situation.
 //
 //------------------------------------------------------------------------------
-
 using FlapiUnity;
 using UnityEngine;
 using System.Collections;
@@ -101,7 +100,6 @@ namespace FlapiUnity
 			public int		maxSamplingRate;
 		}
 
-
 		/// <summary>
 		/// Analyze upcoming audio signal and find the ticks.
 		/// 
@@ -120,15 +118,13 @@ namespace FlapiUnity
 			int samples = currentSample - lastAnalyzedSample;
 
 			// We must analyze a range which can contain at least one tick.
-			if (samples < tickMinDelta)
+			if (samples < tickMinDelta || samples == 0)
 				return;
 
-
+			// Copy the audio data in our buffer.
 			float[] data = new float[samples];
 			audio.GetOutputData (data, 0);
 			data.CopyTo (_buffer, lastAnalyzedSample);
-
-
 
 			// Ignore filters processes if audio source is a file.
 			// The file is already processed.
