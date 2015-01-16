@@ -60,6 +60,8 @@ namespace FlapiUnity
 		// Public variables
 		//
 
+		public static readonly int		FREQUENCY_MAX = TICKS_PER_SEC_MAX;
+
 		public static bool blowing { 
 			get {
 				return _frequency > (float)TICKS_PER_SEC_MIN;
