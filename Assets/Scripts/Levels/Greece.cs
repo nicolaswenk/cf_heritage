@@ -15,6 +15,7 @@ public class Greece : MonoBehaviour
 	public Animator introAnimator;
 	public Animator playerAnimator;
 	public Animator gameOverAnimator;
+	public UnityEngine.UI.Text micro;
 
 	public GameObject player;
 

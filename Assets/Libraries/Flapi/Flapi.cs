@@ -199,7 +199,7 @@ namespace FlapiUnity
 			devicesAvailables = devices.Length;
 			
 			microphones = new FlapiMicrophone[devicesAvailables];
-			
+
 			for (int i = 0; i < devicesAvailables; i++) {
 				UnityEngine.Microphone.GetDeviceCaps (devices [i], out deviceMinFrequency, out deviceMaxFrequency);
 				microphones [i].name = devices [i];
@@ -306,6 +306,8 @@ namespace FlapiUnity
 		{
 			sourceIsFile = false;
 
+			RequireAuthorization ();
+
 			string device = microphone.name;
 			audio.clip = UnityEngine.Microphone.Start (device, false, seconds, _sampleRate);
 
@@ -314,6 +316,14 @@ namespace FlapiUnity
 			while (!(UnityEngine.Microphone.GetPosition(device) > 0)) {
 			}
 			;
+		}
+
+		static IEnumerator RequireAuthorization ()
+		{
+			yield return Application.RequestUserAuthorization (UserAuthorization.Microphone);
+			if (Application.HasUserAuthorization (UserAuthorization.Microphone)) {
+			} else {
+			}
 		}
 	}
 }
