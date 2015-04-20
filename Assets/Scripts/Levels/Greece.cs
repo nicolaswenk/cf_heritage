@@ -4,49 +4,43 @@ using System.Collections;
 
 public class Greece : MonoBehaviour
 {
-	private readonly static int STATE_LOGO = 0;
-	private readonly static int STATE_INTRO = 1;
-	private readonly static int STATE_GAME = 2;
-
-	private int state = STATE_LOGO;
+	private GameState state = GameState.LOGO;
 
 	public Animator logoAnimator;
 	public Animator playAnimator;
 	public Animator introAnimator;
 	public Animator playerAnimator;
 	public Animator gameOverAnimator;
-	public UnityEngine.UI.Text micro;
 
-	public GameObject player;
+	public Player player;
 
 	float acceleration = 0.0f;
-	
+
+	IOController_I ioController;
+
+	private DrainageAutogene exercice;
+
 	// Use this for initialization
 	void Start ()
 	{
-
+		//ioController = new FlapiIOController (audio);
+	 
+		//TODO: Build the ParameterManager object by reading the properties instead of setting with those magic values
+		exercice = new DrainageAutogene ();
+		ioController = new KeyboardIOController (new ParameterManager(3,1), exercice);
 	}
 	
 	// Update is called once per frame
 	void Update ()
 	{
-		if (state == STATE_GAME) {
-			Flapi.Analyze (audio);
-
-			//Debug.Log (Flapi.blowing + " - " + Flapi.frequency);
-
-			if (player.transform.position.y > -5)
-				player.transform.Translate (new Vector3 (0, -0.02f));
-
-			if (Flapi.blowing && acceleration < 1.0f)
-				acceleration += 0.02f;
-			if (!Flapi.blowing && acceleration > 0.0f)
-				acceleration -= 0.02f;
-
-
-			float move = 0.04f * (acceleration);
-			if (player.transform.position.y < 5 && move > 0.0f)
-				player.transform.Translate (new Vector3 (0, move));
+		if (state == GameState.GAME) {
+			ioController.Update();
+			exercice.CheckProgress(ioController);
+			player.Move(ioController, exercice);
+			string warning=exercice.GetWarning();
+			if(warning!=null){
+				Debug.Log(warning);
+			}
 		}
 	}
 
@@ -57,15 +51,15 @@ public class Greece : MonoBehaviour
 
 	public void PlayClicked ()
 	{
-		if (state == STATE_LOGO)
+		if (state == GameState.LOGO)
 			ShowIntro ();
-		else if (state == STATE_INTRO)
+		else if (state == GameState.INTRO)
 			StartGame ();
 	}
 
 	private void ShowIntro ()
 	{
-		state = STATE_INTRO;
+		state = GameState.INTRO;
 
 		logoAnimator.SetBool ("visible", false);
 		introAnimator.SetBool ("visible", true);
@@ -73,7 +67,6 @@ public class Greece : MonoBehaviour
 
 	private void StartGame ()
 	{
-		state = STATE_GAME;
 
 		playAnimator.SetBool ("visible", false);		
 		introAnimator.SetBool ("visible", false);
@@ -89,10 +82,16 @@ public class Greece : MonoBehaviour
 			yield return null;
 		}
 		animator.enabled = false;
+		
+		state = GameState.GAME;
 
-		Flapi.threshold = 5.0f;
+		/*Flapi.threshold = 5.0f;
 		Flapi.Start (audio, Flapi.GetMicrophone (0), 60);
-		Debug.Log (Flapi.GetMicrophone (0).name);
+		Debug.Log (Flapi.GetMicrophone (0).name);*/
+	}
+
+	public GameState GameState{
+		get{ return state;}
 	}
 	
 }
