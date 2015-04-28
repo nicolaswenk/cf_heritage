@@ -38,7 +38,7 @@ public class Player : MonoBehaviour
 
 	void OnCollisionEnter2D (Collision2D collision)
 	{
-		rigidbody2D.gravityScale = 1;
+		GetComponent<Rigidbody2D>().gravityScale = 1;
 		game.GameOver ();
 	}
 }
