@@ -11,20 +11,20 @@ using System;
 	
 public class ParameterManager
 {
-	public double strongBreathValue;
-	public double inspirationTime;
+	private float strongBreathValue;
+	private float inspirationTime;
 
-	public ParameterManager (double strongBreathValue, double inspirationTime)
+	public ParameterManager (float strongBreathValue, float inspirationTime)
 	{
 		this.strongBreathValue = strongBreathValue;
 		this.inspirationTime = inspirationTime;
 	}
 	
-	public double StrongBreathValue{
+	public float StrongBreathValue{
 		get{ return strongBreathValue;}
 	}
 	
-	public double InspirationTime{
+	public float InspirationTime{
 		get{ return inspirationTime;}
 	}
 

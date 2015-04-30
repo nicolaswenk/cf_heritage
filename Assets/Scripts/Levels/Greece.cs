@@ -27,7 +27,7 @@ public class Greece : MonoBehaviour
 	 
 		//TODO: Build the ParameterManager object by reading the properties instead of setting with those magic values
 		exercice = new DrainageAutogene ();
-		ioController = new KeyboardIOController (new ParameterManager(3,1), exercice);
+		ioController = new KeyboardIOController (new ParameterManager(2,1), exercice);
 	}
 	
 	// Update is called once per frame

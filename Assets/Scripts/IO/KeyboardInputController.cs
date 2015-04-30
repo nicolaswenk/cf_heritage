@@ -14,8 +14,11 @@ public class KeyboardIOController:OnlyExpirationIOController
 {
 	private bool isSpaceDown=true;
 
+	private float strongBreathValue;
+
 	public KeyboardIOController (ParameterManager parameterManager, DrainageAutogene exercice):base(parameterManager, exercice)
 	{
+		this.strongBreathValue = parameterManager.StrongBreathValue;
 	}
 
 	public override void Update(){
@@ -30,7 +33,7 @@ public class KeyboardIOController:OnlyExpirationIOController
 
 		if (this.isSpaceDown) {
 			if(Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)){
-				return 2.0f;
+				return strongBreathValue;
 			}
 			else{
 				return 1.0f;
