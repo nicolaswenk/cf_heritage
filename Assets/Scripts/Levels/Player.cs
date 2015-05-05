@@ -17,6 +17,8 @@ public class Player : MonoBehaviour
 
 	private float volume=1.0f;
 
+	public StarCounter starCounter;
+
 	// Use this for initialization
 	void Start ()
 	{
@@ -63,10 +65,13 @@ public class Player : MonoBehaviour
 	void OnTriggerEnter2D(Collider2D other){
 		switch (other.tag) {
 		case "Obstacle":
-			game.GameOver ();
+			//TODO: Implement the collision behaviour
+			starCounter.Loose(1);
+			GetComponent<Animator>().SetTrigger("collision");
 			break;
 		case "Star":
-
+			//TODO: Implement the star collect behaviour
+			starCounter.Collect(1);
 			break;
 		}
 	}

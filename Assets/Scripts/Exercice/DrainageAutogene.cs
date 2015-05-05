@@ -56,7 +56,6 @@ public class DrainageAutogene
 
 		if (state == InputState.EXPIRATION || state == InputState.STRONG_EXPIRATION) {
 			volume-=ioController.GetStrength()*Time.deltaTime*speedExpiration;
-			Debug.Log ("speed="+speedExpiration+", strength="+ioController.GetStrength());
 			if(volume<ActualRespiration.EndVolume){
 				volume=ActualRespiration.EndVolume;
 			}

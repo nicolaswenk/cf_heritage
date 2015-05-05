@@ -4,13 +4,9 @@ using System.Collections;
 
 public class Greece : MonoBehaviour
 {
-	private GameState state = GameState.LOGO;
+	private GameState state = GameState.INTRO;
 
-	public Animator logoAnimator;
-	public Animator playAnimator;
-	public Animator introAnimator;
-	public Animator playerAnimator;
-	public Animator gameOverAnimator;
+	//public Animator playerAnimator;
 
 	public Player player;
 
@@ -28,6 +24,10 @@ public class Greece : MonoBehaviour
 		//TODO: Build the ParameterManager object by reading the properties instead of setting with those magic values
 		exercice = new DrainageAutogene ();
 		ioController = new KeyboardIOController (new ParameterManager(10,1), exercice);
+
+		//playerAnimator.SetTrigger ("entering");
+
+		StartCoroutine (WaitForPlayer ());
 	}
 	
 	// Update is called once per frame
@@ -44,40 +44,9 @@ public class Greece : MonoBehaviour
 		}
 	}
 
-	public void GameOver ()
-	{
-		gameOverAnimator.Play ("GameOver");
-	}
-
-	public void PlayClicked ()
-	{
-		if (state == GameState.LOGO)
-			ShowIntro ();
-		else if (state == GameState.INTRO)
-			StartGame ();
-	}
-
-	private void ShowIntro ()
-	{
-		state = GameState.INTRO;
-
-		logoAnimator.SetBool ("visible", false);
-		introAnimator.SetBool ("visible", true);
-	}
-
-	private void StartGame ()
-	{
-
-		playAnimator.SetBool ("visible", false);		
-		introAnimator.SetBool ("visible", false);
-		playerAnimator.SetTrigger ("entering");
-
-		StartCoroutine (WaitForPlayer ());
-	}
-
 	private IEnumerator WaitForPlayer ()
 	{
-		Animator animator = (Animator)player.GetComponent ("Animator");
+		Animator animator = (Animator)GetComponent ("Animator");
 		while (!animator.GetCurrentAnimatorStateInfo(0).IsName("Playing")) {
 			yield return null;
 		}
