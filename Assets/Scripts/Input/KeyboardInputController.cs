@@ -10,7 +10,7 @@
 using System;
 using UnityEngine;
 
-public class KeyboardIOController:OnlyExpirationIOController
+public class KeyboardIOController:OnlyExpirationInputController
 {
 	private bool isSpaceDown=true;
 

@@ -25,7 +25,10 @@ public class DrainageAutogene
 	/// </summary>
 	private float volume=1.0f;
 	//TODO: Make this as a param
-	private static float expirationMinTime = 10.0f;
+	private static float fullExpirationMinTime = 20.0f;
+	//TODO: Make this "/2.0f" computed...
+	private static float expirationMinTime = fullExpirationMinTime/2.0f;
+	private static float speedExpiration = 1.0f/fullExpirationMinTime;
 	
 	//TODO: Make this a parameter
 	private static float speedInspiration=0.5f;
@@ -52,8 +55,8 @@ public class DrainageAutogene
 		state = ioController.GetInputState ();
 
 		if (state == InputState.EXPIRATION || state == InputState.STRONG_EXPIRATION) {
-			//TODO: Make this "0.5" computed...
-			volume-=ioController.GetStrength()*Time.deltaTime/(expirationMinTime*0.5f);
+			volume-=ioController.GetStrength()*Time.deltaTime*speedExpiration;
+			Debug.Log ("speed="+speedExpiration+", strength="+ioController.GetStrength());
 			if(volume<ActualRespiration.EndVolume){
 				volume=ActualRespiration.EndVolume;
 			}

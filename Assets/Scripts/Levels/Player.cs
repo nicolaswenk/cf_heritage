@@ -8,8 +8,6 @@ public class Player : MonoBehaviour
 	public float maxHeight;
 	
 	private float speedHorizontal=1.0f;
-	private float speedExpiration=-2.0f;
-	private float speedInspiration=4.0f;
 
 	public GameObject inflatablePart=null;
 
@@ -62,9 +60,14 @@ public class Player : MonoBehaviour
 		transform.Translate (new Vector3 (horizontalMovement, newY-transform.position.y));
 	}
 
-	void OnCollisionEnter2D (Collision2D collision)
-	{
-		GetComponent<Rigidbody2D>().gravityScale = 1;
-		game.GameOver ();
+	void OnTriggerEnter2D(Collider2D other){
+		switch (other.tag) {
+		case "Obstacle":
+			game.GameOver ();
+			break;
+		case "Star":
+
+			break;
+		}
 	}
 }

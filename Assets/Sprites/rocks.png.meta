@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: 38b8d17cef8ec3f419df487c3418b739
-timeCreated: 1430405521
-licenseType: Free
+timeCreated: 1430814274
+licenseType: Pro
 TextureImporter:
   fileIDToRecycleName:
     21300000: rock 1
@@ -55,30 +55,30 @@ TextureImporter:
     - name: rock 1
       rect:
         serializedVersion: 2
-        x: 10
-        y: 770
-        width: 413
-        height: 211
+        x: 4
+        y: 418
+        width: 457
+        height: 601
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: rock 2
       rect:
         serializedVersion: 2
-        x: 541
-        y: 823
-        width: 460
-        height: 177
+        x: 454
+        y: 1
+        width: 568
+        height: 458
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: rock 3
       rect:
         serializedVersion: 2
-        x: 647
-        y: 551
-        width: 331
-        height: 256
+        x: 559
+        y: 475
+        width: 455
+        height: 541
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}

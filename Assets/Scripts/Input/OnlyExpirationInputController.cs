@@ -10,7 +10,7 @@
 using System;
 using UnityEngine;
 
-public abstract class OnlyExpirationIOController : IOController_I
+public abstract class OnlyExpirationInputController : IOController_I
 {
 	protected abstract bool isBlowing();
 	public abstract bool IsMoving();
@@ -25,7 +25,7 @@ public abstract class OnlyExpirationIOController : IOController_I
 
 	private DrainageAutogene exercice;
 
-	public OnlyExpirationIOController(ParameterManager parameterManager, DrainageAutogene exercice){
+	public OnlyExpirationInputController(ParameterManager parameterManager, DrainageAutogene exercice){
 		this.parameterManager = parameterManager;
 		this.exercice = exercice;
 	}
