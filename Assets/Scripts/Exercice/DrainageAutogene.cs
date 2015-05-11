@@ -15,8 +15,8 @@ public class DrainageAutogene
 {
 	private List<Respiration> respirations;
 	private int indexRespirationAct;
-	private InputState state=InputState.INSPIRATION;
-	private InputState lastState=InputState.INSPIRATION;
+	private InputState state=InputState.HOLDING_BREATH;
+	private InputState lastState=InputState.HOLDING_BREATH;
 	private float lastEndVolume = 0.5f;
 
 	/// <summary>
@@ -28,25 +28,27 @@ public class DrainageAutogene
 	private static float fullExpirationMinTime = 20.0f;
 	//TODO: Make this "/2.0f" computed...
 	private static float expirationMinTime = fullExpirationMinTime/2.0f;
-	private static float speedExpiration = 1.0f/fullExpirationMinTime;
+	private static float expirationSpeed = 1.0f/fullExpirationMinTime;
 	
 	//TODO: Make this a parameter
-	private static float speedInspiration=0.5f;
-	private static float inspirationMinTime = 1.0f/speedInspiration;
+	private static float inspirationSpeed=0.5f;
+	private static float inspirationMinTime = 1.0f/inspirationSpeed;
+
+	private static float holdingBreathTime=3.0f;
 
 	public DrainageAutogene ()
 	{
 
 		respirations = new List<Respiration> (9);
-		respirations.Add (new Respiration (0.0f, 1.0f, 0.5f, speedInspiration));
-		respirations.Add (new Respiration (0.5f, 1.0f, 0.5f, speedInspiration));
-		respirations.Add (new Respiration (0.5f, 1.0f, 0.25f, speedInspiration));
-		respirations.Add (new Respiration (0.25f, 0.75f, 0.25f, speedInspiration));
-		respirations.Add (new Respiration (0.25f, 0.75f, 0.25f, speedInspiration));
-		respirations.Add (new Respiration (0.25f, 0.75f, 0.0f, speedInspiration));
-		respirations.Add (new Respiration (0.0f, 0.5f, 0.0f, speedInspiration));
-		respirations.Add (new Respiration (0.0f, 0.5f, 0.0f, speedInspiration));
-		respirations.Add (new Respiration (0.0f, 0.5f, 0.0f, speedInspiration));
+		respirations.Add (new Respiration (0.0f, 1.0f, 0.5f, holdingBreathTime, inspirationSpeed, expirationSpeed));
+		respirations.Add (new Respiration (0.5f, 1.0f, 0.5f, holdingBreathTime, inspirationSpeed, expirationSpeed));
+		respirations.Add (new Respiration (0.5f, 1.0f, 0.25f, holdingBreathTime, inspirationSpeed, expirationSpeed));
+		respirations.Add (new Respiration (0.25f, 0.75f, 0.25f, holdingBreathTime, inspirationSpeed, expirationSpeed));
+		respirations.Add (new Respiration (0.25f, 0.75f, 0.25f, holdingBreathTime, inspirationSpeed, expirationSpeed));
+		respirations.Add (new Respiration (0.25f, 0.75f, 0.0f, holdingBreathTime, inspirationSpeed, expirationSpeed));
+		respirations.Add (new Respiration (0.0f, 0.5f, 0.0f, holdingBreathTime, inspirationSpeed, expirationSpeed));
+		respirations.Add (new Respiration (0.0f, 0.5f, 0.0f, holdingBreathTime, inspirationSpeed, expirationSpeed));
+		respirations.Add (new Respiration (0.0f, 0.5f, 0.0f, holdingBreathTime, inspirationSpeed, expirationSpeed));
 		indexRespirationAct = 0;
 	}
 
@@ -55,7 +57,7 @@ public class DrainageAutogene
 		state = ioController.GetInputState ();
 
 		if (state == InputState.EXPIRATION || state == InputState.STRONG_EXPIRATION) {
-			volume-=ioController.GetStrength()*Time.deltaTime*speedExpiration;
+			volume-=ioController.GetStrength()*Time.deltaTime*expirationSpeed;
 			if(volume<ActualRespiration.EndVolume){
 				volume=ActualRespiration.EndVolume;
 			}
@@ -63,7 +65,7 @@ public class DrainageAutogene
 
 		if (state == InputState.INSPIRATION) {
 			//TODO: Make this "0.5" computed...
-			volume+=ioController.GetStrength()*Time.deltaTime*speedInspiration;
+			volume+=ioController.GetStrength()*Time.deltaTime*inspirationSpeed;
 			if(volume>ActualRespiration.MaxVolume){
 				volume=ActualRespiration.MaxVolume;
 			}
@@ -111,6 +113,23 @@ public class DrainageAutogene
 
 	public Respiration ActualRespiration {
 		get{ return respirations [indexRespirationAct];}
+	}
+	
+	public List<Respiration> Respirations {
+		get{ return respirations;}
+	}
+	
+	public InputState State {
+		get{ return state;}
+	}
+	
+	public float ExpirationSpeed{
+		get{ return expirationSpeed;}
+	}
+		
+		
+	public float InspirationSpeed{
+		get{ return inspirationSpeed;}
 	}
 }
 

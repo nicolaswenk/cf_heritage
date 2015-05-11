@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Player : MonoBehaviour
 {
-	public Greece game;
+	public Level game;
 	public float minHeight;
 	public float maxHeight;
 	
@@ -74,5 +74,9 @@ public class Player : MonoBehaviour
 			starCounter.Collect(1);
 			break;
 		}
+	}
+
+	public float HorizontalSpeed{
+		get{ return speedHorizontal;}
 	}
 }

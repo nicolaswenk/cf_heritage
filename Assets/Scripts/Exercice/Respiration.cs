@@ -15,26 +15,42 @@ public class Respiration
 	private float startVolume;
 	private float maxVolume;
 	private float endVolume;
+	private float holdingBreathTime;
 	private float inspirationTime;
+	private float expirationTime;
 
-	public Respiration (float startVolume, float maxVolume, float endVolume, float speedInspiration)
+	public Respiration (float startVolume, float maxVolume, float endVolume, float holdingBreathTime, float inspirationSpeed, float expirationSpeed)
 		{
 		this.startVolume = startVolume;
 		this.maxVolume = maxVolume;
 		this.endVolume = endVolume;
-		this.inspirationTime = (this.maxVolume - this.startVolume)/speedInspiration;
+		this.holdingBreathTime = holdingBreathTime;
+		this.inspirationTime = (this.maxVolume - this.startVolume)/inspirationSpeed;
+		this.expirationTime=-(this.endVolume-this.maxVolume)/expirationSpeed;
 		}
 
 	public float EndVolume {
 		get{ return endVolume;}
 	}
-
+	
 	public float MaxVolume {
 		get{ return maxVolume;}
 	}
-
+	
+	public float StartVolume {
+		get{ return startVolume;}
+	}
+	
 	public float InspirationTime {
 		get { return inspirationTime;}
+	}
+	
+	public float ExpirationTime {
+		get { return expirationTime;}
+	}
+	
+	public float HoldingBreathTime {
+		get { return holdingBreathTime;}
 	}
 }
 

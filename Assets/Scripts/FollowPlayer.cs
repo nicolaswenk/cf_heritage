@@ -4,7 +4,7 @@ using System.Collections;
 public class FollowPlayer : MonoBehaviour {
 	
 	public GameObject player;
-	public Greece lvlManager;
+	public Level lvlManager;
 	
 	public bool followOnX;
 	public bool followOnY;
