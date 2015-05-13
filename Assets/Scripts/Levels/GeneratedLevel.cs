@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 public class GeneratedLevel : Level
 {
-
+	public GameObject ground;
 	public GameObject starModel;
 	public List<Obstacle> listObstacleModels;
 	
@@ -18,14 +18,75 @@ public class GeneratedLevel : Level
 		//ioController = new FlapiIOController (audio);
 		ioController = new KeyboardIOController (new ParameterManager(10,1), exercice);
 
-		CreateStars ();
+		CreateGround ();
+
+		CreateRandomStars ();
+		//CreatePerfectStars ();
 
 		CreateObstacles (1.0f, 1.0f);
 		
 		StartCoroutine (WaitForPlayer ());
 	}
 
-	private void CreateStars(){
+	private void CreateGround(){
+		//TODO: Make an infinite repetion (not in the start but in update).
+		Debug.Log (player.minHeight);
+		for (int i=0; i<20; i++) {
+			Instantiate (ground, new Vector3 (i*10.24f, player.minHeight, 0), Quaternion.identity).name = "Ground_"+i;
+		}
+	}
+
+	private void CreateRandomStars(){
+		float dtInspirationIdeal = 1.0f;
+		float dtHoldingBreathIdeal = 1.0f;
+		float dtExpirationIdeal = 5.0f;
+		int respirationIndex = 0;
+		float time = 0.0f;
+		float timeRef=time;
+		foreach(Respiration respiration in exercice.Respirations){
+			float inspirationTime=(respiration.MaxVolume-respiration.StartVolume)/exercice.InspirationSpeed;
+			int starRespirationCounter=1;
+			if(respirationIndex>0 || exercice.State==InputState.INSPIRATION){
+				float dtInspirationRandom=Random.Range(dtInspirationIdeal/2.0f, dtInspirationIdeal*2.0f);
+				time+=dtInspirationRandom;
+				while(time-timeRef<inspirationTime){
+					Vector3 pos=ExerciceToPlayer(new Vector3(time, (respiration.MaxVolume-respiration.StartVolume)*(time-timeRef) + respiration.StartVolume,0));
+					Object star=Instantiate(starModel, pos, Quaternion.identity);
+					star.name="Star_"+respirationIndex+"_"+starRespirationCounter;
+					dtInspirationRandom=Random.Range(dtInspirationIdeal/2.0f, dtInspirationIdeal*2.0f);
+					time+=dtInspirationRandom;
+					starRespirationCounter++;
+				}
+				timeRef=timeRef+inspirationTime;
+			}
+			float dtHoldingBreathRandom=Random.Range(dtHoldingBreathIdeal/2.0f, dtHoldingBreathIdeal*2.0f);
+			time+=dtHoldingBreathRandom;
+			while(time-timeRef<respiration.HoldingBreathTime){
+				Vector3 pos=ExerciceToPlayer(new Vector3(time, respiration.MaxVolume,0));
+				Object star=Instantiate(starModel, pos, Quaternion.identity);
+				star.name="Star_"+respirationIndex+"_"+starRespirationCounter;
+				dtHoldingBreathRandom=Random.Range(dtHoldingBreathIdeal/2.0f, dtHoldingBreathIdeal*2.0f);
+				time+=dtHoldingBreathRandom;
+				starRespirationCounter++;
+			}
+			timeRef=timeRef+respiration.HoldingBreathTime;
+			float dtExpirationRandom=Random.Range(dtExpirationIdeal/2.0f, dtExpirationIdeal*2.0f);
+			time+=dtExpirationRandom;
+			float expirationTime=-(respiration.EndVolume-respiration.MaxVolume)/exercice.ExpirationSpeed;
+			while(time-timeRef<expirationTime){
+				Vector3 pos=ExerciceToPlayer(new Vector3(time, respiration.MaxVolume+(time-timeRef)*(respiration.EndVolume-respiration.MaxVolume)/respiration.ExpirationTime,0));
+				Object star=Instantiate(starModel, pos, Quaternion.identity);
+				star.name="Star_"+respirationIndex+"_"+starRespirationCounter;
+				dtExpirationRandom=Random.Range(dtExpirationIdeal/2.0f, dtExpirationIdeal*2.0f);
+				time+=dtExpirationRandom;
+				starRespirationCounter++;
+			}
+			timeRef=timeRef+expirationTime;
+			respirationIndex++;
+		}
+	}
+
+	private void CreatePerfectStars(){
 		float dtInspiration = 0.5f;
 		float dtExpiration = 1.0f;
 		int respirationIndex = 0;
