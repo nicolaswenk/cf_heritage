@@ -32,7 +32,7 @@ public class Menu : MonoBehaviour
 		playAnimator.SetBool ("visible", false);		
 		introAnimator.SetBool ("visible", false);
 
-		Application.LoadLevel ("Greece");
+		Application.LoadLevel ("GreeceGenerated");
 	}
 	
 }
