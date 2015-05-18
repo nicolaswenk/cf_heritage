@@ -133,7 +133,7 @@ public class GeneratedLevel : Level
 			float secureTime = 0.0f;
 			if(randomDown<probaObstacleDown){
 				float x=(time+secureTime)*player.HorizontalSpeed;
-				Obstacle obstacleModel=RandomObstacle(respiration.StartVolume, ObstacleType.DOWN);
+				Obstacle obstacleModel=RandomObstacle(respirationToWorldHeight(respiration.StartVolume), ObstacleType.DOWN);
 				Object obstacle=Instantiate(obstacleModel, ExerciceToPlayer(new Vector3(x, respiration.StartVolume,0)), Quaternion.identity);
 				obstacle.name="ObstacleDown_"+respirationIndex;
 			}			
@@ -144,7 +144,7 @@ public class GeneratedLevel : Level
 			secureTime = 1.0f;
 			if(randomTop<probaObstacleTop){
 				float x=(time+secureTime)*player.HorizontalSpeed;
-				Obstacle obstacleModel=RandomObstacle(respiration.MaxVolume, ObstacleType.UP);
+				Obstacle obstacleModel=RandomObstacle(respirationToWorldHeight(respiration.MaxVolume), ObstacleType.UP);
 				Object obstacle=Instantiate(obstacleModel, ExerciceToPlayer(new Vector3(x, respiration.MaxVolume,0)), Quaternion.identity);
 				obstacle.name="ObstacleTop_"+respirationIndex;
 			}
@@ -175,9 +175,14 @@ public class GeneratedLevel : Level
 		return null;
 	}
 
+	private float respirationToWorldHeight(float respirationValue){
+		float worldHeight = respirationValue * (player.maxHeight - player.minHeight);
+		worldHeight += player.minHeight;
+		return worldHeight;
+	}
+
 	private Vector3 ExerciceToPlayer(Vector3 vector){
-		vector.y *= player.maxHeight - player.minHeight;
-		vector.y += player.minHeight;
+		vector.y = respirationToWorldHeight (vector.y);
 		vector.x *= player.HorizontalSpeed;
 
 		return vector;
