@@ -15,7 +15,8 @@ public class GeneratedLevel : Level
 		//TODO: Build the ParameterManager object by reading the properties instead of setting with those magic values
 		exercice = new DrainageAutogene ();
 
-		//ioController = new FlapiIOController (audio);
+		//Flapi.Start (GetComponent<AudioSource>(), Flapi.GetMicrophone (0), 60);
+		//ioController = new FlapiIOController (new ParameterManager(10,1), exercice, GetComponent<AudioSource>());
 		ioController = new KeyboardIOController (new ParameterManager(10,1), exercice);
 
 		CreateGround ();
@@ -29,14 +30,17 @@ public class GeneratedLevel : Level
 	}
 
 	private void CreateGround(){
+		Transform groundParent = GameObject.Find ("Ground").transform;
 		//TODO: Make an infinite repetion (not in the start but in update).
-		Debug.Log (player.minHeight);
 		for (int i=0; i<20; i++) {
-			Instantiate (ground, new Vector3 (i*10.24f, player.minHeight, 0), Quaternion.identity).name = "Ground_"+i;
+			GameObject groundObject=(GameObject)Instantiate (ground, new Vector3 (i*10.24f, player.minHeight, 0), Quaternion.identity);
+			groundObject.name = "Ground_"+i;
+			groundObject.transform.parent=groundParent;
 		}
 	}
 
 	private void CreateRandomStars(){
+		Transform stars = GameObject.Find ("Stars").transform;
 		float dtInspirationIdeal = 1.0f;
 		float dtHoldingBreathIdeal = 1.0f;
 		float dtExpirationIdeal = 5.0f;
@@ -51,7 +55,8 @@ public class GeneratedLevel : Level
 				time+=dtInspirationRandom;
 				while(time-timeRef<inspirationTime){
 					Vector3 pos=ExerciceToPlayer(new Vector3(time, (respiration.MaxVolume-respiration.StartVolume)*(time-timeRef) + respiration.StartVolume,0));
-					Object star=Instantiate(starModel, pos, Quaternion.identity);
+					GameObject star=(GameObject)Instantiate(starModel, pos, Quaternion.identity);
+					star.transform.parent=stars;
 					star.name="Star_"+respirationIndex+"_"+starRespirationCounter;
 					dtInspirationRandom=Random.Range(dtInspirationIdeal/2.0f, dtInspirationIdeal*2.0f);
 					time+=dtInspirationRandom;
@@ -63,7 +68,8 @@ public class GeneratedLevel : Level
 			time+=dtHoldingBreathRandom;
 			while(time-timeRef<respiration.HoldingBreathTime){
 				Vector3 pos=ExerciceToPlayer(new Vector3(time, respiration.MaxVolume,0));
-				Object star=Instantiate(starModel, pos, Quaternion.identity);
+				GameObject star=(GameObject)Instantiate(starModel, pos, Quaternion.identity);
+				star.transform.parent=stars;
 				star.name="Star_"+respirationIndex+"_"+starRespirationCounter;
 				dtHoldingBreathRandom=Random.Range(dtHoldingBreathIdeal/2.0f, dtHoldingBreathIdeal*2.0f);
 				time+=dtHoldingBreathRandom;
@@ -75,7 +81,8 @@ public class GeneratedLevel : Level
 			float expirationTime=-(respiration.EndVolume-respiration.MaxVolume)/exercice.ExpirationSpeed;
 			while(time-timeRef<expirationTime){
 				Vector3 pos=ExerciceToPlayer(new Vector3(time, respiration.MaxVolume+(time-timeRef)*(respiration.EndVolume-respiration.MaxVolume)/respiration.ExpirationTime,0));
-				Object star=Instantiate(starModel, pos, Quaternion.identity);
+				GameObject star=(GameObject)Instantiate(starModel, pos, Quaternion.identity);
+				star.transform.parent=stars;
 				star.name="Star_"+respirationIndex+"_"+starRespirationCounter;
 				dtExpirationRandom=Random.Range(dtExpirationIdeal/2.0f, dtExpirationIdeal*2.0f);
 				time+=dtExpirationRandom;
@@ -87,6 +94,7 @@ public class GeneratedLevel : Level
 	}
 
 	private void CreatePerfectStars(){
+		Transform stars = GameObject.Find ("Stars").transform;
 		float dtInspiration = 0.5f;
 		float dtExpiration = 1.0f;
 		int respirationIndex = 0;
@@ -98,7 +106,8 @@ public class GeneratedLevel : Level
 			if(respirationIndex>0 || exercice.State==InputState.INSPIRATION){
 				for(float i=0.0f; i<inspirationTime; i+=dtInspiration){
 					Vector3 pos=ExerciceToPlayer(new Vector3(time+xOffset, (respiration.MaxVolume-respiration.StartVolume)*i + respiration.StartVolume,0));
-					Object star=Instantiate(starModel, pos, Quaternion.identity);
+					GameObject star=(GameObject)Instantiate(starModel, pos, Quaternion.identity);
+					star.transform.parent=stars;
 					star.name="Star_"+respirationIndex+"_"+starRespirationCounter;
 					xOffset+=dtInspiration;
 					starRespirationCounter++;
@@ -106,7 +115,8 @@ public class GeneratedLevel : Level
 			}
 			for(float i=0.0f;i<respiration.HoldingBreathTime;i+=1.0f){
 				Vector3 pos=ExerciceToPlayer(new Vector3(time+xOffset, respiration.MaxVolume,0));
-				Object star=Instantiate(starModel, pos, Quaternion.identity);
+				GameObject star=(GameObject)Instantiate(starModel, pos, Quaternion.identity);
+				star.transform.parent=stars;
 				star.name="Star_"+respirationIndex+"_"+starRespirationCounter;
 				xOffset+=1.0f;
 				starRespirationCounter++;
@@ -114,7 +124,8 @@ public class GeneratedLevel : Level
 			float expirationTime=-(respiration.EndVolume-respiration.MaxVolume)/exercice.ExpirationSpeed;
 			for(float i=0.0f; i<expirationTime; i+=dtExpiration){
 				Vector3 pos=ExerciceToPlayer(new Vector3(time+xOffset, respiration.MaxVolume+i*(respiration.EndVolume-respiration.MaxVolume)/respiration.ExpirationTime,0));
-				Object star=Instantiate(starModel, pos, Quaternion.identity);
+				GameObject star=(GameObject)Instantiate(starModel, pos, Quaternion.identity);
+				star.transform.parent=stars;
 				star.name="Star_"+respirationIndex+"_"+starRespirationCounter;
 				xOffset+=dtExpiration;
 				starRespirationCounter++;
@@ -125,6 +136,7 @@ public class GeneratedLevel : Level
 	}
 	
 	private void CreateObstacles(float probaObstacleDown, float probaObstacleTop){
+		Transform obstacles = GameObject.Find ("Obstacles").transform;
 		float randomDown=Random.Range (0, 100)/100.0f;
 		float randomTop=Random.Range (0, 100)/100.0f;
 		int respirationIndex = 0;
@@ -134,7 +146,8 @@ public class GeneratedLevel : Level
 			if(randomDown<probaObstacleDown){
 				float x=(time+secureTime)*player.HorizontalSpeed;
 				Obstacle obstacleModel=RandomObstacle(respirationToWorldHeight(respiration.StartVolume), ObstacleType.DOWN);
-				Object obstacle=Instantiate(obstacleModel, ExerciceToPlayer(new Vector3(x, respiration.StartVolume,0)), Quaternion.identity);
+				Obstacle obstacle=(Obstacle)Instantiate(obstacleModel, ExerciceToPlayer(new Vector3(x, respiration.StartVolume,0)), Quaternion.identity);
+				obstacle.transform.parent=obstacles;
 				obstacle.name="ObstacleDown_"+respirationIndex;
 			}			
 			if(respirationIndex>0 || exercice.State==InputState.INSPIRATION){
@@ -145,7 +158,8 @@ public class GeneratedLevel : Level
 			if(randomTop<probaObstacleTop){
 				float x=(time+secureTime)*player.HorizontalSpeed;
 				Obstacle obstacleModel=RandomObstacle(respirationToWorldHeight(respiration.MaxVolume), ObstacleType.UP);
-				Object obstacle=Instantiate(obstacleModel, ExerciceToPlayer(new Vector3(x, respiration.MaxVolume,0)), Quaternion.identity);
+				Obstacle obstacle=(Obstacle)Instantiate(obstacleModel, ExerciceToPlayer(new Vector3(x, respiration.MaxVolume,0)), Quaternion.identity);
+				obstacle.transform.parent=obstacles;
 				obstacle.name="ObstacleTop_"+respirationIndex;
 			}
 			time+=respiration.ExpirationTime;

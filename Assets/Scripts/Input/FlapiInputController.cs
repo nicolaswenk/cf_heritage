@@ -26,6 +26,7 @@ public class FlapiIOController : OnlyExpirationInputController
 	}
 
 	protected override bool isBlowing(){
+		Debug.Log (Flapi.blowing + " - " + Flapi.frequency);
 		return Flapi.blowing;
 	}
 
@@ -35,7 +36,7 @@ public class FlapiIOController : OnlyExpirationInputController
 	}
 
 	public override float GetExpirationStrength(){
-		return Flapi.frequency;
+		return Flapi.frequency/12.0f;
 	}
 }
 

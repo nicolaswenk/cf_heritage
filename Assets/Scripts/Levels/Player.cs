@@ -19,6 +19,8 @@ public class Player : MonoBehaviour
 
 	public StarCounter starCounter;
 
+	public BonusController bonusController;
+
 	// Use this for initialization
 	void Start ()
 	{
@@ -71,7 +73,7 @@ public class Player : MonoBehaviour
 			break;
 		case "Star":
 			//TODO: Implement the star collect behaviour
-			starCounter.Collect(1);
+			starCounter.Collect(bonusController.GetMultiplicator());
 			break;
 		}
 	}
