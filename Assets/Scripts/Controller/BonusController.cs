@@ -45,15 +45,14 @@ public class BonusController : MonoBehaviour {
 	
 	private void LaunchBonus(){
 		foreach (GameObject gameObject in GameObject.FindGameObjectsWithTag("StarContainer")) {
-			Debug.Log(gameObject.name);
-			Star star=gameObject.GetComponentInChildren<Star>();
+			StarController star=gameObject.GetComponentInChildren<StarController>();
 			star.animator.SetTrigger("bonusStart");
 		}
 	}
 	
 	private void FinishBonus(){
 		foreach (GameObject gameObject in GameObject.FindGameObjectsWithTag("StarContainer")) {
-			Star star=gameObject.GetComponentInChildren<Star>();
+			StarController star=gameObject.GetComponentInChildren<StarController>();
 			star.animator.SetTrigger("bonusEnd");
 		}
 		
