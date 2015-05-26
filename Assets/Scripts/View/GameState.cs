@@ -9,14 +9,11 @@
 //------------------------------------------------------------------------------
 using System;
 
-public interface IOController_I
-{
-	void Update();
-	
-	float GetStrength();
-
-	InputState GetInputState();
-
-	bool IsMoving();
+public enum GameState
+{	
+	LOGO,
+	INTRO,
+	GAME
 }
+
 

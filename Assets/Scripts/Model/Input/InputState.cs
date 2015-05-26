@@ -1,0 +1,11 @@
+using System;
+
+public enum InputState
+{
+	INSPIRATION,
+	HOLDING_BREATH,
+	EXPIRATION,
+	STRONG_EXPIRATION,
+	PAUSE
+}
+

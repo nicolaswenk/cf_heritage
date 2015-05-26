@@ -8,13 +8,25 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 using System;
-
-public enum InputState
+	
+public class ParameterManager
 {
-	INSPIRATION,
-	HOLDING_BREATH,
-	EXPIRATION,
-	STRONG_EXPIRATION,
-	PAUSE
+	private float strongBreathValue;
+	private float inspirationTime;
+
+	public ParameterManager (float strongBreathValue, float inspirationTime)
+	{
+		this.strongBreathValue = strongBreathValue;
+		this.inspirationTime = inspirationTime;
+	}
+	
+	public float StrongBreathValue{
+		get{ return strongBreathValue;}
+	}
+	
+	public float InspirationTime{
+		get{ return inspirationTime;}
+	}
+
 }
 
