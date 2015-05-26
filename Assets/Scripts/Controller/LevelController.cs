@@ -15,13 +15,13 @@ public class LevelController : MonoBehaviour
 	
 	protected InputController_I ioController;
 	
-	protected DrainageAutogene exercice;
+	protected DecreasingDrainageAutogene exercice;
 	
 	// Use this for initialization
 	void Start ()
 	{		
 		//TODO: Build the ParameterManager object by reading the properties instead of setting with those magic values
-		exercice = new DrainageAutogene (3,3,3,1.5f,3.0f,10.0f,0.5f);
+		exercice = new DecreasingDrainageAutogene (3,3,3,1.5f,3.0f,10.0f,0.5f);
 
 		//ioController = new FlapiIOController (audio);
 		ioController = new KeyboardInputController (exercice,3.0f);

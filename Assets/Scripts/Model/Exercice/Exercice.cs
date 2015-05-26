@@ -2,6 +2,12 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// This class describe the behaviour of a therapeutical exercice.
+/// An exercice is basically a sequence of breathings which loops for at least
+/// the minimum defined time <see cref="minTime"/> .
+/// All other exercices we want to implement in the SG must inherits this class.
+/// </summary>
 public abstract class Exercice
 {
 	/// <summary>The list of breathings in a cycle of this exercice.</summary>
@@ -14,6 +20,8 @@ public abstract class Exercice
 	protected InputState lastState=InputState.HOLDING_BREATH;
 	/// <summary>The percentage of an expiration the patient have to do to validate the actual breathing and passing to the next one.</summary>
 	protected float factorMinExpirationForValidation=0.75f;
+	/// <summary>The minimum time (in sec) the exercice should last (repeating the breathings sequence).</summary>
+	protected float minTime;
 	
 	/// <summary>
 	/// 0 -> Empty lungs ;
@@ -135,6 +143,19 @@ public abstract class Exercice
 	/// </summary>	
 	public float IdealInspirationSpeed{
 		get { return ActualBreathing.InspirationSpeed;}
+	}
+
+	/// <summary>
+	/// Gets the duration (in seconds) of the exerice (based on the duration of its breathings).
+	/// </summary>
+	public float Duration {
+		get {
+			float duration = 0.0f;
+			foreach(Breathing breathing in breathings){
+				duration += breathing.Duration;
+			}
+			return duration;
+		}
 	}
 }
 

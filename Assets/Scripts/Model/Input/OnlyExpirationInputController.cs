@@ -25,9 +25,9 @@ public abstract class OnlyExpirationInputController : InputController_I
 	/// <summary>
 	/// The exercice to follow (used to know the differents speed in each state).
 	/// </summary>
-	private DrainageAutogene exercice;
+	private DecreasingDrainageAutogene exercice;
 
-	public OnlyExpirationInputController(DrainageAutogene exercice){
+	public OnlyExpirationInputController(DecreasingDrainageAutogene exercice){
 		this.exercice = exercice;
 	}
 	

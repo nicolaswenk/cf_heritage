@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour
 		}
 	}
 
-	public void Move(InputController_I ioController, DrainageAutogene exercice){	
+	public void Move(InputController_I ioController, DecreasingDrainageAutogene exercice){	
 
 		volume = exercice.Volume;
 	

@@ -2,7 +2,11 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DrainageAutogene:Exercice
+/// <summary>
+/// This class implements a decreasing "Drainage autogène" which consists of 3 sequence of breathings
+/// which are made at 3 different volumes. The "Decreasing" is because we start at the highest volume.
+/// </summary>
+public class DecreasingDrainageAutogene:Exercice
 {
 
 	/// <summary>
@@ -20,30 +24,38 @@ public class DrainageAutogene:Exercice
 	/// The medium breathings will start at 0.5 + (this value)/2 and deacrease of this value.
 	/// The low breathings will start from this value and deacrease until empty lungs.
 	/// </param>
-	public DrainageAutogene (int nbBreathingsHigh, int nbBreathingsMedium, int nbBreathingsLow, float inspirationTime, float holdingBreathTime, float expirationMinTime, float volumeRange)
+	public DecreasingDrainageAutogene (int nbBreathingsHigh, int nbBreathingsMedium, int nbBreathingsLow, float inspirationTime, float holdingBreathTime, float expirationMinTime, float volumeRange)
 	{
 		int nbBreahthings = nbBreathingsHigh + nbBreathingsMedium + nbBreathingsLow;
 
+		//Transition from low to high
 		breathings = new List<Breathing> (nbBreahthings);
+		float volumeMax = 1.0f;
 		float lastVolume = 0.0f;
-		float endVolume=1.0f-volumeRange;
+		float transitionInspirationTime = (volumeMax - lastVolume) / (volumeRange / inspirationTime);
+		float endVolume=1.0f-volumeRange;		
+		breathings.Add(new Breathing(lastVolume, volumeMax, endVolume, transitionInspirationTime, holdingBreathTime, expirationMinTime));
+		lastVolume = endVolume;
 		//High volume
-		for (int i=0; i<nbBreathingsHigh-1; i++) {
-			breathings.Add(new Breathing(lastVolume, 1.0f, endVolume, inspirationTime, holdingBreathTime, expirationMinTime));
+		for (int i=1; i<nbBreathingsHigh-1; i++) {
+			breathings.Add(new Breathing(lastVolume, volumeMax, endVolume, inspirationTime, holdingBreathTime, expirationMinTime));
 			lastVolume=endVolume;
 		}
-		//Transistion from high to medium volume
+		//Transition from high to medium volume		
 		endVolume = 0.5f - volumeRange / 2.0f;
-		breathings.Add (new Breathing (lastVolume, 1.0f, endVolume, inspirationTime, holdingBreathTime, expirationMinTime));
+		float transitionExpirationMinTime = (volumeMax - endVolume) / (volumeRange / expirationMinTime);
+		breathings.Add (new Breathing (lastVolume, volumeMax, endVolume, inspirationTime, holdingBreathTime, transitionExpirationMinTime));
 		lastVolume = endVolume;
 		//Medium volume
+		volumeMax = 0.5f + volumeRange / 2.0f;
 		for (int i=0; i<nbBreathingsMedium-1; i++) {
-			breathings.Add(new Breathing(lastVolume, 0.5f + volumeRange/2.0f, endVolume, inspirationTime, holdingBreathTime, expirationMinTime));
+			breathings.Add(new Breathing(lastVolume, volumeMax, endVolume, inspirationTime, holdingBreathTime, expirationMinTime));
 			lastVolume=endVolume;
 		}
-		//Transistion from medium to low volume
+		//Transition from medium to low volume
 		endVolume = 0.0f;
-		breathings.Add (new Breathing (lastVolume, 0.75f, endVolume, inspirationTime, holdingBreathTime, expirationMinTime));
+		transitionExpirationMinTime = (volumeMax - endVolume) / (volumeRange / expirationMinTime);
+		breathings.Add (new Breathing (lastVolume, volumeMax, endVolume, inspirationTime, holdingBreathTime, transitionExpirationMinTime));
 		lastVolume = endVolume;
 		//Low volume
 		for (int i=0; i<nbBreathingsLow; i++) {

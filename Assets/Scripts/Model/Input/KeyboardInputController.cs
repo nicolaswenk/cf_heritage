@@ -22,7 +22,7 @@ public class KeyboardInputController:OnlyExpirationInputController
 	/// </summary>
 	/// <param name="exercice">Exercice.</param>
 	/// <param name="strongBreathValue">The expiration speed of a strong breath.</param>
-	public KeyboardInputController (DrainageAutogene exercice, float strongBreathValue):base(exercice)
+	public KeyboardInputController (DecreasingDrainageAutogene exercice, float strongBreathValue):base(exercice)
 	{
 		this.strongBreathValue = strongBreathValue;
 	}

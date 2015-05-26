@@ -1,6 +1,10 @@
 using System;
 using System.Collections;
 
+/// <summary>
+/// This class is the center of an exercice. All exercices are made of a sequence of breathings.
+/// It describes the ideal breathing the patient should do.
+/// </summary>
 public class Breathing
 {
 	/// <summary>The volume at which we start the breathing (before inspiration). As all volume, 0 is for empty lungs and 1 for full ones (which in this case: before inspiration; is irrelevant).</summary>
@@ -91,6 +95,15 @@ public class Breathing
 	/// </summary>
 	public float InspirationSpeed{
 		get {return (maxVolume-startVolume)/inspirationTime;}
+	}
+
+	/// <summary>
+	/// Gets the duration of this breathing (in seconds).
+	/// </summary>
+	public float Duration{
+		get{
+			return inspirationTime+holdingBreathTime+expirationTime;
+		}
 	}
 }
 

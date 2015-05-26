@@ -13,7 +13,7 @@ public class FlapiInputController : OnlyExpirationInputController
 	/// </summary>
 	private AudioSource audio;
 
-	public FlapiInputController (DrainageAutogene exercice, AudioSource audio):base(exercice)
+	public FlapiInputController (DecreasingDrainageAutogene exercice, AudioSource audio):base(exercice)
 	{
 		this.audio = audio;
 	}
