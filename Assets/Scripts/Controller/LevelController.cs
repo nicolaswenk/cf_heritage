@@ -3,47 +3,44 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
+/// <summary>
+/// All level controller should inherit this class to manage the game.
+/// </summary>
 public class LevelController : MonoBehaviour
 {
+	/// <summary>The actual game's state.</summary>
 	protected GameState state = GameState.INTRO;
-	
-	//public Animator playerAnimator;
-	
+	/// <summary>The player game object.</summary>
 	public PlayerController player;
-	
-	protected float acceleration = 0.0f;
-	
-	protected InputController_I ioController;
-	
+	/// <summary>The input controller</summary>
+	protected InputController_I inputController;
+	/// <summary>The exercice the patient should follow (in loop) and after which the level should be.</summary>
 	protected DecreasingDrainageAutogene exercice;
-	
-	// Use this for initialization
+
+	/// <summary>
+	/// Create the exercice and the input controller.
+	/// Launches the player enter animation.
+	/// </summary>
 	void Start ()
 	{		
-		//TODO: Build the ParameterManager object by reading the properties instead of setting with those magic values
 		exercice = new DecreasingDrainageAutogene (3,3,3,1.5f,3.0f,10.0f,0.5f);
 
 		//ioController = new FlapiIOController (audio);
-		ioController = new KeyboardInputController (exercice,3.0f);
+		inputController = new KeyboardInputController (exercice,3.0f);
 		
 		StartCoroutine (WaitForPlayer ());
 	}
 	
-	private Vector3 exerciceToPlayer(Vector3 vector){
-		vector.y *= player.maxHeight - player.minHeight;
-		vector.y += player.minHeight;
-		vector.x *= player.HorizontalSpeed;
-		
-		return vector;
-	}
-	
-	// Update is called once per frame
+	/// <summary>
+	/// Called once per frame. Check the player progress and move it (after the input controller).
+	/// Can warn of a transition (not implemented yet).
+	/// </summary>
 	void Update ()
 	{
 		if (state == GameState.GAME) {
-			ioController.Update();
-			exercice.CheckProgress(ioController);
-			player.Move(ioController, exercice);
+			inputController.Update();
+			exercice.CheckProgress(inputController);
+			player.Move(inputController, exercice);
 			Transition transition=exercice.GetTransition();
 			if(transition!=Transition.NONE){
 				Debug.Log(transition);
@@ -51,6 +48,33 @@ public class LevelController : MonoBehaviour
 		}
 	}
 	
+	/// <summary>
+	/// Convert a breathing's volume (from 0 to 1) into the world's Y axis.
+	/// </summary>
+	/// <returns>The corresponding world's Y value.</returns>
+	/// <param name="respirationValue">The breathing's volume value (from 0 to 1).</param>
+	protected float breathingVolumeToWorldHeight(float respirationValue){
+		float worldHeight = respirationValue * (player.maxHeight - player.minHeight);
+		worldHeight += player.minHeight;
+		return worldHeight;
+	}
+	
+	/// <summary>
+	/// Convert an exercice "position" vector into a position in the game space.
+	/// </summary>
+	/// <returns>The corresponding position in the game space.</returns>
+	/// <param name="vector">The exercice "position".</param>
+	protected Vector3 ExerciceToPlayer(Vector3 vector){
+		vector.y = breathingVolumeToWorldHeight (vector.y);
+		vector.x *= player.HorizontalSpeed;
+		
+		return vector;
+	}
+
+	/// <summary>
+	/// Launch the player animation and "yield" when it's over.
+	/// Can be launch as a coroutine.
+	/// </summary>
 	protected IEnumerator WaitForPlayer ()
 	{
 		Animator animator = (Animator)GetComponent ("Animator");
@@ -66,6 +90,7 @@ public class LevelController : MonoBehaviour
 		Debug.Log (Flapi.GetMicrophone (0).name);*/
 	}
 	
+	/// <summary>Gets the actual game's state.</summary>
 	public GameState GameState{
 		get{ return state;}
 	}

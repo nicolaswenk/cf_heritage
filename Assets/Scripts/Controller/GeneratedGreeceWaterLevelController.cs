@@ -3,16 +3,37 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
+/// <summary>
+/// This is the level controller of the generated level with the greece-underwater theme.
+/// </summary>
 public class GeneratedGreeceWaterLevelController : LevelController
 {
-	public GameObject ground;
+	/// <summary>A prefab which will be used as model to instanciate new ground element</summary>
+	public GameObject groundModel;
+	/// <summary>A prefab which will be used as model to instanciate new stars</summary>
 	public GameObject starModel;
+	/// <summary>A list of prefab Obstacle models (with params correctly set).
+	/// Will be used to generated the obstacles on the level.</summary>
 	public List<Obstacle> listObstacleModels;
-	private float xElementsOffset=0.0f;
-	private float xGroundOffset=0.0f;
+	/// <summary>The collider2D which will be placed at the end of the first exercice cycle.</summary>
 	private EndCycleController endCycleController;
-	
-	// Use this for initialization
+
+	/// <summary>
+	/// The x offset for elements (star mainly, but also used to compute the one for the obstacles).
+	/// Where (on x axis) the elements should begin.
+	/// </summary>
+	private float xElementsOffset=0.0f;
+	/// <summary>
+	/// The x offset for ground elements. Where (on x axis) the ground elements should begin.
+	/// </summary>
+	private float xGroundOffset=0.0f;
+
+	/// <summary>
+	/// Instantiate the exercice, find the <see cref="endCycleController"/>,
+	/// create 2 exercice cycles (the ground elements, the stars and the obstacles),
+	/// places the <see cref="endCycleController"/> at the end of the first one and
+	/// launch the player entering animation.
+	/// </summary>
 	void Start ()
 	{		
 		endCycleController = GetComponentInChildren<EndCycleController> ();
@@ -21,7 +42,7 @@ public class GeneratedGreeceWaterLevelController : LevelController
 
 		//Flapi.Start (GetComponent<AudioSource>(), Flapi.GetMicrophone (0), 60);
 		//ioController = new FlapiIOController (new ParameterManager(10,1), exercice, GetComponent<AudioSource>());
-		ioController = new KeyboardInputController (exercice, 10.0f);
+		inputController = new KeyboardInputController (exercice, 10.0f);
 		
 		CreateCycleComponents (InputState.HOLDING_BREATH);
 		endCycleController.gameObject.transform.position = new Vector3 (xElementsOffset, 0.0f, 0.0f);
@@ -30,6 +51,10 @@ public class GeneratedGreeceWaterLevelController : LevelController
 		StartCoroutine (WaitForPlayer ());
 	}
 
+	/// <summary>
+	/// Creates all the components of a cycle (ground, stars and obstacles)
+	/// </summary>
+	/// <param name="startAt">Tells at which input state the cycle begin.</param>
 	public void CreateCycleComponents(InputState startAt){
 		float duration = exercice.Duration;
 		float distance = duration * player.HorizontalSpeed;
@@ -56,20 +81,31 @@ public class GeneratedGreeceWaterLevelController : LevelController
 		xGroundOffset = CreateGround (distance, xGroundOffset);
 	}
 
+	/// <summary>
+	/// Creates the ground elements for an exercice's cycle
+	/// </summary>
+	/// <returns>The next x position to place the next ground elements (for the next cycle).</returns>
+	/// <param name="distance">The length the cycle is.</param>
+	/// <param name="xGroundOffset">The x position at which the first ground element of this cycle should start.</param>
 	private float CreateGround(float distance, float xGroundOffset){
 		float length = 10.24f;
 		Transform groundParent = GameObject.Find ("Ground").transform;
 		float initXOffset = xGroundOffset;
 		while (xGroundOffset-initXOffset < distance) {
 			xGroundOffset+=length;
-			GameObject groundObject=(GameObject)Instantiate (ground, new Vector3 (xGroundOffset, player.minHeight, 0), Quaternion.identity);
+			GameObject groundObject=(GameObject)Instantiate (groundModel, new Vector3 (xGroundOffset, player.minHeight, 0), Quaternion.identity);
 			groundObject.name = "Ground_"+((int)(xGroundOffset/length));
 			groundObject.transform.parent=groundParent;
 		}
 		return xGroundOffset;
 	}
 
-	private void CreateRandomStars(float xOffset, InputState startAt){
+	/// <summary>
+	/// Creates stars along the ideal path. Those stars are created randomly along this path.
+	/// </summary>
+	/// <param name="xOffset">The x position at which the first star of this cycle could start.</param>
+	/// <param name="startAt">Tells at which input state the cycle begin.</param>
+	private void CreateRandomStars(float xOffset, InputState startAt){//TODO Make it support the expiration input state
 		Transform stars = GameObject.Find ("Stars").transform;
 		float dtInspirationIdeal = 1.0f;
 		float dtHoldingBreathIdeal = 1.0f;
@@ -124,6 +160,11 @@ public class GeneratedGreeceWaterLevelController : LevelController
 		}
 	}
 
+	/// <summary>
+	/// Creates regular stars along the ideal path.
+	/// </summary>
+	/// <param name="xOffset">The x position at which the first star of this cycle should start.</param>
+	/// <param name="startAt">Tells at which input state the cycle begin.</param>
 	private void CreatePerfectStars(float xElementOffset, InputState startAt){
 		Transform stars = GameObject.Find ("Stars").transform;
 		float dtInspiration = 0.25f;
@@ -165,7 +206,13 @@ public class GeneratedGreeceWaterLevelController : LevelController
 			respirationIndex++;
 		}
 	}
-	
+
+	/// <summary>
+	/// Creates the obstacles to invite the player to respect the perfect cycle.
+	/// </summary>
+	/// <param name="xOffset">The x position at which the cycle begings.</param>
+	/// <param name="probaObstacleDown">Probability to create an obstacle down in a breathing (to invite the player to inhale).</param>
+	/// <param name="probaObstacleTop">Probability to create an obstacle up in a breathing (to invite the player to exhale).</param>
 	private void CreateObstacles(float xOffset, float probaObstacleDown, float probaObstacleTop){
 		Transform obstacles = GameObject.Find ("Obstacles").transform;
 		float randomDown=Random.Range (0, 100)/100.0f;
@@ -176,7 +223,7 @@ public class GeneratedGreeceWaterLevelController : LevelController
 			float secureTime = 0.0f;
 			if(randomDown<probaObstacleDown){
 				float x=(time+secureTime)*player.HorizontalSpeed;
-				Obstacle obstacleModel=RandomObstacle(respirationToWorldHeight(respiration.StartVolume), ObstacleType.DOWN);
+				Obstacle obstacleModel=RandomObstacle(breathingVolumeToWorldHeight(respiration.StartVolume), ObstacleType.DOWN);
 				Obstacle obstacle=(Obstacle)Instantiate(obstacleModel, ExerciceToPlayer(new Vector3(xOffset+x, respiration.StartVolume,0)), Quaternion.identity);
 				obstacle.transform.parent=obstacles;
 				obstacle.name="ObstacleDown_"+respirationIndex;
@@ -185,7 +232,7 @@ public class GeneratedGreeceWaterLevelController : LevelController
 			secureTime = 1.0f;
 			if(randomTop<probaObstacleTop){
 				float x=(time+secureTime)*player.HorizontalSpeed;
-				Obstacle obstacleModel=RandomObstacle(respirationToWorldHeight(respiration.MaxVolume), ObstacleType.UP);
+				Obstacle obstacleModel=RandomObstacle(breathingVolumeToWorldHeight(respiration.MaxVolume), ObstacleType.UP);
 				Obstacle obstacle=(Obstacle)Instantiate(obstacleModel, ExerciceToPlayer(new Vector3(xOffset+x, respiration.MaxVolume,0)), Quaternion.identity);
 				obstacle.transform.parent=obstacles;
 				obstacle.name="ObstacleTop_"+respirationIndex;
@@ -195,6 +242,14 @@ public class GeneratedGreeceWaterLevelController : LevelController
 		}
 	}
 
+	/// <summary>
+	/// Chosse a random (respecting rarity) obstacle from <see cref="listObstacleModels"/> 
+	/// of type <see cref="type"/> which can be placed at the given <see cref="height"/>
+	/// to use as model to instantiate a new one.
+	/// </summary>
+	/// <returns>The chosen obstacle model.</returns>
+	/// <param name="height">The height at which we want an obstacles (not all can be at all height).</param>
+	/// <param name="type">The type of the obstacle we want (top, bottom or both).</param>
 	private Obstacle RandomObstacle(float height, ObstacleType type){
 		List<Obstacle> listPossibleObstacles=new List<Obstacle>();
 		float sumProba = 0.0f;
@@ -217,19 +272,11 @@ public class GeneratedGreeceWaterLevelController : LevelController
 		return null;
 	}
 
-	private float respirationToWorldHeight(float respirationValue){
-		float worldHeight = respirationValue * (player.maxHeight - player.minHeight);
-		worldHeight += player.minHeight;
-		return worldHeight;
-	}
-
-	private Vector3 ExerciceToPlayer(Vector3 vector){
-		vector.y = respirationToWorldHeight (vector.y);
-		vector.x *= player.HorizontalSpeed;
-
-		return vector;
-	}
-
+	
+	/// <summary>
+	/// Gets the x offset for elements (star mainly, but also used to compute the one for the obstacles).
+	/// Where (on x axis) the elements should begin.
+	/// </summary>
 	public float XElementsOffset{
 		get{ 
 			return xElementsOffset;
