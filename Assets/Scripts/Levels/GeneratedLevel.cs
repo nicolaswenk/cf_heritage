@@ -15,8 +15,8 @@ public class GeneratedLevel : Level
 		//TODO: Build the ParameterManager object by reading the properties instead of setting with those magic values
 		exercice = new DrainageAutogene ();
 
-		//ioController = new FlapiIOController (audio);
-		ioController = new KeyboardIOController (new ParameterManager(10,1), exercice);
+		ioController = new FlapiInputController (new ParameterManager(10,1), exercice, GetComponent<AudioSource>());
+		//ioController = new KeyboardIOController (new ParameterManager(10,1), exercice);
 
 		CreateGround ();
 

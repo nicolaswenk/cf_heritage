@@ -12,11 +12,11 @@ using FlapiUnity;
 using UnityEngine;
 using System.Collections;
 
-public class FlapiIOController : OnlyExpirationInputController
+public class FlapiInputController : OnlyExpirationInputController
 {
 	private AudioSource audio;
 
-	public FlapiIOController (ParameterManager parameterManager, DrainageAutogene exercice ,AudioSource audio):base(parameterManager, exercice)
+	public FlapiInputController (ParameterManager parameterManager, DrainageAutogene exercice ,AudioSource audio):base(parameterManager, exercice)
 	{
 		this.audio = audio;
 	}
@@ -26,6 +26,7 @@ public class FlapiIOController : OnlyExpirationInputController
 	}
 
 	protected override bool isBlowing(){
+		Debug.Log (Flapi.blowing + " - " + Flapi.frequency);
 		return Flapi.blowing;
 	}
 
