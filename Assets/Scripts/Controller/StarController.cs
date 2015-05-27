@@ -39,6 +39,6 @@ public class StarController : MonoBehaviour {
 	/// Return a name for a new star. The name is "Star X" where 'X' is a counter value (<see cref="starCounter"/>).
 	/// </summary>
 	public static string GetNewName(){
-		return "Start " + starCounter;
+		return "Star " + starCounter;
 	}
 }
