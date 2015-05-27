@@ -8,6 +8,11 @@ public class StarController : MonoBehaviour {
 
 	/// <summary>The star animator.</summary>
 	public Animator animator;
+	private static int starCounter=0;
+
+	public StarController(){
+		starCounter++;
+	}
 
 	/// <summary>
 	/// If the other is a player, the star we launch the collector anim et start the destroy coroutine.
@@ -28,5 +33,12 @@ public class StarController : MonoBehaviour {
 	private IEnumerator KillAfterAnimation() {
 		yield return new WaitForSeconds (1.0f);
 		Destroy (gameObject.transform.parent.gameObject);
+	}
+
+	/// <summary>
+	/// Return a name for a new star. The name is "Star X" where 'X' is a counter value (<see cref="starCounter"/>).
+	/// </summary>
+	public static string GetNewName(){
+		return "Start " + starCounter;
 	}
 }

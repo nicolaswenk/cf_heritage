@@ -58,8 +58,7 @@ public class PlayerController : MonoBehaviour
 		}
 
 		switch (inputController.GetInputState()) {
-		case InputState.EXPIRATION:
-		case InputState.STRONG_EXPIRATION:
+		case BreathingState.EXPIRATION:
 			bubbles.emissionRate=10.0f*inputController.GetStrength();
 			break;
 		default:

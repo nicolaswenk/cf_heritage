@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 /// <summary>
@@ -12,7 +12,7 @@ public class EndCycleController : MonoBehaviour {
 	/// <summary>
 	/// The level controller (of a generated level).
 	/// </summary>
-	public GeneratedGreeceWaterLevelController generatedLevelController;//TODO Make a generic class "GeneratedLevelController".
+	public GeneratedLevelController generatedLevelController;//TODO Make a generic class "GeneratedLevelController".
 
 	/// <summary>
 	/// Check if the player reach it. If it does,it means that the exercice cycle is over.
@@ -24,7 +24,7 @@ public class EndCycleController : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D other){
 		if (other.tag == "Player") {
 			float x=generatedLevelController.XElementsOffset;
-			generatedLevelController.CreateCycleComponents(InputState.INSPIRATION);
+			generatedLevelController.CreateCycleComponents(BreathingState.INSPIRATION);
 			this.transform.position=new Vector3(x, 0.0f, 0.0f);
 		}
 	}

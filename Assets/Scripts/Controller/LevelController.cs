@@ -5,6 +5,7 @@ using System.Collections.Generic;
 
 /// <summary>
 /// All level controller should inherit this class to manage the game.
+/// A hand made level could directly use this script.
 /// </summary>
 public class LevelController : MonoBehaviour
 {

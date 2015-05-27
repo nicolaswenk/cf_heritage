@@ -14,10 +14,10 @@ public abstract class Exercice
 	protected List<Breathing> breathings;
 	/// <summary>The index of the breathing in <see cref="breathings"/> the patient is actually doing.</summary>
 	protected int indexActualBreathing;
-	/// <summary>The state of the patient (whether he's expiring, inspiring, holding breath, ...).</summary>
-	protected InputState state=InputState.HOLDING_BREATH;
-	/// <summary>The last state of the patient (from the las <see cref="CheckProgress"/> call) .</summary>
-	protected InputState lastState=InputState.HOLDING_BREATH;
+	/// <summary>The breathing state of the patient (whether he's expiring, inspiring, holding breath, ...).</summary>
+	protected BreathingState state=BreathingState.HOLDING_BREATH;
+	/// <summary>The last breathing state of the patient (from the las <see cref="CheckProgress"/> call) .</summary>
+	protected BreathingState lastState=BreathingState.HOLDING_BREATH;
 	/// <summary>The percentage of an expiration the patient have to do to validate the actual breathing and passing to the next one.</summary>
 	protected float factorMinExpirationForValidation=0.75f;
 	/// <summary>The minimum time (in sec) the exercice should last (repeating the breathings sequence).</summary>
@@ -39,7 +39,7 @@ public abstract class Exercice
 		state = inputController.GetInputState ();
 		
 		//We expire
-		if (state == InputState.EXPIRATION || state == InputState.STRONG_EXPIRATION) {
+		if (state == BreathingState.EXPIRATION) {
 			volume-=inputController.GetStrength()*Time.deltaTime*ActualBreathing.ExpirationSpeed;
 			if(volume<ActualBreathing.EndVolume){
 				volume=ActualBreathing.EndVolume;
@@ -47,7 +47,7 @@ public abstract class Exercice
 		}
 		
 		//We inspire
-		if (state == InputState.INSPIRATION) {
+		if (state == BreathingState.INSPIRATION) {
 			volume+=inputController.GetStrength()*Time.deltaTime*ActualBreathing.InspirationSpeed;
 			if(volume>ActualBreathing.MaxVolume){
 				volume=ActualBreathing.MaxVolume;
@@ -125,9 +125,9 @@ public abstract class Exercice
 	}
 	
 	/// <summary>
-	/// Gets the state of the patient (whether he's expiring, inspiring, holding breath, ...)
+	/// Gets the breathing state of the patient (whether he's expiring, inspiring, holding breath, ...)
 	/// </summary>
-	public InputState State {
+	public BreathingState State {
 		get{ return state;}
 	}
 	

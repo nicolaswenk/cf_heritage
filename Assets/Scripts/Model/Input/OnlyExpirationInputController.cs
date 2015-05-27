@@ -8,14 +8,14 @@ using UnityEngine;
 public abstract class OnlyExpirationInputController : InputController_I
 {	
 	/// <summary>
-	/// The last input state (from the last time we call <see cref="Update"/>).
+	/// The last breathing state (from the last time we call <see cref="Update"/>).
 	/// </summary>
-	private InputState lastState=InputState.HOLDING_BREATH;
+	private BreathingState lastState=BreathingState.HOLDING_BREATH;
 
 	/// <summary>
-	/// The actual input state.
+	/// The actual breathing state.
 	/// </summary>
-	private InputState state=InputState.HOLDING_BREATH;
+	private BreathingState state=BreathingState.HOLDING_BREATH;
 
 	/// <summary>
 	/// The date time for the last expiration ending (to know when we are supposed to stop considering being inpiring).
@@ -32,16 +32,15 @@ public abstract class OnlyExpirationInputController : InputController_I
 	}
 	
 	/// <summary>
-	/// Gets the strength of expiration or inspiration (depends on the InputSate).
+	/// Gets the strength of expiration or inspiration (depends on the BreathingState).
 	/// 0.0f, it means that the patient is not blowing or inspiring.
 	/// Returns 1.0f if patient should be inspiring and <see cref="GetExpirationStrength"/> otherwise.
 	/// </summary>
 	public float GetStrength(){
 		switch (state) {
-			case InputState.INSPIRATION:
+		case BreathingState.INSPIRATION:
 				return 1.0f;
-			case InputState.EXPIRATION:
-			case InputState.STRONG_EXPIRATION:
+		case BreathingState.EXPIRATION:
 				return GetExpirationStrength ();
 			default:
 				return 0.0f;
@@ -49,26 +48,26 @@ public abstract class OnlyExpirationInputController : InputController_I
 	}
 
 	/// <summary>
-	/// Gets the InputState :
+	/// Gets the BreathingState :
 	/// expiration if patient is blowing and inspiration is over.
 	/// inspiration if patient wasn't blowing for less than inspiration time.
 	/// holding breath if the patient isn't blowing for more than the inpiration time.
 	/// </summary>
-	public InputState GetInputState(){
+	public BreathingState GetInputState(){
 		lastState = state;
 		
-		if (isBlowing () && state!=InputState.INSPIRATION) {
-			state= InputState.EXPIRATION;
+		if (isBlowing () && state!=BreathingState.INSPIRATION) {
+			state= BreathingState.EXPIRATION;
 		} else {
-			if(lastState == InputState.EXPIRATION || lastState == InputState.STRONG_EXPIRATION){
+			if(lastState == BreathingState.EXPIRATION){
 				endExpirationTime=DateTime.Now;
 			}
 			double secondsSinceEndExpiration=(DateTime.Now-endExpirationTime).TotalSeconds;
 			if(secondsSinceEndExpiration <= exercice.ActualBreathing.InspirationTime){
-				state=InputState.INSPIRATION;
+				state=BreathingState.INSPIRATION;
 			}
 			else {
-				state=InputState.HOLDING_BREATH;
+				state=BreathingState.HOLDING_BREATH;
 			}
 		}
 

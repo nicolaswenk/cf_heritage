@@ -17,9 +17,9 @@ public interface InputController_I
 	float GetStrength();
 
 	/// <summary>
-	/// Gets the InputState (expiration, inspiration, holding breath, ...).
+	/// Gets the BreathingState (expiration, inspiration, holding breath, ...).
 	/// </summary>
-	InputState GetInputState();
+	BreathingState GetInputState();
 
 	/// <summary>
 	/// Determines whether the patient is holding the moving input or not.
