@@ -27,6 +27,10 @@ public abstract class OnlyExpirationInputController : InputController_I
 	/// </summary>
 	private DecreasingDrainageAutogene exercice;
 
+	/// <summary>
+	/// Initializes a new instance of the <see cref="OnlyExpirationInputController"/> class and set its exercice.
+	/// </summary>
+	/// <param name="exercice">The exercice to follow to know the actual volume and its limitations.</param>
 	public OnlyExpirationInputController(DecreasingDrainageAutogene exercice){
 		this.exercice = exercice;
 	}
@@ -50,8 +54,8 @@ public abstract class OnlyExpirationInputController : InputController_I
 	/// <summary>
 	/// Gets the BreathingState :
 	/// expiration if patient is blowing and inspiration is over.
-	/// inspiration if patient wasn't blowing for less than inspiration time.
-	/// holding breath if the patient isn't blowing for more than the inpiration time.
+	/// inspiration if patient wasn't reach the actual breathing's maximum volume.
+	/// holding breath if the patient isn't blowing but is at the actual breathing's maximum volume.
 	/// </summary>
 	public BreathingState GetInputState(){
 		lastState = state;
@@ -59,11 +63,8 @@ public abstract class OnlyExpirationInputController : InputController_I
 		if (isBlowing () && state!=BreathingState.INSPIRATION) {
 			state= BreathingState.EXPIRATION;
 		} else {
-			if(lastState == BreathingState.EXPIRATION){
-				endExpirationTime=DateTime.Now;
-			}
-			double secondsSinceEndExpiration=(DateTime.Now-endExpirationTime).TotalSeconds;
-			if(secondsSinceEndExpiration <= exercice.ActualBreathing.InspirationTime){
+			float deltaFloatComp=0.001f;
+			if(exercice.Volume <= exercice.ActualBreathing.MaxVolume-deltaFloatComp){
 				state=BreathingState.INSPIRATION;
 			}
 			else {

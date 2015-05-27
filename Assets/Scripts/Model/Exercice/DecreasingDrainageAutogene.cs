@@ -34,7 +34,7 @@ public class DecreasingDrainageAutogene:Exercice
 		float lastVolume = 0.0f;
 		float transitionInspirationTime = (volumeMax - lastVolume) / (volumeRange / inspirationTime);
 		float endVolume=1.0f-volumeRange;		
-		breathings.Add(new Breathing(lastVolume, volumeMax, endVolume, transitionInspirationTime, holdingBreathTime, expirationMinTime));
+		breathings.Add(new Breathing(lastVolume, volumeMax, endVolume, transitionInspirationTime, holdingBreathTime, expirationMinTime, BreathingState.HOLDING_BREATH));
 		lastVolume = endVolume;
 		//High volume
 		for (int i=1; i<nbBreathingsHigh-1; i++) {

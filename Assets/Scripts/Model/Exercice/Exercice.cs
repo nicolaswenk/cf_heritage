@@ -14,14 +14,10 @@ public abstract class Exercice
 	protected List<Breathing> breathings;
 	/// <summary>The index of the breathing in <see cref="breathings"/> the patient is actually doing.</summary>
 	protected int indexActualBreathing;
-	/// <summary>The breathing state of the patient (whether he's expiring, inspiring, holding breath, ...).</summary>
-	protected BreathingState state=BreathingState.HOLDING_BREATH;
-	/// <summary>The last breathing state of the patient (from the las <see cref="CheckProgress"/> call) .</summary>
-	protected BreathingState lastState=BreathingState.HOLDING_BREATH;
-	/// <summary>The percentage of an expiration the patient have to do to validate the actual breathing and passing to the next one.</summary>
-	protected float factorMinExpirationForValidation=0.75f;
 	/// <summary>The minimum time (in sec) the exercice should last (repeating the breathings sequence).</summary>
 	protected float minTime;
+	/// <summary>The percentage of an expiration the patient have to do to validate the actual breathing and passing to the next one.</summary>
+	protected float factorMinExpirationForValidation=0.75f;
 	
 	/// <summary>
 	/// 0 -> Empty lungs ;
@@ -35,34 +31,22 @@ public abstract class Exercice
 	/// </summary>
 	/// <param name="inputController">Input controller.</param>
 	public void CheckProgress(InputController_I inputController){
-		lastState = state;
-		state = inputController.GetInputState ();
-		
-		//We expire
-		if (state == BreathingState.EXPIRATION) {
-			volume-=inputController.GetStrength()*Time.deltaTime*ActualBreathing.ExpirationSpeed;
-			if(volume<ActualBreathing.EndVolume){
-				volume=ActualBreathing.EndVolume;
+		volume=ActualBreathing.CheckProgress (inputController.GetInputState(), inputController.GetStrength(), volume);
+		//The breathing has ended (already back to expiration) and the volume value isn't up to date.
+		//We have to do a new "CheckProgress" on a non-ended breathing.
+		if (ActualBreathing.IsEnded){
+
+			//TODO: Save the breathings data here.
+
+			if(ActualBreathing.ExpirationPercentage >= factorMinExpirationForValidation) {
+				ActualBreathing.ResetTo(BreathingState.INSPIRATION);
+				indexActualBreathing++;
+				indexActualBreathing%=breathings.Count;
 			}
-		}
-		
-		//We inspire
-		if (state == BreathingState.INSPIRATION) {
-			volume+=inputController.GetStrength()*Time.deltaTime*ActualBreathing.InspirationSpeed;
-			if(volume>ActualBreathing.MaxVolume){
-				volume=ActualBreathing.MaxVolume;
+			else{
+				ActualBreathing.ResetTo(BreathingState.EXPIRATION);
 			}
-			//We started to inspire
-			if (lastState != state) {
-				float volumeExpired=ActualBreathing.MaxVolume-volume;
-				float volumeToExpire=ActualBreathing.MaxVolume-ActualBreathing.EndVolume;
-				
-				//We expire enough to validation this breathing.
-				if(volumeExpired>=factorMinExpirationForValidation*volumeToExpire){
-					indexActualBreathing++;
-					indexActualBreathing%=breathings.Count;
-				}
-			}
+			volume=ActualBreathing.CheckProgress (inputController.GetInputState(), inputController.GetStrength(), volume);
 		}
 	}
 	
@@ -128,7 +112,7 @@ public abstract class Exercice
 	/// Gets the breathing state of the patient (whether he's expiring, inspiring, holding breath, ...)
 	/// </summary>
 	public BreathingState State {
-		get{ return state;}
+		get{ return ActualBreathing.State;}
 	}
 	
 	/// <summary>
