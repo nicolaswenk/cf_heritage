@@ -19,6 +19,10 @@ public class StarController : MonoBehaviour {
 	/// </summary>
 	/// <param name="other">The other collider 2D.</param>
 	void OnTriggerEnter2D(Collider2D other){
+		Collide (other);
+	}
+
+	public void Collide(Collider2D other){
 		if (other.tag.Equals("Player")) {
 			animator.SetTrigger("collected");
 			GetComponent<CircleCollider2D>().enabled=false;

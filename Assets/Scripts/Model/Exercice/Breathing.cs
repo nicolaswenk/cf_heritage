@@ -149,7 +149,10 @@ public class Breathing
 				break;
 				
 			case BreathingState.HOLDING_BREATH://We hold our breath
-				dictStatePercentages[state]=(DateTime.Now-dictStateStartTimes[state]).Seconds/(holdingBreathTime);
+				dictStatePercentages[state]=((float)(DateTime.Now-dictStateStartTimes[state]).TotalSeconds)/(holdingBreathTime);
+				if(dictStatePercentages[state]>1.0f){
+					dictStatePercentages[state]=1.0f;
+				}
 				break;
 			}
 		}
@@ -239,6 +242,13 @@ public class Breathing
 	public float ExpirationPercentage{
 		get{
 			return dictStatePercentages[BreathingState.EXPIRATION];
+		}
+	}
+	
+	/// <summary>The "holding breath"'s realisation percentage.</summary>
+	public float HoldingBreathPercentage{
+		get{
+			return dictStatePercentages[BreathingState.HOLDING_BREATH];
 		}
 	}
 	

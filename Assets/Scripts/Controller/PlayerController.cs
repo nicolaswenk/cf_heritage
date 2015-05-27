@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour
 	/// <summary>The star counter (to increment when a star is catched and decreased when an obstacle touched).</summary>
 	public StarCounter starCounter;
 	/// <summary>The bonus controller (to know how many star we collect).</summary>
-	public BonusController bonusController;
+	public BonusPhaseController bonusController;
 	/// <summary>The volume updated at each <see cref="Move"/> call after the one the exercice computes.</summary>
 	private float volume=1.0f;
 

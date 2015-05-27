@@ -96,4 +96,9 @@ public class LevelController : MonoBehaviour
 		get{ return state;}
 	}
 	
+	/// <summary>Gets the exercice the patient should follow (in loop) and after which the level should be.</summary>
+	public Exercice Exercice{
+		get { return exercice;}
+	}
+	
 }

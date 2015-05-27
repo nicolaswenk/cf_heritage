@@ -5,7 +5,7 @@ using System.Collections;
 /// This class manage the apparition and duration of the bonus phase and
 /// ask to the <see cref="bonusViewer"/> to update after it.
 /// </summary>
-public class BonusController : MonoBehaviour {
+public class BonusPhaseController : MonoBehaviour {
 
 	/// <summary>The view component which shows the bonuses progress.</summary>
 	public BonusViewer bonusViewer;
@@ -79,6 +79,13 @@ public class BonusController : MonoBehaviour {
 		}
 		else{
 			return 1;
+		}
+	}
+	
+	/// <summary>Tells if the bonus is actually active or not.</summary>
+	public bool IsBonusActive{
+		get{
+			return isBonusActive;
 		}
 	}
 }
