@@ -1,14 +1,30 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/// <summary>
+/// The controller that manages the bonus stars progess and apparition.
+/// </summary>
 public class BonusStarsController : MonoBehaviour {
 
+	/// <summary>
+	/// A reference to the level controller to get the exercice.
+	/// </summary>
 	public LevelController levelController;
-
+	/// <summary>
+	/// A reference to the bonusStarsViewer which will show the progress
+	/// and the bonus stars in the scene.
+	/// </summary>
 	public BonusStarsViewer viewer;
+	/// <summary>
+	/// The percentage reached of the holding breath volume. If the player
+	/// expire before it reaches 1.0f (100%) no star will be created.
+	/// </summary>
 	private float holdingBreathPercentage=0.0f;
-	
-	// Update is called once per frame
+
+	/// <summary>
+	/// Called once per frame.
+	/// Updates the progress percentages, lauches the bonuses when needed and update the viewer.
+	/// </summary>
 	void Update () {
 		if(levelController.Exercice.State!=null){
 			switch (levelController.Exercice.State) {
@@ -27,7 +43,6 @@ public class BonusStarsController : MonoBehaviour {
 					viewer.HideHoldingBreathProgress();
 				}
 				break;
-
 			}
 		}
 	}
