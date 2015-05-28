@@ -24,7 +24,7 @@ public class BonusStarsViewer : MonoBehaviour {
 		if(!isFull){
 			this.gameObject.SetActive (true);
 			this.transform.localScale = new Vector3 (percentage, percentage, percentage);
-			SpriteRenderer renderer=this.GetComponent<SpriteRenderer> ();
+			SpriteRenderer renderer=this.GetComponentInChildren<SpriteRenderer> ();
 			renderer.color= new Color(renderer.color.r, renderer.color.g, renderer.color.b, percentage);
 
 			if (percentage >= 1.0f) {
@@ -44,6 +44,7 @@ public class BonusStarsViewer : MonoBehaviour {
 		GameObject gameObject=(GameObject)Instantiate (bonusStarModel, this.transform.position, Quaternion.identity);
 		BonusStarController bonusStar=gameObject.GetComponent<BonusStarController> ();
 		bonusStar.SetPlayer(player);
+		Fabric.EventManager.Instance.PostEvent("BonusStarCreated");
 	}
 
 	/// <summary>

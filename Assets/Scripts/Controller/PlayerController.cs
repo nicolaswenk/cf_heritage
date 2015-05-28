@@ -60,6 +60,7 @@ public class PlayerController : MonoBehaviour
 		switch (inputController.GetInputState()) {
 		case BreathingState.EXPIRATION:
 			bubbles.emissionRate=10.0f*inputController.GetStrength();
+			Fabric.EventManager.Instance.PostEvent("BreathingSwitch", Fabric.EventAction.SetSwitch, "Expiring");
 			break;
 		default:
 			bubbles.emissionRate=0.0f;
@@ -89,6 +90,8 @@ public class PlayerController : MonoBehaviour
 		case "Obstacle":
 			starCounter.Loose(1);
 			GetComponent<Animator>().SetTrigger("collision");
+			other.enabled=false;
+			Fabric.EventManager.Instance.PostEvent("PlayerHurt");
 			break;
 		case "Star":
 			starCounter.Collect(bonusController.GetMultiplicator());

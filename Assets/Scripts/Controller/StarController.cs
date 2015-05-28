@@ -35,6 +35,7 @@ public class StarController : MonoBehaviour {
 			animator.SetTrigger("collected");
 			GetComponent<CircleCollider2D>().enabled=false;
 			StartCoroutine(KillAfterAnimation());
+			Fabric.EventManager.Instance.PostEvent("StarCollected");
 		}
 	}
 
