@@ -12,7 +12,7 @@ public class EndCycleController : MonoBehaviour {
 	/// <summary>
 	/// The level controller (of a generated level).
 	/// </summary>
-	public GeneratedLevelController generatedLevelController;//TODO Make a generic class "GeneratedLevelController".
+	public GeneratedLevelController generatedLevelController;
 
 	/// <summary>
 	/// Check if the player reach it. If it does,it means that the exercice cycle is over.

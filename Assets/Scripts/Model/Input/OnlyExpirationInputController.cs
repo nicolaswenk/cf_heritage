@@ -8,11 +8,6 @@ using UnityEngine;
 public abstract class OnlyExpirationInputController : InputController_I
 {	
 	/// <summary>
-	/// The last breathing state (from the last time we call <see cref="Update"/>).
-	/// </summary>
-	private BreathingState lastState=BreathingState.HOLDING_BREATH;
-
-	/// <summary>
 	/// The actual breathing state.
 	/// </summary>
 	private BreathingState state=BreathingState.HOLDING_BREATH;
@@ -58,7 +53,6 @@ public abstract class OnlyExpirationInputController : InputController_I
 	/// holding breath if the patient isn't blowing but is at the actual breathing's maximum volume.
 	/// </summary>
 	public BreathingState GetInputState(){
-		lastState = state;
 		
 		if (isBlowing () && state!=BreathingState.INSPIRATION) {
 			state= BreathingState.EXPIRATION;

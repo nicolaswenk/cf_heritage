@@ -36,7 +36,6 @@ public class MenuController : MonoBehaviour
 		
 		logoAnimator.SetBool ("visible", false);
 		introAnimator.SetBool ("visible", true);
-		Debug.Log ("intro");
 	}
 
 	/// <summary>

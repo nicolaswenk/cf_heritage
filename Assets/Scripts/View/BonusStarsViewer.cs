@@ -52,7 +52,6 @@ public class BonusStarsViewer : MonoBehaviour {
 	/// </summary>
 	public void HideHoldingBreathProgress(){
 		isFull = false;
-		Debug.Log ("hide");
 		this.gameObject.SetActive (false);
 	}
 }

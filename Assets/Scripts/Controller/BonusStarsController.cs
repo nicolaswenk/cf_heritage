@@ -26,24 +26,22 @@ public class BonusStarsController : MonoBehaviour {
 	/// Updates the progress percentages, lauches the bonuses when needed and update the viewer.
 	/// </summary>
 	void Update () {
-		if(levelController.Exercice.State!=null){
-			switch (levelController.Exercice.State) {
+		switch (levelController.Exercice.State) {
 
-			case BreathingState.HOLDING_BREATH:
-				holdingBreathPercentage=levelController.Exercice.ActualBreathing.HoldingBreathPercentage;
-				viewer.ShowHoldingBreathProgress(holdingBreathPercentage);
-				break;
+		case BreathingState.HOLDING_BREATH:
+			holdingBreathPercentage=levelController.Exercice.ActualBreathing.HoldingBreathPercentage;
+			viewer.ShowHoldingBreathProgress(holdingBreathPercentage);
+			break;
 
-			case BreathingState.EXPIRATION:
-				if(holdingBreathPercentage>=1.0f){
-					viewer.ReleaseStar(levelController.player);
-					holdingBreathPercentage=0.0f;
-				}
-				else {
-					viewer.HideHoldingBreathProgress();
-				}
-				break;
+		case BreathingState.EXPIRATION:
+			if(holdingBreathPercentage>=1.0f){
+				viewer.ReleaseStar(levelController.player);
+				holdingBreathPercentage=0.0f;
 			}
+			else {
+				viewer.HideHoldingBreathProgress();
+			}
+			break;
 		}
 	}
 }

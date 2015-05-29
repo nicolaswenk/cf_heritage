@@ -132,7 +132,6 @@ public class GeneratedLevelController : LevelController
 		float time = 0.0f;
 		foreach(Breathing breathing in exercice.Breathings){
 			float inspirationTime=breathing.InspirationTime;
-			int starRespirationCounter=1;
 			if(breathingIndex>0 || startAt==BreathingState.INSPIRATION){
 				CreateBreathingStateStars(xOffset+time*player.HorizontalSpeed, breathing, BreathingState.INSPIRATION, stars, isDtRandom);
 				time=time+inspirationTime;

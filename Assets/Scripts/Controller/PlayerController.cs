@@ -26,6 +26,10 @@ public class PlayerController : MonoBehaviour
 	public BonusPhaseController bonusController;
 	/// <summary>The volume updated at each <see cref="Move"/> call after the one the exercice computes.</summary>
 	private float volume=1.0f;
+	/// <summary>The player's breathing stat at the last update.</summary>
+	private BreathingState lastState;
+	/// <summary>The breathing switch audio component. To change the volume after the breathing strength.</summary>
+	public Fabric.SwitchComponent breathingSwitch;
 
 	/// <summary>
 	/// Called once per frame. Apply the scaling to the <see cref="inflatablePart"/> and <see cref=""/> 
@@ -43,11 +47,10 @@ public class PlayerController : MonoBehaviour
 	/// </summary>
 	/// <param name="inputController">The input controller.</param>
 	/// <param name="exercice">Used to get the actual pulmonary volume.</param>
-	public void Move(InputController_I inputController, DecreasingDrainageAutogene exercice){	
+	public void Move(InputController_I inputController, DecreasingDrainageAutogene exercice){
 
 		volume = exercice.Volume;
 	
-		float movement = 0.0f;
 		float horizontalMovement = 0.0f;
 
 		if (inputController.IsMoving ()) {
@@ -57,18 +60,32 @@ public class PlayerController : MonoBehaviour
 			SwimAnimator.speed = 0.0f;
 		}
 
-		switch (inputController.GetInputState()) {
-		case BreathingState.EXPIRATION:
-			bubbles.emissionRate=10.0f*inputController.GetStrength();
-			Fabric.EventManager.Instance.PostEvent("BreathingSwitch", Fabric.EventAction.SetSwitch, "Expiring");
-			break;
-		default:
-			bubbles.emissionRate=0.0f;
-			break;
+		BreathingState state = inputController.GetInputState ();
+		if (state != lastState) {
+			switch (state) {
+			case BreathingState.EXPIRATION:
+				bubbles.emissionRate = 10.0f * inputController.GetStrength ();
+				Fabric.EventManager.Instance.PostEvent ("BreathingSwitch", Fabric.EventAction.SetSwitch, "Expiring");
+				Fabric.EventManager.Instance.PostEvent ("BreathingSwitch", Fabric.EventAction.PlaySound);
+				break;
+			case BreathingState.INSPIRATION:
+				bubbles.emissionRate = 10.0f * inputController.GetStrength ();
+				Fabric.EventManager.Instance.PostEvent ("BreathingSwitch", Fabric.EventAction.SetSwitch, "Inspiring");
+				break;
+			default:
+				bubbles.emissionRate = 0.0f;
+				Fabric.EventManager.Instance.PostEvent ("BreathingSwitch", Fabric.EventAction.PauseSound);
+				break;
+			}
 		}
+
+		//TODO Make this value more precise and clean. What a strength of 1.0f mean ? What's the max strength ?
+		//Actually, the keyboardInputController return 1.0f for a normal strength and 3.0f for a big one.
+		breathingSwitch.SetVolume (inputController.GetStrength()/3.0f);
 
 		float newY = (maxHeight - minHeight) * exercice.Volume + minHeight;
 		transform.Translate (new Vector3 (horizontalMovement, newY-transform.position.y));
+		lastState=inputController.GetInputState();
 	}
 
 	/// <summary>
