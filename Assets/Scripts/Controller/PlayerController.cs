@@ -64,12 +64,10 @@ public class PlayerController : MonoBehaviour
 		if (state != lastState) {
 			switch (state) {
 			case BreathingState.EXPIRATION:
-				bubbles.emissionRate = 10.0f * inputController.GetStrength ();
 				Fabric.EventManager.Instance.PostEvent ("BreathingSwitch", Fabric.EventAction.SetSwitch, "Expiring");
 				Fabric.EventManager.Instance.PostEvent ("BreathingSwitch", Fabric.EventAction.PlaySound);
 				break;
 			case BreathingState.INSPIRATION:
-				bubbles.emissionRate = 10.0f * inputController.GetStrength ();
 				Fabric.EventManager.Instance.PostEvent ("BreathingSwitch", Fabric.EventAction.SetSwitch, "Inspiring");
 				break;
 			default:
@@ -77,6 +75,9 @@ public class PlayerController : MonoBehaviour
 				Fabric.EventManager.Instance.PostEvent ("BreathingSwitch", Fabric.EventAction.PauseSound);
 				break;
 			}
+		}
+		if (state == BreathingState.EXPIRATION) {
+			bubbles.emissionRate = 10.0f * inputController.GetStrength ();
 		}
 
 		//TODO Make this value more precise and clean. What a strength of 1.0f mean ? What's the max strength ?
