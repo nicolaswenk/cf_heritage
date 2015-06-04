@@ -47,7 +47,7 @@ public class PlayerController : MonoBehaviour
 	/// </summary>
 	/// <param name="inputController">The input controller.</param>
 	/// <param name="exercice">Used to get the actual pulmonary volume.</param>
-	public void Move(InputController_I inputController, DecreasingDrainageAutogene exercice){
+	public void Move(InputController_I inputController, DecreasingAutogenicDrainage exercice){
 
 		volume = exercice.Volume;
 	
@@ -68,6 +68,7 @@ public class PlayerController : MonoBehaviour
 				Fabric.EventManager.Instance.PostEvent ("BreathingSwitch", Fabric.EventAction.PlaySound);
 				break;
 			case BreathingState.INSPIRATION:
+				bubbles.emissionRate = 0.0f;
 				Fabric.EventManager.Instance.PostEvent ("BreathingSwitch", Fabric.EventAction.SetSwitch, "Inspiring");
 				break;
 			default:

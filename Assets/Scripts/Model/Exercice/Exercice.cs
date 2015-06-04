@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using UnityEngine;
 
 /// <summary>
 /// This class describe the behaviour of a therapeutical exercice.
@@ -30,8 +29,9 @@ public abstract class Exercice
 	/// If the patient reach correctly the end volume, we go to the nexte breathing.
 	/// </summary>
 	/// <param name="inputController">Input controller.</param>
-	public void CheckProgress(InputController_I inputController){
-		volume=ActualBreathing.CheckProgress (inputController.GetInputState(), inputController.GetStrength(), volume);
+	/// <param name="deltaTime">The time in seconds elapsed since the last call.</param>
+	public void CheckProgress(InputController_I inputController, float deltaTime){
+		volume=ActualBreathing.CheckProgress (inputController.GetInputState(), inputController.GetStrength(), volume, deltaTime);
 		//The breathing has ended (already back to expiration) and the volume value isn't up to date.
 		//We have to do a new "CheckProgress" on a non-ended breathing.
 		if (ActualBreathing.IsEnded){
@@ -46,7 +46,7 @@ public abstract class Exercice
 			else{
 				ActualBreathing.ResetTo(BreathingState.EXPIRATION);
 			}
-			volume=ActualBreathing.CheckProgress (inputController.GetInputState(), inputController.GetStrength(), volume);
+			volume=ActualBreathing.CheckProgress (inputController.GetInputState(), inputController.GetStrength(), volume, deltaTime);
 		}
 	}
 	

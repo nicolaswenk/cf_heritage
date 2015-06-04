@@ -20,13 +20,13 @@ public abstract class OnlyExpirationInputController : InputController_I
 	/// <summary>
 	/// The exercice to follow (used to know the differents speed in each state).
 	/// </summary>
-	private DecreasingDrainageAutogene exercice;
+	private Exercice exercice;
 
 	/// <summary>
 	/// Initializes a new instance of the <see cref="OnlyExpirationInputController"/> class and set its exercice.
 	/// </summary>
 	/// <param name="exercice">The exercice to follow to know the actual volume and its limitations.</param>
-	public OnlyExpirationInputController(DecreasingDrainageAutogene exercice){
+	public OnlyExpirationInputController(DecreasingAutogenicDrainage exercice){
 		this.exercice = exercice;
 	}
 	

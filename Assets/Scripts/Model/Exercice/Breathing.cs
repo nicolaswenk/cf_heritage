@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
 /// <summary>
 /// This class is the center of an exercice. All exercices are made of a sequence of breathings.
@@ -22,9 +21,9 @@ public class Breathing
 	/// <summary>The time (is seconds) the patient should expiring (from <see cref="maxVolume"/> to <see cref="endVolume"/>).</summary>
 	private float expirationTime;
 	/// <summary>The breathing state of the patient (whether he's expiring, inspiring, holding breath, ...).</summary>
-	protected BreathingState state;
+	private BreathingState state;
 	/// <summary>The last breathing state of the patient (from the las <see cref="CheckProgress"/> call) .</summary>
-	protected BreathingState lastState;
+	private BreathingState lastState;
 	/// <summary>This dictionnary store all the state's realisation percentages. We can access them with the BreathingState.</summary>
 	private Dictionary<BreathingState, float> dictStatePercentages=new Dictionary<BreathingState, float>(3);
 	/// <summary>This dictionnary store all the state's start time. We can access them with the BreathingState.</summary>
@@ -110,7 +109,8 @@ public class Breathing
 	/// <param name="newState">The new breathing state (retrieve from the input controller). Can be the same as the actual state.</param>
 	/// <param name="strength">The strength of the player inhale or exhale (depends on <see cref="newState"/>).</param>
 	/// <param name="volume">The old volume value which will be updated and returned.</param>
-	public float CheckProgress(BreathingState newState, float strength, float volume){	
+	/// <param name="deltaTime">The time in seconds elapsed since the last call.</param>
+	public float CheckProgress(BreathingState newState, float strength, float volume, float deltaTime){	
 		if (isBreathingEnded) {
 			return volume;
 		}
@@ -125,14 +125,14 @@ public class Breathing
 			if(!dictStateStartTimes.ContainsKey(state)){
 				dictStateStartTimes.Add(state, DateTime.Now);
 			}
-			CheckProgress(state, strength, volume);
+			CheckProgress(state, strength, volume, deltaTime);
 		}
 		else if(lastState == state){
 			hasBreathingStarted=true;
 			switch (state) {
 				
 			case BreathingState.EXPIRATION://We expire
-				volume-=strength*Time.deltaTime*ExpirationSpeed;
+				volume-=strength*deltaTime*ExpirationSpeed;
 				if(volume<endVolume){
 					volume=endVolume;
 				}
@@ -140,7 +140,7 @@ public class Breathing
 				break;
 				
 			case BreathingState.INSPIRATION://We inspire
-				volume+=strength*Time.deltaTime*InspirationSpeed;
+				volume+=strength*deltaTime*InspirationSpeed;
 				if(volume>maxVolume){
 					volume=MaxVolume;
 				}

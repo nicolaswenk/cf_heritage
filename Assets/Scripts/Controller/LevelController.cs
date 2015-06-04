@@ -16,7 +16,7 @@ public class LevelController : MonoBehaviour
 	/// <summary>The input controller</summary>
 	protected InputController_I inputController;
 	/// <summary>The exercice the patient should follow (in loop) and after which the level should be.</summary>
-	protected DecreasingDrainageAutogene exercice;
+	protected DecreasingAutogenicDrainage exercice;
 
 	/// <summary>
 	/// Create the exercice and the input controller.
@@ -24,7 +24,7 @@ public class LevelController : MonoBehaviour
 	/// </summary>
 	void Start ()
 	{		
-		exercice = new DecreasingDrainageAutogene (3,3,3,1.5f,3.0f,10.0f,0.5f);
+		exercice = new DecreasingAutogenicDrainage (3,3,3,1.5f,3.0f,10.0f,0.5f);
 
 		//ioController = new FlapiIOController (audio);
 		inputController = new KeyboardInputController (exercice,3.0f);
@@ -40,7 +40,7 @@ public class LevelController : MonoBehaviour
 	{
 		if (state == GameState.GAME) {
 			inputController.Update();
-			exercice.CheckProgress(inputController);
+			exercice.CheckProgress(inputController, Time.deltaTime);
 			player.Move(inputController, exercice);
 			Transition transition=exercice.GetTransition();
 			if(transition!=Transition.NONE){

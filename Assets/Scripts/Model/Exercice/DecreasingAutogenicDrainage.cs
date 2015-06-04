@@ -1,16 +1,15 @@
 using System;
 using System.Collections.Generic;
-using UnityEngine;
 
 /// <summary>
 /// This class implements a decreasing "Drainage autogène" which consists of 3 sequence of breathings
 /// which are made at 3 different volumes. The "Decreasing" is because we start at the highest volume.
 /// </summary>
-public class DecreasingDrainageAutogene:Exercice
+public class DecreasingAutogenicDrainage:Exercice
 {
 
 	/// <summary>
-	/// Initializes a new instance of the <see cref="DrainageAutogene"/> class.
+	/// Initializes a new instance of the <see cref="DecreasingAutogenicDrainage"/> class.
 	/// </summary>
 	/// <param name="nbBreathingsHigh">Number of breathing done at high pulmonary volume.</param>
 	/// <param name="nbBreathingsMedium">Number of breathing done at medium pulmonary volume.</param>
@@ -24,7 +23,7 @@ public class DecreasingDrainageAutogene:Exercice
 	/// The medium breathings will start at 0.5 + (this value)/2 and deacrease of this value.
 	/// The low breathings will start from this value and deacrease until empty lungs.
 	/// </param>
-	public DecreasingDrainageAutogene (int nbBreathingsHigh, int nbBreathingsMedium, int nbBreathingsLow, float inspirationTime, float holdingBreathTime, float expirationMinTime, float volumeRange)
+	public DecreasingAutogenicDrainage (int nbBreathingsHigh, int nbBreathingsMedium, int nbBreathingsLow, float inspirationTime, float holdingBreathTime, float expirationMinTime, float volumeRange)
 	{
 		int nbBreahthings = nbBreathingsHigh + nbBreathingsMedium + nbBreathingsLow;
 

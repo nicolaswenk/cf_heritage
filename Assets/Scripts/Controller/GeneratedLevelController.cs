@@ -60,7 +60,7 @@ public class GeneratedLevelController : LevelController
 	{		
 		endCycleController = GetComponentInChildren<EndCycleController> ();
 
-		exercice = new DecreasingDrainageAutogene (3,3,3,1.5f,3.0f,10.0f,0.5f);
+		exercice = new DecreasingAutogenicDrainage (3,3,3,1.5f,3.0f,10.0f,0.5f);
 
 		//Flapi.Start (GetComponent<AudioSource>(), Flapi.GetMicrophone (0), 60);
 		//ioController = new FlapiIOController (new ParameterManager(10,1), exercice, GetComponent<AudioSource>());
