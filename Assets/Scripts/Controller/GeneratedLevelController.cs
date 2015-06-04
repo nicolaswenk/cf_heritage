@@ -62,9 +62,9 @@ public class GeneratedLevelController : LevelController
 
 		exercice = new DecreasingAutogenicDrainage (3,3,3,1.5f,3.0f,10.0f,0.5f);
 
-		//Flapi.Start (GetComponent<AudioSource>(), Flapi.GetMicrophone (0), 60);
-		//ioController = new FlapiIOController (new ParameterManager(10,1), exercice, GetComponent<AudioSource>());
-		inputController = new KeyboardInputController (exercice, 10.0f);
+		Flapi.Start (GetComponent<AudioSource>(), Flapi.GetMicrophone (0), 60);
+		inputController = new FlapiInputController (exercice, GetComponent<AudioSource>());
+		//inputController = new KeyboardInputController (exercice, 10.0f);
 		
 		CreateCycleComponents (BreathingState.HOLDING_BREATH);
 		endCycleController.gameObject.transform.position = new Vector3 (xElementsOffset, 0.0f, 0.0f);

@@ -16,6 +16,8 @@ public class FlapiInputController : OnlyExpirationInputController
 	public FlapiInputController (DecreasingAutogenicDrainage exercice, AudioSource audio):base(exercice)
 	{
 		this.audio = audio;
+		Flapi.Start (audio, Flapi.GetMicrophone (0), 60*30);
+		Flapi.threshold = 3.0f;
 	}
 
 	/// <summary>
@@ -47,7 +49,7 @@ public class FlapiInputController : OnlyExpirationInputController
 	/// 0.0f, it means that the patient is not blowing.
 	/// </summary>
 	public override float GetExpirationStrength(){
-		return Flapi.frequency/12.0f;
+		return Flapi.frequency/10.0f;
 	}
 }
 

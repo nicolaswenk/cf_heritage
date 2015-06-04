@@ -41,7 +41,7 @@ namespace FlapiUnity
 		private static float			THRESHOLD_MAX = 10.0f;			// Max ratio between noise and tick
 		private static readonly int		TICKS_PER_SEC_MIN = 6;			// Lowest ticks frequency acceptable
 		private static readonly int		TICKS_PER_SEC_MAX = 26;			// Higher ticks frequency acceptable
-		private static readonly float	TICK_LENGTH = 0.005f; 			// Assume a tick last 0.008 sec
+		private static readonly float	TICK_LENGTH = 0.018f; 			// Assume a tick last 0.005 sec
 
 		private static int				lastAnalyzedSample;
 		private static bool				sourceIsFile;					// If the audio source is a file, filters at the beginning
@@ -277,6 +277,7 @@ namespace FlapiUnity
 
 			//StartAudioFile (audio, "blowshort.wav");
 			StartMicrophone (audio, microphone, seconds);
+			Debug.Log (microphone.name);
 
 			// Start the process, no playback.
 			audio.Play ();
