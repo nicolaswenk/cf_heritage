@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 
 /// <summary>
 /// This class is the center of an exercice. All exercices are made of a sequence of breathings.
@@ -32,6 +33,11 @@ public class Breathing
 	private bool hasBreathingStarted;
 	/// <summary>Tells if this breathing has ended (if the expiration is over).</summary>
 	private bool isBreathingEnded;
+	//TODO Have some more precise value
+	/// <summary>Seems to be a median value from https://van.physics.illinois.edu/qa/listing.php?id=786 </summary>
+	private const float supposedPatientMaxVolume=2100.0f;
+
+	private const float strengthToVolumeFactor=supposedPatientMaxVolume/20.0f;
 	
 	/// <summary>
 	/// Initializes a new instance of the <see cref="Breathing"/> class. A breathing is composed of three state. The first is "inpiration", the second in "holding breath" and the last one is "expiration".
@@ -102,17 +108,24 @@ public class Breathing
 		return BreathingState.INSPIRATION;
 	}
 
+	public float CallibrateStrength(float strength, float volumeMaxCalibrated){
+		Debug.Log (volumeMaxCalibrated + " -> " + supposedPatientMaxVolume);
+		float callibratedStength = strength * (supposedPatientMaxVolume/volumeMaxCalibrated);
+		return callibratedStength;
+	}
+
 	/// <summary>
 	/// Check the progress of the patient in this breathing and compute his actual lungs volume.
 	/// </summary>
 	/// <returns>The patient actual lungs volume (0 for empty and 1 for full).</returns>
 	/// <param name="newState">The new breathing state (retrieve from the input controller). Can be the same as the actual state.</param>
 	/// <param name="strength">The strength of the player inhale or exhale (depends on <see cref="newState"/>).</param>
-	/// <param name="volume">The old volume value which will be updated and returned.</param>
+	/// <param name="volumeRatio">The old volume value which will be updated and returned.</param>
 	/// <param name="deltaTime">The time in seconds elapsed since the last call.</param>
-	public float CheckProgress(BreathingState newState, float strength, float volume, float deltaTime){	
+	public float CheckProgress(BreathingState newState, float strength, float volumeRatio, float volumeMaxCalibrated, float deltaTime){	
+		strength = CallibrateStrength (strength, volumeMaxCalibrated);
 		if (isBreathingEnded) {
-			return volume;
+			return volumeRatio;
 		}
 		lastState = state;
 		state = newState;
@@ -120,31 +133,31 @@ public class Breathing
 		if(lastState==GetSupposedLastState(state)){
 			if(state==BreathingState.INSPIRATION && hasBreathingStarted){
 				isBreathingEnded=true;
-				return volume;
+				return volumeRatio;
 			}
 			if(!dictStateStartTimes.ContainsKey(state)){
 				dictStateStartTimes.Add(state, DateTime.Now);
 			}
-			CheckProgress(state, strength, volume, deltaTime);
+			CheckProgress(state, strength, volumeRatio, volumeMaxCalibrated, deltaTime);
 		}
 		else if(lastState == state){
 			hasBreathingStarted=true;
 			switch (state) {
 				
 			case BreathingState.EXPIRATION://We expire
-				volume-=strength*deltaTime*ExpirationSpeed;
-				if(volume<endVolume){
-					volume=endVolume;
+				volumeRatio-=strength*deltaTime*ExpirationSpeed;
+				if(volumeRatio<endVolume){
+					volumeRatio=endVolume;
 				}
-				dictStatePercentages[state]=(volume-maxVolume)/(endVolume-maxVolume);
+				dictStatePercentages[state]=(volumeRatio-maxVolume)/(endVolume-maxVolume);
 				break;
 				
 			case BreathingState.INSPIRATION://We inspire
-				volume+=strength*deltaTime*InspirationSpeed;
-				if(volume>maxVolume){
-					volume=MaxVolume;
+				volumeRatio+=strength*deltaTime*InspirationSpeed;
+				if(volumeRatio>maxVolume){
+					volumeRatio=MaxVolume;
 				}
-				float newPercentage=(volume-startVolume)/(maxVolume-startVolume);
+				float newPercentage=(volumeRatio-startVolume)/(maxVolume-startVolume);
 				dictStatePercentages[state]=newPercentage;
 				break;
 				
@@ -160,7 +173,7 @@ public class Breathing
 			state=GetSupposedLastState(state);
 		}
 
-		return volume;
+		return volumeRatio;
 	}
 	
 	/// <summary>
@@ -256,6 +269,18 @@ public class Breathing
 	public bool IsEnded{
 		get{
 			return isBreathingEnded;
+		}
+	}
+	
+	public static float StrengthToVolumeFactor{
+		get{
+			return strengthToVolumeFactor;
+		}
+	}
+	
+	public static float SupposedPatientMaxVolume{
+		get{
+			return supposedPatientMaxVolume;
 		}
 	}
 }

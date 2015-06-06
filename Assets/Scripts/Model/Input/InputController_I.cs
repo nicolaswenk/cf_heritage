@@ -13,6 +13,7 @@ public interface InputController_I
 	/// <summary>
 	/// Gets the strength of expiration or inspiration (depends on the InputSate).
 	/// 0.0f, it means that the patient is not blowing or inspiring.
+	/// 1.0f, is that the patient is blowing at 105ml/sec so empty its lungs in 20 seconds.
 	/// </summary>
 	float GetStrength();
 

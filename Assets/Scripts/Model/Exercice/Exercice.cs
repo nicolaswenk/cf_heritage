@@ -17,6 +17,8 @@ public abstract class Exercice
 	protected float minTime;
 	/// <summary>The percentage of an expiration the patient have to do to validate the actual breathing and passing to the next one.</summary>
 	protected float factorMinExpirationForValidation=0.75f;
+	//TODO Doc
+	private float volumeMaxCalibrated=10.0f;
 	
 	/// <summary>
 	/// 0 -> Empty lungs ;
@@ -31,7 +33,7 @@ public abstract class Exercice
 	/// <param name="inputController">Input controller.</param>
 	/// <param name="deltaTime">The time in seconds elapsed since the last call.</param>
 	public void CheckProgress(InputController_I inputController, float deltaTime){
-		volume=ActualBreathing.CheckProgress (inputController.GetInputState(), inputController.GetStrength(), volume, deltaTime);
+		volume=ActualBreathing.CheckProgress (inputController.GetInputState(), inputController.GetStrength(), volume, volumeMaxCalibrated, deltaTime);
 		//The breathing has ended (already back to expiration) and the volume value isn't up to date.
 		//We have to do a new "CheckProgress" on a non-ended breathing.
 		if (ActualBreathing.IsEnded){
@@ -46,7 +48,7 @@ public abstract class Exercice
 			else{
 				ActualBreathing.ResetTo(BreathingState.EXPIRATION);
 			}
-			volume=ActualBreathing.CheckProgress (inputController.GetInputState(), inputController.GetStrength(), volume, deltaTime);
+			volume=ActualBreathing.CheckProgress (inputController.GetInputState(), inputController.GetStrength(), volume, volumeMaxCalibrated, deltaTime);
 		}
 	}
 	
@@ -140,6 +142,10 @@ public abstract class Exercice
 			}
 			return duration;
 		}
+	}
+
+	public float VolumeMaxCalibrated{
+		set{ volumeMaxCalibrated = value;}
 	}
 }
 

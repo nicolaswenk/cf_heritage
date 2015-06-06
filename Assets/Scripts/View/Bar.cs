@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 /// <summary>
@@ -20,6 +21,17 @@ public class Bar : MonoBehaviour {
 	/// The UI height which corresponds to the filled bar.
 	/// </summary>
 	public float max;
+	
+	public Color startColor;
+	public Color endColor;
+
+	private HSBColor startHSBColor;
+	private HSBColor endHSBColor;
+
+	void Start(){
+		startHSBColor = new HSBColor (startColor);
+		endHSBColor = new HSBColor (endColor);
+	}
 
 	/// <summary>
 	/// This method must be present (even empty) so the method
@@ -34,9 +46,19 @@ public class Bar : MonoBehaviour {
 	/// </summary>
 	/// <param name="percent">The percentage the bar must be fill.</param>
 	public void Update (float percent) {
+		if (percent > 1.0f) {
+			percent=1.0f;
+		}
 		Vector2 pos = innerFilling.anchoredPosition;
 		pos.y=PercentToHeight(percent);
 		innerFilling.anchoredPosition = pos;
+
+		Image image=innerFilling.GetComponent<Image> ();
+		float h=(endHSBColor.h-startHSBColor.h)*percent + startHSBColor.h;
+		float s=(endHSBColor.s-startHSBColor.s)*percent + startHSBColor.s;
+		float b=(endHSBColor.b-startHSBColor.b)*percent + startHSBColor.b;
+		HSBColor hsbColor = new HSBColor (h, s, b);
+		image.color = hsbColor.ToColor ();
 	}
 
 	/// <summary>

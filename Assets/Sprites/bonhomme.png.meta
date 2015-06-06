@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 7ea2da4d00a13bb48862770f0d9d055c
-timeCreated: 1430389276
+timeCreated: 1433550211
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -91,8 +91,8 @@ TextureImporter:
         y: 27
         width: 77
         height: 61
-      alignment: 0
-      pivot: {x: .5, y: .5}
+      alignment: 9
+      pivot: {x: .837596536, y: .688487828}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Arm
       rect:

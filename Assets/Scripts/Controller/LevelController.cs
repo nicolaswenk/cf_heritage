@@ -17,6 +17,8 @@ public class LevelController : MonoBehaviour
 	protected InputController_I inputController;
 	/// <summary>The exercice the patient should follow (in loop) and after which the level should be.</summary>
 	protected DecreasingAutogenicDrainage exercice;
+	//TODO Doc
+	private float volumeMaxCalibrated;
 
 	/// <summary>
 	/// Create the exercice and the input controller.
@@ -38,6 +40,7 @@ public class LevelController : MonoBehaviour
 	/// </summary>
 	void Update ()
 	{
+		Debug.Log (state);
 		if (state == GameState.GAME) {
 			inputController.Update();
 			exercice.CheckProgress(inputController, Time.deltaTime);
@@ -78,27 +81,32 @@ public class LevelController : MonoBehaviour
 	/// </summary>
 	protected IEnumerator WaitForPlayer ()
 	{
-		Animator animator = (Animator)GetComponent ("Animator");
-		while (!animator.GetCurrentAnimatorStateInfo(0).IsName("Playing")) {
+		while (state != GameState.GAME) {
 			yield return null;
 		}
-		animator.enabled = false;
-		
-		state = GameState.GAME;
 		
 		/*Flapi.threshold = 5.0f;
 		Flapi.Start (audio, Flapi.GetMicrophone (0), 60);
 		Debug.Log (Flapi.GetMicrophone (0).name);*/
 	}
 	
-	/// <summary>Gets the actual game's state.</summary>
+	/// <summary>Gets or sets the actual game's state.</summary>
 	public GameState GameState{
 		get{ return state;}
+		set{ state=value;}
 	}
-	
+
 	/// <summary>Gets the exercice the patient should follow (in loop) and after which the level should be.</summary>
 	public Exercice Exercice{
 		get { return exercice;}
+	}
+
+	public float VolumeMaxCalibrated {
+		get{ return volumeMaxCalibrated;}
+		set{ 
+			volumeMaxCalibrated = value;
+			exercice.VolumeMaxCalibrated=value;
+		}
 	}
 	
 }

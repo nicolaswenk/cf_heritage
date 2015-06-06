@@ -14,7 +14,7 @@
    height="256"
    id="svg3128"
    version="1.1"
-   inkscape:version="0.48.5 r10040"
+   inkscape:version="0.48.4 r9939"
    sodipodi:docname="Bar.svg"
    inkscape:export-filename="C:\Users\nicolas.wenk\Desktop\PA\cf_heritage\Design\Bar_filling.png"
    inkscape:export-xdpi="90"
@@ -584,20 +584,20 @@
   </defs>
   <sodipodi:namedview
      id="base"
-     pagecolor="#ffffff"
-     bordercolor="#666666"
-     borderopacity="1.0"
-     inkscape:pageopacity="0.0"
+     pagecolor="#00ea32"
+     bordercolor="#e20000"
+     borderopacity="1"
+     inkscape:pageopacity="1"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.42651"
-     inkscape:cx="334.65342"
-     inkscape:cy="-211.81351"
+     inkscape:zoom="0.10013668"
+     inkscape:cx="4619.7775"
+     inkscape:cy="-2054.179"
      inkscape:document-units="px"
      inkscape:current-layer="layer5"
      showgrid="false"
-     inkscape:window-width="1680"
-     inkscape:window-height="1028"
-     inkscape:window-x="1672"
+     inkscape:window-width="1440"
+     inkscape:window-height="877"
+     inkscape:window-x="-8"
      inkscape:window-y="-8"
      inkscape:window-maximized="1" />
   <metadata
@@ -608,7 +608,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -1427,7 +1427,7 @@
      inkscape:label="Filling">
     <path
        style="fill:#ffffff;fill-opacity:1;stroke:none"
-       d="m 0,-244 0,500 500,0 500,0 0,-500 c -98.49839,0 -148.26129,30.3598 -248.78125,31.41378 C 650.6988,-211.53223 607.96305,-244 500,-244 c -98.49839,0 -148.26129,30.3598 -248.78125,31.41378 C 150.6988,-211.53223 107.96305,-244 0,-244 z"
+       d="m 379.48133,1084.1847 0,500 500,0 499.99997,0 0,-500 c -98.4984,0 -148.2613,30.3598 -248.7812,31.4137 -100.52,1.054 -143.25572,-31.4137 -251.21877,-31.4137 -98.49839,0 -148.26129,30.3598 -248.78125,31.4137 -100.51995,1.054 -143.2557,-31.4137 -251.21875,-31.4137 z"
        id="rect3240"
        inkscape:connector-curvature="0" />
   </g>

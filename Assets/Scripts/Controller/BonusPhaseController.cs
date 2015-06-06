@@ -12,9 +12,9 @@ public class BonusPhaseController : MonoBehaviour {
 	/// <summary>The time passed since the last event (bonus started or ended).</summary>
 	private float time=0.0f;
 	/// <summary>The time (in seconds) between each bonus phases.</summary>
-	private float bonusApparitionPeriod=10.0f;//5.0f*60.0f;// 5 minutes
+	private float bonusApparitionPeriod=5.0f*60.0f;// 5 minutes
 	/// <summary>The duration in seconds of a bonus phase.</summary>
-	private float bonusDuration=10.0f;//5.0f*60.0f;// 5 minutes
+	private float bonusDuration=0.5f*60.0f;// 30 seconds
 	/// <summary>Tells if the bonus is actually active or not.</summary>
 	private bool isBonusActive=false;
 	/// <summary>The gameObject which contains all the stars

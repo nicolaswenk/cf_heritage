@@ -4,5 +4,6 @@ public enum GameState
 {	
 	LOGO,
 	INTRO,
+	CALIBRATION,
 	GAME
 }
