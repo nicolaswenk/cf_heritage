@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 /// <summary>
 /// Put this script on a GameObject to make it following the player.
@@ -19,10 +20,12 @@ public class FollowPlayer : MonoBehaviour {
 	/// <summary>If true, will follow on Y axis (don't exclude to follow on X also).</summary>
 	public bool followOnY;
 	/// <summary>The initial difference between this gameObject and the player.</summary>
-	private Vector3 diff;
+	public Vector3 diff;
 	/// <summary>Uses <see cref="followOnX"/> and <see cref="followOnY"/> to build this "boolean" vector
 	/// of axis multiplicator.</summary>
 	private Vector3 dimensions;
+
+	public List<GameState> followAtStates;
 	
 	/// <summary>Build <see cref="dimentsions"/> after <see cref="followOnX"/> and <see cref="followOnY"/>.</summary>
 	void Start () {
@@ -34,15 +37,10 @@ public class FollowPlayer : MonoBehaviour {
 	/// different axis (<see cref="dimensions"/>).
 	/// </summary>
 	void Update () {
-		if (lvlManager.GameState == GameState.GAME) {
+		if (followAtStates.Contains(lvlManager.GameState)) {
 			transform.position = new Vector3(player.transform.position.x*dimensions.x,
 			                                 player.transform.position.y*dimensions.y,
 			                                 player.transform.position.z*dimensions.z)+diff;
-		} else {
-			diff=transform.position-
-				new Vector3(player.transform.position.x*dimensions.x,
-				            player.transform.position.y*dimensions.y,
-				            player.transform.position.z*dimensions.z);
 		}
 	}
 }

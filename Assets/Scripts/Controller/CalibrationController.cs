@@ -7,10 +7,10 @@ public class CalibrationController : MonoBehaviour {
 
 	public PlayerController playerController;
 	public LevelController levelController;
-	public Vector3 initPoint;
+	/*public Vector3 initPoint;
 	public Vector3 destination;
 	public Vector3 failPoint;
-	public Vector3 playerVelocity;
+	public Vector3 playerVelocity;*/
 
 	private float smoothTime=20.0f;
 	private float yVelocity=0.0f;
@@ -25,20 +25,23 @@ public class CalibrationController : MonoBehaviour {
 	private float thresholdFactor=0.5f;
 	private float maxVolume=Breathing.SupposedPatientMaxVolume;
 
-	public Camera camera;
+	public Animator characterAnimator;
+
+	/*public Camera camera;
 	public Vector3 cameraStart;
 	public Vector3 cameraEnd;
-	public Vector3 cameraVelocity;
+	public Vector3 cameraVelocity;*/
 
 	public Bar calibrationBar;
 
 	// Use this for initialization
 	void Start () {
-		playerController.transform.position = initPoint;
+		//playerController.transform.position = initPoint;
 		
 		//inputController = new FlapiInputController (exercice, GetComponent<AudioSource>());
 		inputController = new KeyboardSimpleInputController (10.0f);
-		camera.transform.position = cameraStart;
+		playerController.enabled = false;
+		//camera.transform.position = cameraStart;
 	}
 	
 	// Update is called once per frame
@@ -57,38 +60,38 @@ public class CalibrationController : MonoBehaviour {
 		case CalibrationState.WAITING:
 			if (inputController.GetInputState()==BreathingState.EXPIRATION){
 				state=CalibrationState.CHARGING;
+				characterAnimator.SetBool("isExpiring", true);
 				Update();
 			}
 			break;
 		case CalibrationState.CHARGING:
-			if(inputController.GetInputState()!=BreathingState.EXPIRATION){
-				if (volume>=thresholdFactor*maxVolume){
+			if(inputController.GetInputState()!=BreathingState.EXPIRATION){				
+				characterAnimator.SetBool("isExpiring", false);
+				if (volume>=thresholdFactor*maxVolume){					
+					characterAnimator.SetBool("isThresholdReached", true);
 					state=CalibrationState.TO_GAME_ANIMATION;
 					calibrationBar.gameObject.SetActive(false);
 					volumeMaxCalibrated=volume;
 				}
 				else{
 					state=CalibrationState.FAIL_ANIMATION;
+					characterAnimator.SetBool("isThresholdReached", false);
 				}
 				volume=0.0f;
 			}
 			break;
 		case CalibrationState.TO_GAME_ANIMATION:
-			if (playerController.transform.position==destination){
+			Debug.Log(characterAnimator.GetCurrentAnimatorClipInfo(0)[0].clip.name);
+			if (characterAnimator.GetCurrentAnimatorClipInfo(0)[0].clip.name.Equals("Player_Swim")){
 				levelController.GameState=GameState.GAME;
 				levelController.VolumeMaxCalibrated=volumeMaxCalibrated;
 				this.enabled=false;
 			}
 			break;
 		case CalibrationState.FAIL_ANIMATION:			
-			if (playerController.transform.position==failPoint){
-				state=CalibrationState.CLIMB_TO_HILL;
-			}
-
-			break;
-		case CalibrationState.CLIMB_TO_HILL:			
-			if (playerController.transform.position==initPoint){
-				state=CalibrationState.WAITING;
+			if(characterAnimator.GetCurrentAnimatorClipInfo(0)[0].clip.name.Equals("Player_Calibration_Idle")){
+				state=CalibrationState.WAITING;				
+				volume=0.0f;
 				calibrationBar.Update(volume);
 			}
 			break;
@@ -104,14 +107,11 @@ public class CalibrationController : MonoBehaviour {
 			calibrationBar.Update(volume/maxVolume);
 			break;
 		case CalibrationState.TO_GAME_ANIMATION:
-			Move(playerController.gameObject, destination, ref playerVelocity, smoothTime);
-			Move(camera.gameObject, cameraEnd, ref cameraVelocity, smoothTime);
+			//Move(playerController.gameObject, destination, ref playerVelocity, smoothTime);
+			//Move(camera.gameObject, cameraEnd, ref cameraVelocity, smoothTime);
 			break;
 		case CalibrationState.FAIL_ANIMATION:
-			Move(playerController.gameObject, failPoint, ref playerVelocity, smoothTime);
-			break;
-		case CalibrationState.CLIMB_TO_HILL:
-			Move(playerController.gameObject, initPoint, ref playerVelocity, smoothTime);
+			//Move(playerController.gameObject, failPoint, ref playerVelocity, smoothTime);
 			break;
 		}
 	}

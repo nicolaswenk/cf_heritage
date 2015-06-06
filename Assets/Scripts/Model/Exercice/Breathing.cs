@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
 /// <summary>
 /// This class is the center of an exercice. All exercices are made of a sequence of breathings.
@@ -109,7 +108,6 @@ public class Breathing
 	}
 
 	public float CallibrateStrength(float strength, float volumeMaxCalibrated){
-		Debug.Log (volumeMaxCalibrated + " -> " + supposedPatientMaxVolume);
 		float callibratedStength = strength * (supposedPatientMaxVolume/volumeMaxCalibrated);
 		return callibratedStength;
 	}
