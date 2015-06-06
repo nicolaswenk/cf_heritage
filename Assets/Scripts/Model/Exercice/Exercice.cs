@@ -145,7 +145,9 @@ public abstract class Exercice
 	}
 
 	public float VolumeMaxCalibrated{
-		set{ volumeMaxCalibrated = value;}
+		set{ 
+			volumeMaxCalibrated = value;
+		}
 	}
 }
 

@@ -24,7 +24,7 @@ public class LevelController : MonoBehaviour
 	/// Create the exercice and the input controller.
 	/// Launches the player enter animation.
 	/// </summary>
-	void Start ()
+	public virtual void BuildAndStart ()
 	{		
 		exercice = new DecreasingAutogenicDrainage (3,3,3,1.5f,3.0f,10.0f,0.5f);
 

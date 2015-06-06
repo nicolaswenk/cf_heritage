@@ -202,7 +202,7 @@ public class Breathing
 	/// Gets the time (is seconds) the patient should inspiring (from <see cref="startVolume"/> to <see cref="maxVolume"/>).
 	/// </summary>
 	public float InspirationTime {
-		get { return inspirationTime;}
+		get { return inspirationTime/CalibrationController.StrengthCalibrationFactor;}
 	}
 
 	/// <summary>
@@ -216,7 +216,7 @@ public class Breathing
 	/// Gets the time (is seconds) the patient should expiring (from <see cref="maxVolume"/> to <see cref="endVolume"/>).
 	/// </summary>
 	public float ExpirationTime {
-		get { return expirationTime;}
+		get { return expirationTime/CalibrationController.StrengthCalibrationFactor;}
 	}
 
 	/// <summary>
@@ -238,7 +238,9 @@ public class Breathing
 	/// </summary>
 	public float Duration{
 		get{
-			return inspirationTime+holdingBreathTime+expirationTime;
+			return inspirationTime/CalibrationController.StrengthCalibrationFactor
+				+holdingBreathTime
+				+expirationTime/CalibrationController.StrengthCalibrationFactor;
 		}
 	}
 	

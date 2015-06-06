@@ -21,7 +21,7 @@ public class CalibrationController : MonoBehaviour {
 	private InputController_I inputController;
 	
 	private float volume;
-	private float volumeMaxCalibrated;
+	private static float volumeMaxCalibrated;
 	private float thresholdFactor=0.5f;
 	private float maxVolume=Breathing.SupposedPatientMaxVolume;
 
@@ -70,8 +70,9 @@ public class CalibrationController : MonoBehaviour {
 				if (volume>=thresholdFactor*maxVolume){					
 					characterAnimator.SetBool("isThresholdReached", true);
 					state=CalibrationState.TO_GAME_ANIMATION;
-					calibrationBar.gameObject.SetActive(false);
 					volumeMaxCalibrated=volume;
+					levelController.BuildAndStart();
+					calibrationBar.gameObject.SetActive(false);
 				}
 				else{
 					state=CalibrationState.FAIL_ANIMATION;
@@ -81,7 +82,6 @@ public class CalibrationController : MonoBehaviour {
 			}
 			break;
 		case CalibrationState.TO_GAME_ANIMATION:
-			Debug.Log(characterAnimator.GetCurrentAnimatorClipInfo(0)[0].clip.name);
 			if (characterAnimator.GetCurrentAnimatorClipInfo(0)[0].clip.name.Equals("Player_Swim")){
 				levelController.GameState=GameState.GAME;
 				levelController.VolumeMaxCalibrated=volumeMaxCalibrated;
@@ -125,5 +125,13 @@ public class CalibrationController : MonoBehaviour {
 		float z = Mathf.SmoothDamp (objectToMove.transform.position.z, destination.z, ref vZ, smoothTime * Time.deltaTime);
 		objectToMove.transform.position = new Vector3 (x, y, z);
 		velocity = new Vector3 (vX, vY, vZ);
+	}
+	
+	public static float VolumeMaxCalibrated{
+		get{ return volumeMaxCalibrated;}
+	}
+	
+	public static float StrengthCalibrationFactor{
+		get{return Breathing.SupposedPatientMaxVolume/volumeMaxCalibrated;}
 	}
 }
