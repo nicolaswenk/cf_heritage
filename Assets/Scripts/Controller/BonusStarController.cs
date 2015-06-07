@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 /// <summary>
@@ -32,7 +32,7 @@ public class BonusStarController : MonoBehaviour {
 	/// A reference to the bonusPhaseController to know if our star should be the one used in the bonus phase
 	/// or the usual ones.
 	/// </summary>
-	private BonusPhaseController bonusPhaseController;
+	private BigStarController bonusPhaseController;
 	/// <summary>
 	/// Is true when the 'x' of this object is lower than the player one.
 	/// Used to stop the star movement.
@@ -48,11 +48,6 @@ public class BonusStarController : MonoBehaviour {
 	/// Enable the bonus phase looking of our star if we are in bonus phase.
 	/// </summary>
 	void Start(){
-		GameObject gameObject=GameObject.Find ("BonusPhaseController");
-		bonusPhaseController=gameObject.GetComponent<BonusPhaseController> ();
-		if (bonusPhaseController.IsBonusActive) {
-			starController.animator.SetTrigger("bonusStart");
-		}
 		starController.GetComponent<Collider2D> ().enabled = false;
 	}
 

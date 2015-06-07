@@ -21,9 +21,9 @@ public class PlayerController : MonoBehaviour
 	/// <summary>The swimming animator</summary>
 	public Animator SwimAnimator;
 	/// <summary>The star counter (to increment when a star is catched and decreased when an obstacle touched).</summary>
-	public StarCounter starCounter;
+	public BigStarController bigStarController;
 	/// <summary>The bonus controller (to know how many star we collect).</summary>
-	public BonusPhaseController bonusController;
+	public BigStarController bonusController;
 	/// <summary>The volume updated at each <see cref="Move"/> call after the one the exercice computes.</summary>
 	private float volume=1.0f;
 	/// <summary>The player's breathing stat at the last update.</summary>
@@ -114,13 +114,13 @@ public class PlayerController : MonoBehaviour
 	public void Collide(Collider2D other){
 		switch (other.tag) {
 		case "Obstacle":
-			starCounter.Loose(1);
+			bigStarController.LooseAStar();
 			GetComponent<Animator>().SetTrigger("collision");
 			other.enabled=false;
 			Fabric.EventManager.Instance.PostEvent("PlayerHurt");
 			break;
 		case "Star":
-			starCounter.Collect(bonusController.GetMultiplicator());
+			bigStarController.CollectAStar();
 			break;
 		}
 	}
