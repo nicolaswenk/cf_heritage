@@ -44,6 +44,7 @@ public class EndCanvasController : MonoBehaviour {
 	public void QuitClicked (){
 		quitButton.interactable = false;
 		levelController.GameState = GameState.END_SCREEN;
+		levelController.player.SwimAnimator.SetTrigger ("EndGame");
 		starBar.gameObject.SetActive (false);
 		endCanvas.gameObject.SetActive (true);
 

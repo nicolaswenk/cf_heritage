@@ -38,7 +38,14 @@ public class PlayerController : MonoBehaviour
 	{
 		if (inflatablePart != null) 
 		{
+			Transform[] childrens=inflatablePart.GetComponentsInChildren<Transform>();
+
 			inflatablePart.transform.localScale = new Vector3 (1, volume + 0.5f, 1);
+			for(int i=0; i<childrens.Length; i++){
+				if(childrens[i]!=inflatablePart.transform && childrens[i].gameObject.name!="Legs"){
+					childrens[i].localScale=new Vector3(1, 1/(volume+0.5f), 1);
+				}
+			}
 		}
 	}
 
