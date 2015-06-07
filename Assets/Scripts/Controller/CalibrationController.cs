@@ -7,10 +7,6 @@ public class CalibrationController : MonoBehaviour {
 
 	public PlayerController playerController;
 	public LevelController levelController;
-	/*public Vector3 initPoint;
-	public Vector3 destination;
-	public Vector3 failPoint;
-	public Vector3 playerVelocity;*/
 
 	private float smoothTime=20.0f;
 	private float yVelocity=0.0f;
@@ -27,21 +23,12 @@ public class CalibrationController : MonoBehaviour {
 
 	public Animator characterAnimator;
 
-	/*public Camera camera;
-	public Vector3 cameraStart;
-	public Vector3 cameraEnd;
-	public Vector3 cameraVelocity;*/
-
 	public Bar calibrationBar;
 
 	// Use this for initialization
-	void Start () {
-		//playerController.transform.position = initPoint;
-		
+	void Start () {		
 		//inputController = new FlapiInputController (exercice, GetComponent<AudioSource>());
 		inputController = new KeyboardSimpleInputController (10.0f);
-		playerController.enabled = false;
-		//camera.transform.position = cameraStart;
 	}
 	
 	// Update is called once per frame
@@ -105,13 +92,6 @@ public class CalibrationController : MonoBehaviour {
 		case CalibrationState.CHARGING:
 			volume+=inputController.GetStrength()*Time.deltaTime*Breathing.StrengthToVolumeFactor;
 			calibrationBar.Update(volume/maxVolume);
-			break;
-		case CalibrationState.TO_GAME_ANIMATION:
-			//Move(playerController.gameObject, destination, ref playerVelocity, smoothTime);
-			//Move(camera.gameObject, cameraEnd, ref cameraVelocity, smoothTime);
-			break;
-		case CalibrationState.FAIL_ANIMATION:
-			//Move(playerController.gameObject, failPoint, ref playerVelocity, smoothTime);
 			break;
 		}
 	}

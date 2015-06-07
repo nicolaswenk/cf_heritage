@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour
 	{
 		if (inflatablePart != null) 
 		{
-			inflatablePart.transform.localScale = new Vector3 (1, volume + 0.5f, 1);	
+			inflatablePart.transform.localScale = new Vector3 (1, volume + 0.5f, 1);
 		}
 	}
 

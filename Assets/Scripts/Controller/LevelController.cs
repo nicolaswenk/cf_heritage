@@ -19,6 +19,8 @@ public class LevelController : MonoBehaviour
 	protected DecreasingAutogenicDrainage exercice;
 	//TODO Doc
 	private float volumeMaxCalibrated;
+	
+	public List<GameObject> listToEnableAtGame;
 
 	/// <summary>
 	/// Create the exercice and the input controller.
@@ -31,7 +33,7 @@ public class LevelController : MonoBehaviour
 		//ioController = new FlapiIOController (audio);
 		inputController = new KeyboardInputController (exercice,3.0f);
 		
-		StartCoroutine (WaitForPlayer ());
+		StartCoroutine (WaitForGame ());
 	}
 	
 	/// <summary>
@@ -79,15 +81,15 @@ public class LevelController : MonoBehaviour
 	/// Launch the player animation and "yield" when it's over.
 	/// Can be launch as a coroutine.
 	/// </summary>
-	protected IEnumerator WaitForPlayer ()
+	protected IEnumerator WaitForGame ()
 	{
 		while (state != GameState.GAME) {
 			yield return null;
-		}
+		}			
 		
-		/*Flapi.threshold = 5.0f;
-		Flapi.Start (audio, Flapi.GetMicrophone (0), 60);
-		Debug.Log (Flapi.GetMicrophone (0).name);*/
+		foreach (GameObject gameObject in listToEnableAtGame) {
+			gameObject.SetActive (true);
+		}
 	}
 	
 	/// <summary>Gets or sets the actual game's state.</summary>

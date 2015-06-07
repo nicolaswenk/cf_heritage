@@ -58,7 +58,6 @@ public class GeneratedLevelController : LevelController
 	/// </summary>
 	public override void BuildAndStart ()
 	{		
-		//StartCoroutine (WaitForPlayer ());
 
 		endCycleController = GetComponentInChildren<EndCycleController> ();
 
@@ -71,6 +70,8 @@ public class GeneratedLevelController : LevelController
 		CreateCycleComponents (BreathingState.HOLDING_BREATH);
 		endCycleController.gameObject.transform.position = new Vector3 (xElementsOffset, 0.0f, 0.0f);
 		CreateCycleComponents (BreathingState.INSPIRATION);
+		
+		StartCoroutine (WaitForGame ());
 	}
 
 	/// <summary>
@@ -79,7 +80,6 @@ public class GeneratedLevelController : LevelController
 	/// <param name="startAt">Tells at which breathing state the cycle begin.</param>
 	public void CreateCycleComponents(BreathingState startAt){
 		float duration = exercice.Duration;
-		Debug.Log (duration);
 		float distance = duration * player.HorizontalSpeed;
 		float xObstaclesOffset = xElementsOffset;
 

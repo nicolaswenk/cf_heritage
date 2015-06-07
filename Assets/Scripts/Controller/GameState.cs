@@ -5,5 +5,6 @@ public enum GameState
 	LOGO,
 	INTRO,
 	CALIBRATION,
-	GAME
+	GAME,
+	END_SCREEN
 }
