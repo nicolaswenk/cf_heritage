@@ -12,7 +12,7 @@ public class BigStarController : MonoBehaviour {
 	
 	private float bigStarProgress=0.0f;
 	
-	private const int NUMBER_TO_UNLOCK=5;
+	private const int NUMBER_TO_UNLOCK=20;
 
 	private int starCounter=0;
 
@@ -37,5 +37,9 @@ public class BigStarController : MonoBehaviour {
 		
 		float percentage = (starCounter - lastBigStarReached) / ((float)NUMBER_TO_UNLOCK);
 		bigStarViewer.UpdateFilling (percentage);
+	}
+
+	public int GetBigStarsCollectedNumber(){
+		return (starCounter / NUMBER_TO_UNLOCK);
 	}
 }

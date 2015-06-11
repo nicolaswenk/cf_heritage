@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System.Diagnostics;
 using System.Collections.Generic;
 
 public class EndCanvasController : MonoBehaviour {
@@ -17,9 +18,13 @@ public class EndCanvasController : MonoBehaviour {
 
 	public BigStarsViewer bigStarsViewer;
 
+	public BigStarController bigStarController;
+
+	public TimeController timeController;
+
 	// Use this for initialization
 	void Start () {
-	
+
 	}
 	
 	// Update is called once per frame
@@ -28,7 +33,7 @@ public class EndCanvasController : MonoBehaviour {
 		case EndCanvasState.PLANETS_SHOWING:
 			if (planetsViewer.IsFinished){
 				state=EndCanvasState.STARS_SHOWING;
-				StartCoroutine (bigStarsViewer.ShowBigStars (8));
+				StartCoroutine (bigStarsViewer.ShowBigStars (bigStarController.GetBigStarsCollectedNumber()));
 			}
 			break;
 		case EndCanvasState.STARS_SHOWING:
@@ -49,6 +54,7 @@ public class EndCanvasController : MonoBehaviour {
 		endCanvas.gameObject.SetActive (true);
 
 		state = EndCanvasState.PLANETS_SHOWING;
-		StartCoroutine (planetsViewer.ShowPlanets (1.5f));
+
+		StartCoroutine (planetsViewer.ShowPlanets (timeController.GetTimeNumberGoalReached()));
 	}
 }
