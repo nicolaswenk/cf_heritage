@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="256"
+   height="256"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.48.5 r10040"
+   sodipodi:docname="étoile.svg"
+   inkscape:export-filename="C:\Users\nicolas.wenk\Desktop\PA\cf_heritage\Design\étoile.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.979899"
+     inkscape:cx="-40.503109"
+     inkscape:cy="146.45318"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1680"
+     inkscape:window-height="988"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Calque 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-796.36218)">
+    <path
+       sodipodi:type="star"
+       style="fill:#ffff00;stroke:#000000;stroke-width:3.69414272;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="path2985"
+       sodipodi:sides="5"
+       sodipodi:cx="66.164993"
+       sodipodi:cy="75.687775"
+       sodipodi:r1="145.61096"
+       sodipodi:r2="71.48011"
+       sodipodi:arg1="0.95296619"
+       sodipodi:arg2="1.5812847"
+       inkscape:flatsided="false"
+       inkscape:rounded="0"
+       inkscape:randomized="0"
+       d="M 150.51273,194.3807 65.415297,147.16395 -20.653804,192.58537 -2.044561,97.062125 -71.839714,29.241537 24.758867,17.421671 67.69219,-69.915178 l 41.09196,88.21817 96.32941,13.843447 -71.20235,66.341693 z"
+       transform="matrix(0.5413976,0,0,0.5413976,91.457654,896.22761)"
+       inkscape:transform-center-x="-0.25550202"
+       inkscape:transform-center-y="-7.2845161" />
+  </g>
+</svg>
