@@ -14,10 +14,10 @@ In order to run the game, you'll need...
 * A PEP/Flutter.
 
 ## Development
-This project requires [Unity 4.x](http://unity3d.com/). Clone the repository with the following command line:
+This project requires [Unity 5.x](http://unity3d.com/). Clone the repository with the following command line:
 
 ```
-git clone https://github.com/breathinggames/cf_heritage.git
+git clone https://github.com/breathinggames/bg_heritage.git
 ```
 
 Once this step is done, just open this folder in Unity and let it import all the necessary modules.
