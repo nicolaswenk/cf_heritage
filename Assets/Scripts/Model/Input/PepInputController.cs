@@ -7,8 +7,7 @@ using System.IO.Ports;
 /// The input selection is done in BuildAndStart() in Assets/Scripts/Controller/LevelController.cs.
 /// </summary>
 public class PepInputController : MonoBehaviour {
-{
-	public static float pepValue = 0f;
+	private float pepValue = 0f;
 	/// <summary>
 	/// Open to bluetooth port. For Windows OS : COM3 or COM4, for Mac OS : /dev/tty.usbmodem621.
 	/// </summary>
