@@ -32,7 +32,7 @@ public class LevelController : MonoBehaviour
 
 		//ioController = new FlapiIOController (audio);
 		//inputController = new KeyboardInputController (exercice,3.0f);
-		inputController = new PepInputController (exercice,3.0f);
+		inputController = new PepInputController (exercice);
 		
 		StartCoroutine (WaitForGame ());
 	}

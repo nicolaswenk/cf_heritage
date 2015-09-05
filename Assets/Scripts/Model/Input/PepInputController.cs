@@ -7,7 +7,14 @@ using System.IO.Ports;
 /// The input selection is done in BuildAndStart() in Assets/Scripts/Controller/LevelController.cs.
 /// </summary>
 public class PepInputController : MonoBehaviour {
+
 	private float pepValue = 0f;
+
+	/// <summary>
+	/// The expiration speed of a strong expiration.
+	/// </summary>
+	private float strongBreathValue;
+	
 	/// <summary>
 	/// Open to bluetooth port. For Windows OS : COM3 or COM4, for Mac OS : /dev/tty.usbmodem621.
 	/// </summary>
@@ -36,7 +43,15 @@ public class PepInputController : MonoBehaviour {
 	public float GetStrength(){
 		return pepValue;
 	}
-		
+
+	/// <summary>
+	///TODO  
+	/// </summary>
+	public PepInputController(DecreasingAutogenicDrainage exercice, float strongBreathValue)
+	{
+		strongBreathValue = pepValue;
+	}
+
 	/// <summary>
 	/// Gets the BreathingState (expiration, inspiration, holding breath, ...).
 	/// </summary>
