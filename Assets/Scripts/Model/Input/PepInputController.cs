@@ -1,40 +1,46 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System;
 using System.IO.Ports;
+using UnityEngine;
+
 
 /// <summary>
 /// This class manages the device that gets the pressure / flow from the PEP.
 /// The input selection is done in BuildAndStart() in Assets/Scripts/Controller/LevelController.cs.
 /// </summary>
-public class PepInputController : MonoBehaviour {
+public class PepInputController : InputController_I
+{
+	/// <summary>
+	/// Open the port. For Mac = /dev/tty.usbmodem621, PC = COM3 or COM4, if COM higher than 9, "\\\\.\\COM25"
+	/// </summary>
+	SerialPort stream = new SerialPort("\\\\.\\COM25", 9600);
 
+	private int x = 0;
 	private float pepValue = 0f;
-
-	/// <summary>
-	/// The expiration speed of a strong expiration.
-	/// </summary>
-	private float strongBreathValue;
-	
-	/// <summary>
-	/// Open to bluetooth port. For Windows OS : COM3 or COM4, for Mac OS : /dev/tty.usbmodem621.
-	/// </summary>
-	SerialPort stream = new SerialPort("/dev/tty.usbmodem621", 9600);
 		
 	/// <summary>
-	/// Initialize the call to the device. Timeout is the delay if data is not received, Invokes frees memory by reading the port each 0.5 sec.
+	/// Initialize the call to the device. Timeout is the delay if data is not received..
 	/// </summary>
 	public void Start(){
 		stream.Open();
 		stream.ReadTimeout = 5;
-		InvokeRepeating("streamIn", 0.5f, 0.5f);
 	}
 
 	/// <summary>
 	/// Read the input and update the values to return.
 	/// </summary>
 	public void Update(){
-		string pepRaw = stream.ReadLine();
-		pepValue = float.Parse (pepRaw);
+		if (stream.IsOpen)
+		{
+			try
+			{
+				string value = stream.ReadLine();								// reads serial port
+				pepValue = float.Parse(value);
+				x++;
+			}
+			catch(System.Exception)												// exit the reading if no value to avoid infinite run
+			{	
+			}
+		}	
 	}
 
 	/// <summary>
@@ -42,16 +48,9 @@ public class PepInputController : MonoBehaviour {
 	/// </summary>
 	public float GetStrength(){
 		return pepValue;
+		Debug.Log (pepValue);
 	}
-
-	/// <summary>
-	///TODO  
-	/// </summary>
-	public PepInputController(DecreasingAutogenicDrainage exercice, float strongBreathValue)
-	{
-		strongBreathValue = pepValue;
-	}
-
+	
 	/// <summary>
 	/// Gets the BreathingState (expiration, inspiration, holding breath, ...).
 	/// </summary>
