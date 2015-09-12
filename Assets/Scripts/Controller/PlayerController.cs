@@ -31,6 +31,8 @@ public class PlayerController : MonoBehaviour
 	/// <summary>The breathing switch audio component. To change the volume after the breathing strength.</summary>
 	public Fabric.SwitchComponent breathingSwitch;
 
+    PepInputController pep = new PepInputController();
+
 	/// <summary>
 	/// Called once per frame. Apply the scaling to the <see cref="inflatablePart"/> and <see cref=""/> 
 	/// </summary>
@@ -47,6 +49,7 @@ public class PlayerController : MonoBehaviour
 				}
 			}
 		}
+        Debug.Log(pep.GetStrength());
 	}
 
 	/// <summary>

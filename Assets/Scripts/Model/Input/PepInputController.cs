@@ -48,7 +48,6 @@ public class PepInputController : InputController_I
 	/// </summary>
 	public float GetStrength(){
 		return pepValue;
-		Debug.Log (pepValue);
 	}
 	
 	/// <summary>
