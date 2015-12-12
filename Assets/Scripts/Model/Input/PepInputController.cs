@@ -9,6 +9,7 @@ using UnityEngine;
 /// </summary>
 public class PepInputController : InputController_I
 {
+    public static string arduinoValue;
 	public static float pepValue = 0f;
 
 	public void Start(){
@@ -29,7 +30,7 @@ public class PepInputController : InputController_I
 	/// Gets the BreathingState (expiration, inspiration, holding breath, ...).
 	/// </summary>
 	public BreathingState GetInputState(){
-		if (pepValue > 0.3f) {
+		if (pepValue > 0.1f) {
 			return BreathingState.EXPIRATION;
 		} else {
 			return BreathingState.HOLDING_BREATH;

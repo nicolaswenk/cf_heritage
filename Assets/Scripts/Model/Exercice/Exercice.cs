@@ -16,7 +16,7 @@ public abstract class Exercice
 	/// <summary>The minimum time (in sec) the exercice should last (repeating the breathings sequence).</summary>
 	protected float minTime;
 	/// <summary>The percentage of an expiration the patient have to do to validate the actual breathing and passing to the next one.</summary>
-	protected float factorMinExpirationForValidation=0.75f;
+	protected float factorMinExpirationForValidation=0.2f;
 	//TODO Doc
 	private float volumeMaxCalibrated=10.0f;
 	

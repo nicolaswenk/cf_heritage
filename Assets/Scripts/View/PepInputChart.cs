@@ -11,6 +11,7 @@ public class PepInputChart : MonoBehaviour {
     public TextMesh g_text_feedback;
     public TextMesh g_text_arduino;
     public TextMesh g_text_value;
+    public TextMesh g_text_table;
     private float[] breathing = new float[1600];
     private float clock;
     private float clockEnd;
@@ -25,7 +26,7 @@ public class PepInputChart : MonoBehaviour {
 
     void Start()
     {
-        clock = Time.fixedTime + 0.05f; // time between each dot of the scheme
+        clock = Time.fixedTime + 0.05f; // time between each dot of the scheme 0.05
     }
 
     void Update()
@@ -35,20 +36,19 @@ public class PepInputChart : MonoBehaviour {
         ///// collecting data from PEP
 
         pepValue = PepInputController.pepValue;
-        g_text_arduino.text = pepValue.ToString();
-       // pepValue = pepValue / 10;
-       // g_text_value.text = pepValue.ToString();
+        g_text_value.text = pepValue.ToString();
+        g_text_arduino.text = PepInputController.arduinoValue;
 
         ///// converting data in H20 cm
 
       //  f_cm = Mathf.Round(pepValue / 0.03922f);
-      //  g_text_h2o.text = f_cm.ToString() + " cm H2O";
+        g_text_h2o.text = f_cm.ToString();
 
-        if (pepValue <39)									// -0.38378 // < 7.8 cm H20
+        if (pepValue < 0.3081)									// -0.38378 // < 7.8 cm H20
             g_text_feedback.text = " ";
-        else if (pepValue < 50)								// -0.21569 // 7.8 to 10 cm H20
+        else if (pepValue < 0.3922)								// -0.21569 // 7.8 to 10 cm H20
 			g_text_feedback.text = lng.t[11];
-        else if (pepValue < 75)  								//  0.56863 // 10 to 20 cm H20, optimal zone
+        else if (pepValue < 0.7843)  								//  0.56863 // 10 to 20 cm H20, optimal zone
 			g_text_feedback.text = lng.t[13];
 		else 														// > 20 cm H20, too hard
 			g_text_feedback.text = lng.t[12];		
@@ -63,10 +63,11 @@ public class PepInputChart : MonoBehaviour {
             if (i_time > 20)																// if not during the first second (launch)
             {
                 breathing[i_time] = pepValue;										        // saving pressure in an array
-                Instantiate(dot, new Vector3(-15.5f + (i_time * 0.01f), (pepValue * 3) - 4.6f, -1), Quaternion.Euler(0, 0, 0)); // draw scheme
+                Instantiate(dot, new Vector3(-15.5f + (i_time * 0.01f), (pepValue * 30) - 7.6f, -1), Quaternion.Euler(0, 0, 0)); // draw scheme (x * 0.01 y, z)
                 clock = Time.fixedTime + 0.05f;
             }
             i_time++;
+           // g_text_table.text += pepValue + " \n";
         }
 
         if ((clockExhaleEnd < Time.fixedTime) && (i_time > 20)) 							// if exhalation done long enough and not during launch

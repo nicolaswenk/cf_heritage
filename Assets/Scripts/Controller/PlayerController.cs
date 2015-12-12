@@ -49,7 +49,7 @@ public class PlayerController : MonoBehaviour
 				}
 			}
 		}
-        Debug.Log(pep.GetStrength());
+        // Debug.Log(pep.GetStrength());
 	}
 
 	/// <summary>
