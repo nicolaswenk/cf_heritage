@@ -25,31 +25,30 @@ public class PepInputChart : MonoBehaviour {
 
     void Start()
     {
-        clock = Time.fixedTime + 0.05f;													    // time between each dot of the scheme
+        clock = Time.fixedTime + 0.05f; // time between each dot of the scheme
     }
 
     void Update()
     {
-        ///// loading translation file
-        lng.Translate();
+        lng.Translate(); // loading translation file
 
         ///// collecting data from PEP
 
         pepValue = PepInputController.pepValue;
         g_text_arduino.text = pepValue.ToString();
-        pepValue = pepValue / 100;
-        g_text_value.text = pepValue.ToString();
+       // pepValue = pepValue / 10;
+       // g_text_value.text = pepValue.ToString();
 
         ///// converting data in H20 cm
 
-        f_cm = Mathf.Round(pepValue / 0.03922f);
-        g_text_h2o.text = f_cm.ToString() + " cm H2O";
+      //  f_cm = Mathf.Round(pepValue / 0.03922f);
+      //  g_text_h2o.text = f_cm.ToString() + " cm H2O";
 
-        if (pepValue < 0.3081)									// -0.38378 // < 7.8 cm H20
+        if (pepValue <39)									// -0.38378 // < 7.8 cm H20
             g_text_feedback.text = " ";
-        else if (pepValue < 0.3922)								// -0.21569 // 7.8 to 10 cm H20
+        else if (pepValue < 50)								// -0.21569 // 7.8 to 10 cm H20
 			g_text_feedback.text = lng.t[11];
-        else if (pepValue < 0.7843)  								//  0.56863 // 10 to 20 cm H20, optimal zone
+        else if (pepValue < 75)  								//  0.56863 // 10 to 20 cm H20, optimal zone
 			g_text_feedback.text = lng.t[13];
 		else 														// > 20 cm H20, too hard
 			g_text_feedback.text = lng.t[12];		
