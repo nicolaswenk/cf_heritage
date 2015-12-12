@@ -9,45 +9,20 @@ using UnityEngine;
 /// </summary>
 public class PepInputController : InputController_I
 {
-	/// <summary>
-	/// Open the port. For Mac = /dev/tty.usbmodem621, PC = COM3 or COM4, if COM higher than 9, "\\\\.\\COM25"
-	/// </summary>
-	SerialPort stream = new SerialPort("\\\\.\\COM25", 9600);
+	public static float pepValue = 0f;
 
-	private int x = 0;
-	private float pepValue = 0f;
-		
-	/// <summary>
-	/// Initialize the call to the device. Timeout is the delay if data is not received..
-	/// </summary>
 	public void Start(){
-		stream.Open();
-		stream.ReadTimeout = 5;
 	}
 
-	/// <summary>
-	/// Read the input and update the values to return.
-	/// </summary>
 	public void Update(){
-		if (stream.IsOpen)
-		{
-			try
-			{
-				string value = stream.ReadLine();								// reads serial port
-				pepValue = float.Parse(value);
-				x++;
-			}
-			catch(System.Exception)												// exit the reading if no value to avoid infinite run
-			{	
-			}
-		}	
 	}
 
 	/// <summary>
 	/// Gets the strength of expiration. 0.0f means that the patient is not blowing.
 	/// </summary>
-	public float GetStrength(){
-		return pepValue;
+    public float GetStrength()
+    {
+        return pepValue;
 	}
 	
 	/// <summary>
