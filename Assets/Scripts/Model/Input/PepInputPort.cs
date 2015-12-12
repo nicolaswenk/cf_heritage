@@ -7,6 +7,8 @@ public class PepInputPort : MonoBehaviour {
     
     SerialPort stream = new SerialPort("\\\\.\\COM30", 9600);
 
+	// for PC "COM4" or "\\\\.\\COM30" Mac OS : "/dev/tty.usbmodem1421"
+
 	private float pepValue = 0f;
 
 	public void Start(){
