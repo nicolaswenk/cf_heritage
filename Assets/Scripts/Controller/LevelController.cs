@@ -10,7 +10,7 @@ using System.Collections.Generic;
 public class LevelController : MonoBehaviour
 {
 	/// <summary>The actual game's state.</summary>
-//	protected GameState state = GameState.CALIBRATION;
+	protected GameState state = GameState.CALIBRATION;
 	/// <summary>The player game object.</summary>
 	public PlayerController player;
 	/// <summary>The input controller</summary>

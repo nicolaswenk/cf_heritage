@@ -11,13 +11,15 @@ public class PepInputPort : MonoBehaviour {
 
 	private float pepValue = 0f;
 
-	public void Start(){
+	public void Start()
+    {
 		stream.Open();
 	//	stream.ReadTimeout = 100; // milliseconds
         InvokeRepeating("streamIn", 0.01f, 0.01f); // start delay, repeat delay in seconds
 	}
 
-	public void Update(){
+	public void Update()
+    {
 	}
 
     void streamIn()

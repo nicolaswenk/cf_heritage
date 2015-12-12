@@ -7,15 +7,17 @@ public class PepInputChart : MonoBehaviour {
     public GameObject zone_ok;
     public TextMesh g_text_todo;
     public TextMesh g_text_success;
-    public TextMesh g_text_h2o;
     public TextMesh g_text_feedback;
     public TextMesh g_text_arduino;
+    public TextMesh g_text_h2o;
     public TextMesh g_text_value;
+    public TextMesh g_text_highest;
     public TextMesh g_text_table;
     private float[] breathing = new float[1600];
     private float clock;
     private float clockEnd;
     private float clockExhaleEnd;
+    private float pepHighest;
     private int  i_time = 0;
     private int  i_breath_todo = 15;
     private bool b_breath_start = true;
@@ -35,9 +37,17 @@ public class PepInputChart : MonoBehaviour {
 
         ///// collecting data from PEP
 
-        pepValue = PepInputController.pepValue;
-        g_text_value.text = pepValue.ToString();
         g_text_arduino.text = PepInputController.arduinoValue;
+
+        pepValue = PepInputController.pepValue;
+
+        g_text_value.text = pepValue.ToString();
+
+        if (pepValue > pepHighest)
+            pepHighest = pepValue;
+
+        g_text_highest.text = pepHighest.ToString();
+
 
         ///// converting data in H20 cm
 
@@ -67,7 +77,6 @@ public class PepInputChart : MonoBehaviour {
                 clock = Time.fixedTime + 0.05f;
             }
             i_time++;
-           // g_text_table.text += pepValue + " \n";
         }
 
         if ((clockExhaleEnd < Time.fixedTime) && (i_time > 20)) 							// if exhalation done long enough and not during launch
