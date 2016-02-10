@@ -203,6 +203,7 @@ public class GeneratedLevelController : LevelController
 			GameObject star=(GameObject)Instantiate(starModel, ExerciceToPlayer(new Vector3(x,y,0.0f)), Quaternion.identity);
 			star.transform.parent=starsContainer;
 			star.name=StarController.GetNewName();
+            star.GetComponent<Animator>().Play("Star_moving", 0, Random.Range(0.0f, 1.0f));
 
 			dt=idealDt*Random.Range(minFactor, maxFactor);
 			time+=dt;
