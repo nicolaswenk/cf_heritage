@@ -4,18 +4,19 @@ using UnityEngine;
 using System.Collections;
 
 public class PepInputPort : MonoBehaviour {
-    
-    SerialPort stream = new SerialPort("\\\\.\\COM30", 9600);
 
-	// for PC "COM4" or "\\\\.\\COM30" Mac OS : "/dev/tty.usbmodem1421"
+    //SerialPort stream = new SerialPort("\\\\.\\COM30", 9600);
+    SerialPort stream = new SerialPort("COM4", 9600);
 
-	private float pepValue = 0f;
+    // for PC "COM4" or "\\\\.\\COM30" Mac OS : "/dev/tty.usbmodem1421"
+
+    private float pepValue = 0f;
 
 	public void Start()
     {
-		stream.Open();
+		//stream.Open();
 	//	stream.ReadTimeout = 100; // milliseconds
-        InvokeRepeating("streamIn", 0.01f, 0.01f); // start delay, repeat delay in seconds
+        //InvokeRepeating("streamIn", 0.01f, 0.01f); // start delay, repeat delay in seconds
 	}
 
 	public void Update()
@@ -24,7 +25,7 @@ public class PepInputPort : MonoBehaviour {
 
     void streamIn()
     {
-        if (stream.IsOpen)
+       /* if (stream.IsOpen)
         {
             try
             {
@@ -37,6 +38,6 @@ public class PepInputPort : MonoBehaviour {
             catch (System.Exception) // exit the reading if no value to avoid infinite run
             {
             }
-        }	
+        }	*/
     }
 }

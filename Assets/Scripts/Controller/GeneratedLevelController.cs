@@ -57,17 +57,17 @@ public class GeneratedLevelController : LevelController
 	/// launch the player entering animation.
 	/// </summary>
 	public override void BuildAndStart ()
-	{		
-
+	{
 		endCycleController = GetComponentInChildren<EndCycleController> ();
 
 		exercice = new DecreasingAutogenicDrainage (3,3,3,1.5f,3.0f,10.0f,0.5f);
 
-		//inputController = new FlapiInputController (exercice, GetComponent<AudioSource>());
-		inputController = new KeyboardInputController (exercice, 10.0f);
+        //inputController = new FlapiInputController (exercice, GetComponent<AudioSource>());
+        inputController = new KeyboardInputController(exercice, 10.0f);
+        //inputController = new PepInputController();
 
 
-		CreateCycleComponents (BreathingState.HOLDING_BREATH);
+        CreateCycleComponents (BreathingState.HOLDING_BREATH);
 		endCycleController.gameObject.transform.position = new Vector3 (xElementsOffset, 0.0f, 0.0f);
 		CreateCycleComponents (BreathingState.INSPIRATION);
 		

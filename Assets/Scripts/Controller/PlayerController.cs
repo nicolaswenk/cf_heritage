@@ -31,14 +31,12 @@ public class PlayerController : MonoBehaviour
 	/// <summary>The breathing switch audio component. To change the volume after the breathing strength.</summary>
 	public Fabric.SwitchComponent breathingSwitch;
 
-    PepInputController pep = new PepInputController();
-
 	/// <summary>
 	/// Called once per frame. Apply the scaling to the <see cref="inflatablePart"/> and <see cref=""/> 
 	/// </summary>
 	void Update ()
-	{
-		if (inflatablePart != null) 
+    {
+        if (inflatablePart != null) 
 		{
 			Transform[] childrens=inflatablePart.GetComponentsInChildren<Transform>();
 
@@ -49,7 +47,6 @@ public class PlayerController : MonoBehaviour
 				}
 			}
 		}
-        // Debug.Log(pep.GetStrength());
 	}
 
 	/// <summary>
@@ -59,7 +56,7 @@ public class PlayerController : MonoBehaviour
 	/// <param name="exercice">Used to get the actual pulmonary volume.</param>
 	public void Move(InputController_I inputController, DecreasingAutogenicDrainage exercice){
 
-		volume = exercice.Volume;
+        volume = exercice.Volume;
 	
 		float horizontalMovement = 0.0f;
 
@@ -87,7 +84,8 @@ public class PlayerController : MonoBehaviour
 				break;
 			}
 		}
-		if (state == BreathingState.EXPIRATION) {
+
+        if (state == BreathingState.EXPIRATION) {
 			bubbles.emissionRate = 10.0f * inputController.GetStrength ();
 		}
 

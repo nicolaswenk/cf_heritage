@@ -33,8 +33,10 @@ public class LevelController : MonoBehaviour
 		//ioController = new FlapiIOController (audio);
 		//inputController = new KeyboardInputController (exercice,3.0f);
         inputController = new PepInputController();
-		
-		StartCoroutine (WaitForGame ());
+
+        Debug.Log("Hey");
+
+        StartCoroutine (WaitForGame ());
 	}
 	
 	/// <summary>
@@ -43,7 +45,6 @@ public class LevelController : MonoBehaviour
 	/// </summary>
 	void Update ()
 	{
-		//Debug.Log (state);
 		if (state == GameState.GAME) {
 			inputController.Update();
 			exercice.CheckProgress(inputController, Time.deltaTime);
