@@ -16,11 +16,15 @@ public class Breathe : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 	
-		if (levelController.InputController.GetInputState() == BreathingState.INSPIRATION) {
-			animator.SetBool ("Breathe_in", true);
-		}
-		else {
-			animator.SetBool ("Breathe_in", false);
+		InputController_I inputController = levelController.InputController;
+
+		if (levelController.GameState == GameState.GAME) {
+
+			if (inputController.GetInputState () == BreathingState.INSPIRATION) {
+				animator.SetBool ("Breathe_in", true);
+			} else {
+				animator.SetBool ("Breathe_in", false);
+			}
 		}
 	}
 }
