@@ -19,6 +19,12 @@ public class LevelController : MonoBehaviour
 	protected DecreasingAutogenicDrainage exercice;
 	//TODO Doc
 	private float volumeMaxCalibrated;
+
+	public InputController_I InputController{
+		get {
+			return inputController;
+		}
+	}
 	
 	public List<GameObject> listToEnableAtGame;
 

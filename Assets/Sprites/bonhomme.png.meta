@@ -1,16 +1,16 @@
 fileFormatVersion: 2
-guid: 4217be5c32d6649a29f34f52529944df
-timeCreated: 1455180564
+guid: 673b3058a9d9e461eaf84ed539c8c425
+timeCreated: 1455201804
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: LEG1
-    21300002: HEAD
-    21300004: LEG2
-    21300006: MOUTH_IN
-    21300008: MOUTH_OUT
-    21300010: BODY
-    21300012: ARM
+    21300000: Leg1
+    21300002: Head
+    21300004: Leg2
+    21300006: Mouth_in
+    21300008: Mouth_out
+    21300010: Body
+    21300012: Arm
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -57,7 +57,7 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: LEG1
+    - name: Leg1
       rect:
         serializedVersion: 2
         x: 17
@@ -65,10 +65,10 @@ TextureImporter:
         width: 27
         height: 15
       alignment: 9
-      pivot: {x: 0.9528728, y: 0.36413777}
+      pivot: {x: 0.9420901, y: 0.46118164}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: HEAD
+    - name: Head
       rect:
         serializedVersion: 2
         x: 114
@@ -76,19 +76,19 @@ TextureImporter:
         width: 105
         height: 109
       alignment: 9
-      pivot: {x: 0.31145716, y: 0.18749987}
+      pivot: {x: 0.30036634, y: 0.19551268}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: 63.296997, y: 88.562515}
-        - {x: -12.703003, y: 88.562515}
-        - {x: -32.703003, y: 77.562515}
-        - {x: -32.703003, y: -6.4374847}
-        - {x: -25.703003, y: -20.437485}
-        - {x: 61.296997, y: -20.437485}
-        - {x: 67.297, y: -12.437485}
-        - {x: 72.297, y: 8.562515}
-        - {x: 72.297, y: 75.562515}
-    - name: LEG2
+      - - {x: 64.46153, y: 87.68912}
+        - {x: -11.538467, y: 87.68912}
+        - {x: -31.538467, y: 76.68912}
+        - {x: -31.538467, y: -7.3108826}
+        - {x: -24.538467, y: -21.310883}
+        - {x: 62.461533, y: -21.310883}
+        - {x: 68.46153, y: -13.310883}
+        - {x: 73.46153, y: 7.6891174}
+        - {x: 73.46153, y: 74.68912}
+    - name: Leg2
       rect:
         serializedVersion: 2
         x: 17
@@ -96,21 +96,21 @@ TextureImporter:
         width: 28
         height: 13
       alignment: 9
-      pivot: {x: 0.9574941, y: 0.72394854}
+      pivot: {x: 0.9366988, y: 0.81352705}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: MOUTH_IN
+    - name: Mouth_in
       rect:
         serializedVersion: 2
-        x: 153
-        y: 67
-        width: 13
-        height: 8
+        x: 138
+        y: 58
+        width: 42
+        height: 26
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: MOUTH_OUT
+    - name: Mouth_out
       rect:
         serializedVersion: 2
         x: 190
@@ -121,7 +121,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: BODY
+    - name: Body
       rect:
         serializedVersion: 2
         x: 0
@@ -129,17 +129,17 @@ TextureImporter:
         width: 77
         height: 59
       alignment: 9
-      pivot: {x: 0.85162747, y: 0.5296066}
+      pivot: {x: 0.85540843, y: 0.5296066}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -65.57532, y: 27.753212}
-        - {x: -65.57532, y: -28.246788}
-        - {x: -59.575317, y: -31.246788}
-        - {x: 9.424683, y: -31.246788}
-        - {x: 11.424683, y: -20.246788}
-        - {x: 11.424683, y: 25.753212}
-        - {x: 6.4246826, y: 27.753212}
-    - name: ARM
+      - - {x: -65.86645, y: 27.753212}
+        - {x: -65.86645, y: -28.246788}
+        - {x: -59.866447, y: -31.246788}
+        - {x: 9.133553, y: -31.246788}
+        - {x: 11.133553, y: -20.246788}
+        - {x: 11.133553, y: 25.753212}
+        - {x: 6.1335526, y: 27.753212}
+    - name: Arm
       rect:
         serializedVersion: 2
         x: 164
@@ -147,7 +147,7 @@ TextureImporter:
         width: 32
         height: 21
       alignment: 9
-      pivot: {x: 0.92760086, y: 0.88817626}
+      pivot: {x: 0.9457965, y: 0.88817626}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     outline: []
