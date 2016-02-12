@@ -1,0 +1,277 @@
+fileFormatVersion: 2
+guid: 82ade217ac27d43c0ad9fe23a2cad387
+timeCreated: 1455280695
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: icones_0
+    21300002: icones_1
+    21300004: More
+    21300006: Less
+    21300008: icones_4
+    21300010: Text
+    21300012: icones_6
+    21300014: icones_7
+    21300016: icones_8
+    21300018: icones_9
+    21300020: icones_10
+    21300022: icones_11
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: icones_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 833
+        width: 43
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -21.5, y: 22.687317}
+        - {x: -21.5, y: -22.312683}
+        - {x: 21.5, y: -22.312683}
+        - {x: 21.5, y: 22.687317}
+    - name: icones_1
+      rect:
+        serializedVersion: 2
+        x: 92
+        y: 0
+        width: 1136
+        height: 1135
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -567.0897, y: 567}
+        - {x: -567.0897, y: -567}
+        - {x: 568.9103, y: -567}
+        - {x: 568.9103, y: 567}
+    - name: More
+      rect:
+        serializedVersion: 2
+        x: 1573
+        y: 854
+        width: 146
+        height: 147
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -33.034668, y: 74.16681}
+        - {x: -73.03467, y: 48.16681}
+        - {x: -73.03467, y: -41.83319}
+        - {x: -68.03467, y: -53.83319}
+        - {x: -47.034668, y: -73.83319}
+        - {x: 48.965332, y: -73.83319}
+        - {x: 57.965332, y: -72.83319}
+        - {x: 73.96533, y: -60.83319}
+        - {x: 73.96533, y: 61.16681}
+        - {x: 67.96533, y: 74.16681}
+    - name: Less
+      rect:
+        serializedVersion: 2
+        x: 1771
+        y: 854
+        width: 146
+        height: 147
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -57.227783, y: 74.16681}
+        - {x: -73.22778, y: 46.16681}
+        - {x: -73.22778, y: -57.83319}
+        - {x: -50.227783, y: -73.83319}
+        - {x: 43.772217, y: -73.83319}
+        - {x: 45.772217, y: -72.83319}
+        - {x: 73.77222, y: -47.83319}
+        - {x: 73.77222, y: 42.16681}
+        - {x: 52.772217, y: 74.16681}
+    - name: icones_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 763
+        width: 43
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -21.5, y: 23.255615}
+        - {x: -21.5, y: -22.744385}
+        - {x: 21.5, y: -22.744385}
+        - {x: 21.5, y: 23.255615}
+    - name: Text
+      rect:
+        serializedVersion: 2
+        x: 1450
+        y: 711
+        width: 600
+        height: 99
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -295.41467, y: 50.306335}
+        - {x: -299.41467, y: 46.306335}
+        - {x: -299.41467, y: -45.693665}
+        - {x: -295.41467, y: -49.693665}
+        - {x: 300.58533, y: -49.693665}
+        - {x: 300.58533, y: 50.306335}
+      - - {x: -283.41467, y: -28.693665}
+        - {x: -284.41467, y: -22.693665}
+        - {x: -284.41467, y: 23.306335}
+        - {x: -280.41467, y: 32.306335}
+        - {x: -276.41467, y: 33.306335}
+        - {x: -275.41467, y: 34.306335}
+        - {x: 278.58533, y: 34.306335}
+        - {x: 279.58533, y: 33.306335}
+        - {x: 286.58533, y: 29.306335}
+        - {x: 287.58533, y: 24.306335}
+        - {x: 288.58533, y: 23.306335}
+        - {x: 288.58533, y: -23.693665}
+        - {x: 278.58533, y: -33.693665}
+        - {x: -275.41467, y: -33.693665}
+        - {x: -276.41467, y: -32.693665}
+    - name: icones_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 693
+        width: 43
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -21.5, y: 23.323914}
+        - {x: -21.5, y: -22.676086}
+        - {x: 21.5, y: -22.676086}
+        - {x: 21.5, y: 23.323914}
+    - name: icones_7
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 623
+        width: 43
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -21.5, y: 23.392212}
+        - {x: -21.5, y: -22.607788}
+        - {x: 21.5, y: -22.607788}
+        - {x: 21.5, y: 23.392212}
+    - name: icones_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 553
+        width: 43
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -21.5, y: 23.46051}
+        - {x: -21.5, y: -22.53949}
+        - {x: 21.5, y: -22.53949}
+        - {x: 21.5, y: 23.46051}
+    - name: icones_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 484
+        width: 43
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -21.5, y: 23.527802}
+        - {x: -21.5, y: -22.472198}
+        - {x: 21.5, y: -22.472198}
+        - {x: 21.5, y: 23.527802}
+    - name: icones_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 414
+        width: 43
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -21.5, y: 23.5961}
+        - {x: -21.5, y: -22.4039}
+        - {x: 21.5, y: -22.4039}
+        - {x: 21.5, y: 23.5961}
+    - name: icones_11
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 344
+        width: 43
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -21.5, y: 23.664398}
+        - {x: -21.5, y: -22.335602}
+        - {x: 21.5, y: -22.335602}
+        - {x: 21.5, y: 23.664398}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
