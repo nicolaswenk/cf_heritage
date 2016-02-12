@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 7fdcdfb278b91462a88cf8851ab1c310
-timeCreated: 1455268831
+guid: 673b3058a9d9e461eaf84ed539c8c425
+timeCreated: 1455201804
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -65,7 +65,7 @@ TextureImporter:
         width: 27
         height: 15
       alignment: 9
-      pivot: {x: 0.9420901, y: 0.38354695}
+      pivot: {x: 0.9420901, y: 0.46118164}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: Head
@@ -76,18 +76,18 @@ TextureImporter:
         width: 105
         height: 109
       alignment: 9
-      pivot: {x: 0.31145716, y: 0.18749987}
+      pivot: {x: 0.30036634, y: 0.19551268}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: 63.296997, y: 88.562515}
-        - {x: -12.703003, y: 88.562515}
-        - {x: -32.703003, y: 77.562515}
-        - {x: -32.703003, y: -6.4374847}
-        - {x: -25.703003, y: -20.437485}
-        - {x: 61.296997, y: -20.437485}
-        - {x: 67.297, y: -12.437485}
-        - {x: 72.297, y: 8.562515}
-        - {x: 72.297, y: 75.562515}
+      - - {x: 64.46153, y: 87.68912}
+        - {x: -11.538467, y: 87.68912}
+        - {x: -31.538467, y: 76.68912}
+        - {x: -31.538467, y: -7.3108826}
+        - {x: -24.538467, y: -21.310883}
+        - {x: 62.461533, y: -21.310883}
+        - {x: 68.46153, y: -13.310883}
+        - {x: 73.46153, y: 7.6891174}
+        - {x: 73.46153, y: 74.68912}
     - name: Leg2
       rect:
         serializedVersion: 2
@@ -96,16 +96,16 @@ TextureImporter:
         width: 28
         height: 13
       alignment: 9
-      pivot: {x: 0.9782892, y: 0.791133}
+      pivot: {x: 0.9366988, y: 0.81352705}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: Mouth_in
       rect:
         serializedVersion: 2
-        x: 144
-        y: 62
-        width: 31
-        height: 19
+        x: 138
+        y: 58
+        width: 42
+        height: 26
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -129,16 +129,16 @@ TextureImporter:
         width: 77
         height: 59
       alignment: 9
-      pivot: {x: 0.86297035, y: 0.5197377}
+      pivot: {x: 0.85540843, y: 0.5296066}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -66.448715, y: 28.335474}
-        - {x: -66.448715, y: -27.664526}
-        - {x: -60.448715, y: -30.664526}
-        - {x: 8.551285, y: -30.664526}
-        - {x: 10.551285, y: -19.664526}
-        - {x: 10.551285, y: 26.335474}
-        - {x: 5.551285, y: 28.335474}
+      - - {x: -65.86645, y: 27.753212}
+        - {x: -65.86645, y: -28.246788}
+        - {x: -59.866447, y: -31.246788}
+        - {x: 9.133553, y: -31.246788}
+        - {x: 11.133553, y: -20.246788}
+        - {x: 11.133553, y: 25.753212}
+        - {x: 6.1335526, y: 27.753212}
     - name: Arm
       rect:
         serializedVersion: 2
@@ -147,7 +147,7 @@ TextureImporter:
         width: 32
         height: 21
       alignment: 9
-      pivot: {x: 0.9457965, y: 0.9297666}
+      pivot: {x: 0.9457965, y: 0.88817626}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     outline: []
