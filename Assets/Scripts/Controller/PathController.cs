@@ -6,7 +6,7 @@ public class PathController : MonoBehaviour {
 
     private BezierSpline spline;
     private LevelController levelController;
-    private float controlPointDistance = 1.0f;
+    private float controlPointDistance = 2.0f;
     private PlayerController playerController;
     private BreathingState lastState=BreathingState.INSPIRATION;
     private float lastStartX = 0.0f;
