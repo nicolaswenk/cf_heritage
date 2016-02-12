@@ -68,33 +68,30 @@ public class PlayerController : MonoBehaviour
 		}
 
 		BreathingState state = inputController.GetInputState ();
-        ParticleSystem.EmissionModule em = bubbles.emission;
         //em.type = ParticleSystemEmissionType.Time;
-        if (state != lastState) {
-            
-            switch (state) {
-			case BreathingState.EXPIRATION:
-                Fabric.EventManager.Instance.PostEvent ("BreathingSwitch", Fabric.EventAction.SetSwitch, "Expiring");
-				Fabric.EventManager.Instance.PostEvent ("BreathingSwitch", Fabric.EventAction.PlaySound);
-				break;
-			case BreathingState.INSPIRATION:
-                em.enabled = false;
-				Fabric.EventManager.Instance.PostEvent ("BreathingSwitch", Fabric.EventAction.SetSwitch, "Inspiring");
-				break;
-			default:
-                    em.enabled = false;
-                    Fabric.EventManager.Instance.PostEvent ("BreathingSwitch", Fabric.EventAction.PauseSound);
-				break;
-			}
-		}
+        if (state != lastState)
+        {
+            switch (state)
+            {
+                case BreathingState.EXPIRATION:
+                    Fabric.EventManager.Instance.PostEvent("BreathingSwitch", Fabric.EventAction.SetSwitch, "Expiring");
+                    Fabric.EventManager.Instance.PostEvent("BreathingSwitch", Fabric.EventAction.PlaySound);
+                    break;
+                case BreathingState.INSPIRATION:
+                    bubbles.emissionRate = 0.0f;
+                    Fabric.EventManager.Instance.PostEvent("BreathingSwitch", Fabric.EventAction.SetSwitch, "Inspiring");
+                    break;
+                default:
+                    bubbles.emissionRate = 0.0f;
+                    Fabric.EventManager.Instance.PostEvent("BreathingSwitch", Fabric.EventAction.PauseSound);
+                    break;
+            }
+        }
 
-        if (state == BreathingState.EXPIRATION) {
-            em.enabled = true;
-            /*AnimationCurve curve = new AnimationCurve();
-            curve.AddKey(0.0f, 1.0f);
-            curve.AddKey(0.75f, 1.0f);
-            em.rate = new ParticleSystem.MinMaxCurve(10.0f * inputController.GetStrength(), curve);*/
-		}
+        if (state == BreathingState.EXPIRATION)
+        {
+            bubbles.emissionRate = 10.0f * inputController.GetStrength();
+        }
 
 		//TODO Make this value more precise and clean. What a strength of 1.0f mean ? What's the max strength ?
 		//Actually, the keyboardInputController return 1.0f for a normal strength and 3.0f for a big one.
