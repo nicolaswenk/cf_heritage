@@ -7,6 +7,7 @@ using System.Collections;
 /// </summary>
 public class MenuController : MonoBehaviour
 {
+	private PlayerProfileData profileDataObj = PlayerProfileData.profileData;
 	/// <summary>The game state.</summary>
 	private GameState state = GameState.LOGO;
 	/// <summary>The logo animator.</summary>
@@ -47,6 +48,71 @@ public class MenuController : MonoBehaviour
         PlayerProfileData.profileData.Save();
         Application.LoadLevel("Menu");
     }
+
+	// Add or remove one value in the parameters
+	//nb Breathing High
+	public void nbBreathingsHighDecClicked()
+	{
+		profileDataObj.nbBreathingsHigh -= 1;
+	}
+
+	public void nbBreathingsHighIncClicked()
+	{
+		profileDataObj.nbBreathingsHigh += 1;
+	}
+
+	//nbBreathingsMedium
+	public void nbBreathingsMediumDecClicked()
+	{
+		profileDataObj.nbBreathingsMedium -= 1;
+	}
+
+	public void nbBreathingsMediumIncClicked()
+	{
+		profileDataObj.nbBreathingsMedium += 1;
+	}
+
+	//nbBreathingsLow
+	public void nbBreathingsLowDecClicked()
+	{
+		profileDataObj.nbBreathingsLow -= 1;
+	}
+
+	public void nbBreathingsLowIncClicked()
+	{
+		profileDataObj.nbBreathingsLow += 1;
+	}
+
+	public void inspirationTimeDecClicked()
+	{
+		profileDataObj.inspirationTime -= .5f;
+	}
+
+	public void inspirationTimeIncClicked()
+	{
+		profileDataObj.inspirationTime += .5f;
+	}
+
+	public void holdingBreathTimeDecClicked()
+	{
+		profileDataObj.holdingBreathTime -= .5f;
+	}
+
+	public void holdingBreathTimeTimeIncClicked()
+	{
+		profileDataObj.holdingBreathTime += .5f;
+	}
+
+	public void expirationMinTimeTimeDecClicked()
+	{
+		profileDataObj.expirationMinTime -= .5f;
+	}
+
+	public void expirationMinTimeTimeIncClicked()
+	{
+		profileDataObj.expirationMinTime += .5f;
+	}
+		
 
     /// <summary>
     /// Shows the intro text (doing all the animations).

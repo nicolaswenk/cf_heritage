@@ -1,100 +1,36 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+using UnityEngine.UI;
 public class AdjustScript : MonoBehaviour {
 
     private PlayerProfileData profileDataObj = PlayerProfileData.profileData;
+	public GameObject textHigh;
+	public GameObject textMedium;
+	public GameObject textLow;
+	public GameObject textInspiration;
+	public GameObject textHolding;
+	public GameObject textExpiration;
+
 
     void OnGUI ()
     {
+		var tComp = textHigh.GetComponent<Text>();
+		tComp.text = "Nombre de respiration en haut volume :"+ profileDataObj.nbBreathingsHigh;
 
-        //3,3,3,1.5f,3.0f,10.0f,0.5f
-        //nbBreathingsHigh, nbBreathingsMedium, nbBreathingsLow, inspirationTime, holdingBreathTime, expirationMinTime, volumeRange
+		tComp = textMedium.GetComponent<Text>();
+		tComp.text = "Nombre de respiration en volume intermédiaire :"+ profileDataObj.nbBreathingsMedium;
 
-        //nbBreathingsHigh
-        if (GUI.Button(new Rect(100, 10, 20, 20), "-"))
-        {
-            profileDataObj.nbBreathingsHigh -= 1;
-        }
-        GUI.Label(new Rect(130, 10, 200, 30), "nbBreathingsHigh:" + profileDataObj.nbBreathingsHigh);
+		tComp = textLow.GetComponent<Text>();
+		tComp.text = "Nombre de respiration en bas volume :"+ profileDataObj.nbBreathingsLow;
 
-        if (GUI.Button(new Rect(300, 10, 20, 20), "+"))
-        {
-            profileDataObj.nbBreathingsHigh += 1;
-        }
+		tComp = textInspiration.GetComponent<Text>();
+		tComp.text = "Temps d'inspiration :"+ profileDataObj.inspirationTime;
 
-        //nbBreathingsMedium
-        if (GUI.Button(new Rect(100, 30, 20, 20), "-"))
-        {
-            profileDataObj.nbBreathingsMedium -= 1;
-        }
-        GUI.Label(new Rect(130, 30, 300, 30), "nbBreathingsMedium:" + profileDataObj.nbBreathingsMedium);
-        if (GUI.Button(new Rect(300, 30, 20, 20), "+"))
-        {
-            profileDataObj.nbBreathingsMedium += 1;
-        }
+		tComp = textHolding.GetComponent<Text>();
+		tComp.text = "Temps de pause inspiratoire :"+ profileDataObj.holdingBreathTime;
 
-        //nbBreathingsLow
-        if (GUI.Button(new Rect(100, 50, 20, 20), "-"))
-        {
-            profileDataObj.nbBreathingsLow -= 1;
-        }
-        GUI.Label(new Rect(130, 50, 300, 30), "nbBreathingsLow:" + profileDataObj.nbBreathingsLow);
-        if (GUI.Button(new Rect(300, 50, 20, 20), "+"))
-        {
-            profileDataObj.nbBreathingsLow += 1;
-        }
-
-        ////
-        if (GUI.Button(new Rect(100, 70, 20, 20), "-"))
-        {
-            profileDataObj.inspirationTime -= .5f;
-        }
-        GUI.Label(new Rect(130, 70, 300, 30), "inspirationTime:" + profileDataObj.inspirationTime);
-        if (GUI.Button(new Rect(300, 70, 20, 20), "+"))
-        {
-            profileDataObj.inspirationTime += .5f;
-        }
-
-        ////
-        if (GUI.Button(new Rect(100, 90, 20, 20), "-"))
-        {
-            profileDataObj.holdingBreathTime -= .5f;
-        }
-        GUI.Label(new Rect(130, 90, 300, 30), "holdingBreathTime:" + profileDataObj.holdingBreathTime);
-        if (GUI.Button(new Rect(300, 90, 20, 20), "+"))
-        {
-            profileDataObj.holdingBreathTime += .5f;
-        }
-
-        ////
-        if (GUI.Button(new Rect(100, 110, 20, 20), "-"))
-        {
-            profileDataObj.expirationMinTime -= .5f;
-        }
-        GUI.Label(new Rect(130, 110, 300, 30), "expirationMinTime:" + profileDataObj.expirationMinTime);
-        if (GUI.Button(new Rect(300, 110, 20, 20), "+"))
-        {
-            profileDataObj.expirationMinTime += .5f;
-        }
-
-        ////
-        if (GUI.Button(new Rect(100, 130, 20, 20), "-"))
-        {
-            profileDataObj.volumeRange -= .1f;
-        }
-        GUI.Label(new Rect(130, 130, 300, 30), "volumeRange:" + profileDataObj.volumeRange);
-        if (GUI.Button(new Rect(300, 130, 20, 20), "+"))
-        {
-            profileDataObj.volumeRange += .1f;
-        }
-        
-        
-        
-
-
-
-
+		tComp = textExpiration.GetComponent<Text>();
+		tComp.text = "Temps d'expiration :"+ profileDataObj.expirationMinTime;
 
     }
 	
