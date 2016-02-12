@@ -68,25 +68,32 @@ public class PlayerController : MonoBehaviour
 		}
 
 		BreathingState state = inputController.GetInputState ();
-		if (state != lastState) {
-			switch (state) {
+        ParticleSystem.EmissionModule em = bubbles.emission;
+        //em.type = ParticleSystemEmissionType.Time;
+        if (state != lastState) {
+            
+            switch (state) {
 			case BreathingState.EXPIRATION:
-				Fabric.EventManager.Instance.PostEvent ("BreathingSwitch", Fabric.EventAction.SetSwitch, "Expiring");
+                Fabric.EventManager.Instance.PostEvent ("BreathingSwitch", Fabric.EventAction.SetSwitch, "Expiring");
 				Fabric.EventManager.Instance.PostEvent ("BreathingSwitch", Fabric.EventAction.PlaySound);
 				break;
 			case BreathingState.INSPIRATION:
-				bubbles.emissionRate = 0.0f;
+                em.enabled = false;
 				Fabric.EventManager.Instance.PostEvent ("BreathingSwitch", Fabric.EventAction.SetSwitch, "Inspiring");
 				break;
 			default:
-				bubbles.emissionRate = 0.0f;
-				Fabric.EventManager.Instance.PostEvent ("BreathingSwitch", Fabric.EventAction.PauseSound);
+                    em.enabled = false;
+                    Fabric.EventManager.Instance.PostEvent ("BreathingSwitch", Fabric.EventAction.PauseSound);
 				break;
 			}
 		}
 
         if (state == BreathingState.EXPIRATION) {
-			bubbles.emissionRate = 10.0f * inputController.GetStrength ();
+            em.enabled = true;
+            /*AnimationCurve curve = new AnimationCurve();
+            curve.AddKey(0.0f, 1.0f);
+            curve.AddKey(0.75f, 1.0f);
+            em.rate = new ParticleSystem.MinMaxCurve(10.0f * inputController.GetStrength(), curve);*/
 		}
 
 		//TODO Make this value more precise and clean. What a strength of 1.0f mean ? What's the max strength ?

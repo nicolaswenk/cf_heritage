@@ -15,11 +15,21 @@ public class MenuController : MonoBehaviour
 	public Animator playAnimator;
 	/// <summary>The intro animator.</summary>
 	public Animator introAnimator;
+    /// <summary>The setup button animator.</summary>
+    public Animator setupAnimator;
+    /// <summary>The setup button animator.</summary>
+    public Animator backAnimator;
 
-	/// <summary>
-	/// Called when the play button is cliqued. Show the correct view (intro, then the game).
-	/// </summary>
-	public void PlayClicked ()
+    /// <summary>
+    /// Called when the play button is cliqued. Show the correct view (intro, then the game).
+    /// </summary>
+    /// 
+    public void Start()
+    {
+        PlayerProfileData.profileData.Load();
+    }
+
+    public void PlayClicked ()
 	{
 		if (state == GameState.LOGO)
 			ShowIntro ();
@@ -27,10 +37,23 @@ public class MenuController : MonoBehaviour
 			StartGame ();
 	}
 
-	/// <summary>
-	/// Shows the intro text (doing all the animations).
-	/// </summary>
-	private void ShowIntro ()
+    public void SetupClicked()
+    {
+        Application.LoadLevel("SetupMenu");
+    }
+
+    public void BackClicked()
+    {
+        PlayerProfileData.profileData.Save();
+        Application.LoadLevel("Menu");
+    }
+
+    /// <summary>
+    /// Shows the intro text (doing all the animations).
+    /// </summary>
+    /// 
+
+    private void ShowIntro ()
 	{
 		state = GameState.INTRO;
 		
@@ -45,8 +68,9 @@ public class MenuController : MonoBehaviour
 	{
 		playAnimator.SetBool ("visible", false);		
 		introAnimator.SetBool ("visible", false);
+        setupAnimator.SetBool ("visible", false);
 
-		Application.LoadLevel ("GreeceGenerated");
+        Application.LoadLevel ("GreeceGenerated");
 	}
 	
 }
