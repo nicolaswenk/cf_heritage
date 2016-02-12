@@ -92,18 +92,27 @@ public class PathController : MonoBehaviour {
         {
             //Start Inspiration
             float y = breathing.EndVolume;
-            listPoints.Add(levelController.ExerciceToPlayer(new Vector3(actualOffset, y, 0.0f)));
-            actualOffset += breathing.InspirationTime;
+            if (breathing.InspirationTime > 0.0f)
+            {
+                listPoints.Add(levelController.ExerciceToPlayer(new Vector3(actualOffset, y, 0.0f)));
+                actualOffset += breathing.InspirationTime;
+            }
 
             //Start Holding breath
             y = breathing.MaxVolume;
-            listPoints.Add(levelController.ExerciceToPlayer(new Vector3(actualOffset, y, 0.0f)));
-            actualOffset += breathing.HoldingBreathTime;
+            if (breathing.HoldingBreathTime > 0.0f)
+            {
+                listPoints.Add(levelController.ExerciceToPlayer(new Vector3(actualOffset, y, 0.0f)));
+                actualOffset += breathing.HoldingBreathTime;
+            }
 
             //Start Expiration
             y = breathing.MaxVolume;
-            listPoints.Add(levelController.ExerciceToPlayer(new Vector3(actualOffset, y, 0.0f)));
-            actualOffset += breathing.ExpirationTime;
+            if (breathing.ExpirationTime > 0.0f)
+            {
+                listPoints.Add(levelController.ExerciceToPlayer(new Vector3(actualOffset, y, 0.0f)));
+                actualOffset += breathing.ExpirationTime;
+            }
         }
 
         return listPoints;
