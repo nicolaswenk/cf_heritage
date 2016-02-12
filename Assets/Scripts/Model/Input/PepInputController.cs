@@ -1,11 +1,9 @@
-﻿using System;
+﻿using UnityEngine;
 using System.IO.Ports;
-using UnityEngine;
-using System.Collections;
 
 
 /// <summary>
-/// This class manages the device that gets the pressure / flow from the PEP.
+/// This class manages the device that gets the pressure / flow from the PEP. 
 /// The input selection is done in BuildAndStart() in Assets/Scripts/Controller/LevelController.cs.
 /// </summary>
 public class PepInputController : InputController_I
