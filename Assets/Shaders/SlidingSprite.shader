@@ -55,7 +55,6 @@ Shader "Custom/SlidingSprite"
 				v2f OUT;
 				OUT.vertex = mul(UNITY_MATRIX_MVP, IN.vertex);
 				OUT.texcoord = IN.texcoord;
-				OUT.texcoord[0] = (OUT.texcoord[0] + (1-_Time[0]%1.0f)) % 1.0f;
 				OUT.color = IN.color * _Color;
 #ifdef PIXELSNAP_ON
 				OUT.vertex = UnityPixelSnap(OUT.vertex);
@@ -68,6 +67,7 @@ Shader "Custom/SlidingSprite"
 
 			fixed4 frag(v2f IN) : SV_Target
 			{
+				IN.texcoord[0] = (IN.texcoord[0] + (1 - _Time[0] % 1.0f)) % 1.0f;
 				fixed4 c = tex2D(_MainTex, IN.texcoord) * IN.color;
 				c.rgb *= c.a;
 				return c;
