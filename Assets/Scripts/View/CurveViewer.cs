@@ -89,11 +89,11 @@ public class CurveViewer : MonoBehaviour
             float uvDivide = (1.0f / quadNumber * uvTile);
             if (!IsOdd(i))
             {
-                newUV[i] = new Vector2((uvDivide * uvCounter)%1.0f, 0);
+                newUV[i] = new Vector2((uvDivide * uvCounter), 0);
             }
             else
             {
-                newUV[i] = new Vector2((uvDivide * uvCounter)%1.0f, 1);
+                newUV[i] = new Vector2((uvDivide * uvCounter), 1);
                 uvCounter++;
             }
         }
