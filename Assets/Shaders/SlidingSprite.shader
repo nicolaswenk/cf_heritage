@@ -55,7 +55,7 @@ Shader "Custom/SlidingSprite"
 				v2f OUT;
 				OUT.vertex = mul(UNITY_MATRIX_MVP, IN.vertex);
 				OUT.texcoord = IN.texcoord;
-				OUT.texcoord[0] = (OUT.texcoord[0] + (1-_Time[0]/1.0f)) % 1.0f;
+				OUT.texcoord[0] = (OUT.texcoord[0] + (1-_Time[0]%1.0f)) % 1.0f;
 				OUT.color = IN.color * _Color;
 #ifdef PIXELSNAP_ON
 				OUT.vertex = UnityPixelSnap(OUT.vertex);
