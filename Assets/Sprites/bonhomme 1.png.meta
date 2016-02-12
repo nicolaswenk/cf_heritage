@@ -1,0 +1,157 @@
+fileFormatVersion: 2
+guid: 7fdcdfb278b91462a88cf8851ab1c310
+timeCreated: 1455268831
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Leg1
+    21300002: Head
+    21300004: Leg2
+    21300006: Mouth_in
+    21300008: Mouth_out
+    21300010: Body
+    21300012: Arm
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: Leg1
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 182
+        width: 27
+        height: 15
+      alignment: 9
+      pivot: {x: 0.9420901, y: 0.38354695}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Head
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 109
+        width: 105
+        height: 109
+      alignment: 9
+      pivot: {x: 0.31145716, y: 0.18749987}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 63.296997, y: 88.562515}
+        - {x: -12.703003, y: 88.562515}
+        - {x: -32.703003, y: 77.562515}
+        - {x: -32.703003, y: -6.4374847}
+        - {x: -25.703003, y: -20.437485}
+        - {x: 61.296997, y: -20.437485}
+        - {x: 67.297, y: -12.437485}
+        - {x: 72.297, y: 8.562515}
+        - {x: 72.297, y: 75.562515}
+    - name: Leg2
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 127
+        width: 28
+        height: 13
+      alignment: 9
+      pivot: {x: 0.9782892, y: 0.791133}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Mouth_in
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 62
+        width: 31
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Mouth_out
+      rect:
+        serializedVersion: 2
+        x: 190
+        y: 69
+        width: 4
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Body
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 77
+        height: 59
+      alignment: 9
+      pivot: {x: 0.86297035, y: 0.5197377}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -66.448715, y: 28.335474}
+        - {x: -66.448715, y: -27.664526}
+        - {x: -60.448715, y: -30.664526}
+        - {x: 8.551285, y: -30.664526}
+        - {x: 10.551285, y: -19.664526}
+        - {x: 10.551285, y: 26.335474}
+        - {x: 5.551285, y: 28.335474}
+    - name: Arm
+      rect:
+        serializedVersion: 2
+        x: 164
+        y: 9
+        width: 32
+        height: 21
+      alignment: 9
+      pivot: {x: 0.9457965, y: 0.9297666}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
