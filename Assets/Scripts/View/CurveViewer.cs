@@ -24,9 +24,7 @@ public class CurveViewer : MonoBehaviour
 
     void Update()
     {
-
-
-        float offset = Time.time * scrollSpeed;
+        float offset = Time.time * scrollSpeed / 10.0f;
         rend.material.SetTextureOffset("_MainTex", new Vector2(offset, 0));
 
         int verticeCount = quadNumber * 2 + 2;
@@ -91,11 +89,11 @@ public class CurveViewer : MonoBehaviour
             float uvDivide = (1.0f / quadNumber * uvTile);
             if (!IsOdd(i))
             {
-                newUV[i] = new Vector2(uvDivide * uvCounter, 0);
+                newUV[i] = new Vector2((uvDivide * uvCounter * offset)%1.0f, 0);
             }
             else
             {
-                newUV[i] = new Vector2(uvDivide*uvCounter, 1);
+                newUV[i] = new Vector2((uvDivide * uvCounter * offset)%1.0f, 1);
                 uvCounter++;
             }
         }
