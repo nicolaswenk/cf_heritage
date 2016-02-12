@@ -60,12 +60,11 @@ public class GeneratedLevelController : LevelController
 	{
 		endCycleController = GetComponentInChildren<EndCycleController> ();
 
-        //inputController = new FlapiInputController (exercice, GetComponent<AudioSource>());
-        inputController = new KeyboardInputController(10.0f);
-        //inputController = new PepInputController();
+		exercice = new DecreasingAutogenicDrainage (3,3,3,1.5f,3.0f,10.0f,0.5f);
 
-        exercice = new DecreasingAutogenicDrainage(3, 3, 3, 1.5f, 3.0f, 10.0f, 0.5f, inputController);
-        ((OnlyExpirationInputController)inputController).SetExercice(exercice);
+        //inputController = new FlapiInputController (exercice, GetComponent<AudioSource>());
+        inputController = new KeyboardInputController(exercice, 10.0f);
+        //inputController = new PepInputController();
 
 
         CreateCycleComponents (BreathingState.HOLDING_BREATH);
