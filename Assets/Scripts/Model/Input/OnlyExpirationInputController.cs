@@ -22,13 +22,12 @@ public abstract class OnlyExpirationInputController : InputController_I
 	/// </summary>
 	private Exercice exercice;
 
-	/// <summary>
-	/// Initializes a new instance of the <see cref="OnlyExpirationInputController"/> class and set its exercice.
-	/// </summary>
-	/// <param name="exercice">The exercice to follow to know the actual volume and its limitations.</param>
-	public OnlyExpirationInputController(DecreasingAutogenicDrainage exercice){
-		this.exercice = exercice;
-	}
+    private float calibrationFactor = 1.0f;
+
+    public void SetExercice(Exercice exercice)
+    {
+        this.exercice = exercice;
+    }
 	
 	/// <summary>
 	/// Gets the strength of expiration or inspiration (depends on the BreathingState).
@@ -90,6 +89,16 @@ public abstract class OnlyExpirationInputController : InputController_I
 	/// 0.0f, it means that the patient is not blowing.
 	/// </summary>
 	public abstract float GetExpirationStrength();
+
+    public void SetCalibrationFactor(float calibrationFactor)
+    {
+        this.calibrationFactor = calibrationFactor;
+    }
+
+    public float GetCalibrationFactor()
+    {
+        return calibrationFactor;
+    }
 }
 
 

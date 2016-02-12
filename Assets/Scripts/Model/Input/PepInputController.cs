@@ -14,7 +14,9 @@ public class PepInputController : InputController_I
     public static float pepValue = 0f;
     SerialPort stream = new SerialPort("COM4", 9600);
     private float initPepValue = 0.0f;
-    
+
+    private float calibrationFactor = 1.0f;
+
 
 
     public PepInputController()
@@ -75,5 +77,16 @@ public class PepInputController : InputController_I
     void InputController_I.Update()
     {
         streamIn();
+    }
+
+
+    public void SetCalibrationFactor(float calibrationFactor)
+    {
+        this.calibrationFactor = calibrationFactor;
+    }
+
+    public float GetCalibrationFactor()
+    {
+        return calibrationFactor;
     }
 }

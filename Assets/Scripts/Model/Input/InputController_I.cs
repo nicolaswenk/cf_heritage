@@ -22,9 +22,22 @@ public interface InputController_I
 	/// </summary>
 	BreathingState GetInputState();
 
-	/// <summary>
-	/// Determines whether the patient is holding the moving input or not.
-	/// </summary>
-	bool IsMoving();
+    /// <summary>
+    /// SupposedPatientMaxVolume / volumeMaxReached
+    /// 1.0f is default value
+    /// </summary>
+    /// <param name="calibrationFactor"></param>
+    void SetCalibrationFactor(float calibrationFactor);
+
+    /// <summary>
+    /// SupposedPatientMaxVolume / volumeMaxReached
+    /// 1.0f is default value
+    /// </summary>
+    float GetCalibrationFactor();
+
+    /// <summary>
+    /// Determines whether the patient is holding the moving input or not.
+    /// </summary>
+    bool IsMoving();
 }
 

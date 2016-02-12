@@ -13,7 +13,7 @@ public class FlapiInputController : OnlyExpirationInputController
 	/// </summary>
 	private AudioSource audio;
 
-	public FlapiInputController (DecreasingAutogenicDrainage exercice, AudioSource audio):base(exercice)
+	public FlapiInputController (AudioSource audio)
 	{
 		this.audio = audio;
 		Flapi.Start (audio, Flapi.GetMicrophone (0), 60*30);

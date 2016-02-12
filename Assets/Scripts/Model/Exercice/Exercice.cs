@@ -10,11 +10,36 @@ using System.Collections.Generic;
 public abstract class Exercice
 {
 	/// <summary>The list of breathings in a cycle of this exercice.</summary>
-	protected List<Breathing> breathings;
-	/// <summary>The index of the breathing in <see cref="breathings"/> the patient is actually doing.</summary>
+	protected List<Breathing> listBreathings;
+	/// <summary>The index of the breathing in <see cref="listBreathings"/> the patient is actually doing.</summary>
 	protected int indexActualBreathing;
-	/// <summary>The minimum time (in sec) the exercice should last (repeating the breathings sequence).</summary>
-	protected float minTime;
+
+    public List<Breathing> GetActualBreathings(int startRelatifIndex, int endRelatifIndex)
+    {
+        List<Breathing> listActualBreathings = new List<Breathing>(endRelatifIndex - startRelatifIndex);
+        Breathing[] breathings = listBreathings.ToArray();
+        int startIndex = indexActualBreathing + startRelatifIndex;
+        int endIndex = indexActualBreathing + endRelatifIndex;
+        if (startIndex < 0)
+        {
+            startIndex += listBreathings.Count;
+            for (int i = startIndex; i < listActualBreathings.Count; i++)
+            {
+                listActualBreathings.Add(breathings[i]);
+            }
+            startIndex = 0;
+        }
+
+        for (int i= startIndex; i<endIndex; i++)
+        {
+            listActualBreathings.Add(breathings[i%listBreathings.Count]);
+        }
+
+        return listActualBreathings;
+    }
+
+    /// <summary>The minimum time (in sec) the exercice should last (repeating the breathings sequence).</summary>
+    protected float minTime;
 	/// <summary>The percentage of an expiration the patient have to do to validate the actual breathing and passing to the next one.</summary>
 	protected float factorMinExpirationForValidation=0.2f;
 	//TODO Doc
@@ -43,7 +68,7 @@ public abstract class Exercice
 			if(ActualBreathing.ExpirationPercentage >= factorMinExpirationForValidation) {
 				ActualBreathing.ResetTo(BreathingState.INSPIRATION);
 				indexActualBreathing++;
-				indexActualBreathing%=breathings.Count;
+				indexActualBreathing%=listBreathings.Count;
 			}
 			else{
 				ActualBreathing.ResetTo(BreathingState.EXPIRATION);
@@ -56,12 +81,12 @@ public abstract class Exercice
 	/// Gets the volume transition the patient will have to do (increasing volume, decreasing volume or none).
 	/// </summary>
 	public Transition GetTransition(){
-		float v1=breathings[indexActualBreathing].EndVolume;
+		float v1=listBreathings[indexActualBreathing].EndVolume;
 		float lastEndVolume;
 		if (indexActualBreathing > 0) {
-			lastEndVolume=breathings[indexActualBreathing-1].EndVolume;
+			lastEndVolume=listBreathings[indexActualBreathing-1].EndVolume;
 		}else{
-			lastEndVolume=breathings[breathings.Count-1].EndVolume;
+			lastEndVolume=listBreathings[listBreathings.Count-1].EndVolume;
 		}
 		
 		Transition transition= Transition.NONE;
@@ -78,14 +103,14 @@ public abstract class Exercice
 	/// Gets the min (end) volume of the breathing the patient is actually doing.
 	/// </summary>
 	public float ActualMin {
-		get{ return this.breathings [this.indexActualBreathing].EndVolume;}
+		get{ return this.listBreathings [this.indexActualBreathing].EndVolume;}
 	}
 	
 	/// <summary>
 	/// Gets the max volume of the breathing the patient is actually doing.
 	/// </summary>
 	public float ActualMax {
-		get{ return this.breathings [this.indexActualBreathing].MaxVolume;}
+		get{ return this.listBreathings [this.indexActualBreathing].MaxVolume;}
 	}
 	
 	/// <summary>
@@ -100,14 +125,14 @@ public abstract class Exercice
 	/// Gets the breathing the patient is actually doing.
 	/// </summary>
 	public Breathing ActualBreathing {
-		get{ return breathings [indexActualBreathing];}
+		get{ return listBreathings [indexActualBreathing];}
 	}
 	
 	/// <summary>
 	/// Gets the list of breathings in a cycle of this exercice.
 	/// </summary>
 	public List<Breathing> Breathings {
-		get{ return breathings;}
+		get{ return listBreathings;}
 	}
 	
 	/// <summary>
@@ -137,7 +162,7 @@ public abstract class Exercice
 	public float Duration {
 		get {
 			float duration = 0.0f;
-			foreach(Breathing breathing in breathings){
+			foreach(Breathing breathing in listBreathings){
 				duration += breathing.Duration;
 			}
 			return duration;

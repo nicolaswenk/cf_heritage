@@ -28,16 +28,20 @@ public class LevelController : MonoBehaviour
 	/// </summary>
 	public virtual void BuildAndStart ()
 	{		
-		exercice = new DecreasingAutogenicDrainage (3,3,3,1.5f,3.0f,10.0f,0.5f);
 
 		//ioController = new FlapiIOController (audio);
 		//inputController = new KeyboardInputController (exercice,3.0f);
         inputController = new PepInputController();
 
-        Debug.Log("Hey");
+        exercice = new DecreasingAutogenicDrainage(3, 3, 3, 1.5f, 3.0f, 10.0f, 0.5f, inputController);
 
         StartCoroutine (WaitForGame ());
 	}
+
+    public InputController_I InputController
+    {
+        get { return inputController; }
+    }
 	
 	/// <summary>
 	/// Called once per frame. Check the player progress and move it (after the input controller).
@@ -72,7 +76,7 @@ public class LevelController : MonoBehaviour
 	/// </summary>
 	/// <returns>The corresponding position in the game space.</returns>
 	/// <param name="vector">The exercice "position".</param>
-	protected Vector3 ExerciceToPlayer(Vector3 vector){
+	public Vector3 ExerciceToPlayer(Vector3 vector){
 		vector.y = breathingVolumeToWorldHeight (vector.y);
 		vector.x *= player.HorizontalSpeed;
 		

@@ -36,6 +36,8 @@ public class Breathing
 	/// <summary>Seems to be a median value from https://van.physics.illinois.edu/qa/listing.php?id=786 </summary>
 	private const float supposedPatientMaxVolume=2100.0f;
 
+    private InputController_I inputController;
+
 	private const float strengthToVolumeFactor=supposedPatientMaxVolume/20.0f;
 	
 	/// <summary>
@@ -48,8 +50,8 @@ public class Breathing
 	/// <param name="holdingBreathTime">The time (is seconds) the patient should hold his breath after an inspiration.</param>
 	/// <param name="inspirationTime">The time (is seconds) the patient should inspiring (from <see cref="startVolume"/> to <see cref="maxVolume"/>).</param>
 	/// <param name="expirationTime">The time (is seconds) the patient should expiring (from <see cref="maxVolume"/> to <see cref="endVolume"/>).</param>
-	public Breathing (float startVolume, float maxVolume, float endVolume, float inspirationTime, float holdingBreathTime, float expirationTime)
-	:this(startVolume, maxVolume, endVolume, inspirationTime, holdingBreathTime, expirationTime, BreathingState.INSPIRATION){
+	public Breathing (float startVolume, float maxVolume, float endVolume, float inspirationTime, float holdingBreathTime, float expirationTime, InputController_I inputController)
+	:this(startVolume, maxVolume, endVolume, inspirationTime, holdingBreathTime, expirationTime, BreathingState.INSPIRATION, inputController){
 	}
 
 	/// <summary>
@@ -63,13 +65,14 @@ public class Breathing
 	/// <param name="inspirationTime">The time (is seconds) the patient should inspiring (from <see cref="startVolume"/> to <see cref="maxVolume"/>).</param>
 	/// <param name="expirationTime">The time (is seconds) the patient should expiring (from <see cref="maxVolume"/> to <see cref="endVolume"/>).</param>
 	/// <param name="startState">The state at which this breathing starts.</param>
-	public Breathing (float startVolume, float maxVolume, float endVolume, float inspirationTime, float holdingBreathTime, float expirationTime, BreathingState startState){
+	public Breathing (float startVolume, float maxVolume, float endVolume, float inspirationTime, float holdingBreathTime, float expirationTime, BreathingState startState, InputController_I inputController){
 		this.startVolume = startVolume;
 		this.maxVolume = maxVolume;
 		this.endVolume = endVolume;
 		this.inspirationTime = inspirationTime;
 		this.holdingBreathTime = holdingBreathTime;
 		this.expirationTime=expirationTime;
+        this.inputController = inputController;
 		ResetTo (startState);
 	}
 
@@ -202,7 +205,7 @@ public class Breathing
 	/// Gets the time (is seconds) the patient should inspiring (from <see cref="startVolume"/> to <see cref="maxVolume"/>).
 	/// </summary>
 	public float InspirationTime {
-		get { return inspirationTime/CalibrationController.StrengthCalibrationFactor;}
+		get { return inspirationTime/inputController.GetCalibrationFactor();}
 	}
 
 	/// <summary>
@@ -216,7 +219,7 @@ public class Breathing
 	/// Gets the time (is seconds) the patient should expiring (from <see cref="maxVolume"/> to <see cref="endVolume"/>).
 	/// </summary>
 	public float ExpirationTime {
-		get { return expirationTime/CalibrationController.StrengthCalibrationFactor;}
+		get { return expirationTime/ inputController.GetCalibrationFactor(); }
 	}
 
 	/// <summary>
@@ -238,10 +241,10 @@ public class Breathing
 	/// </summary>
 	public float Duration{
 		get{
-			return inspirationTime/CalibrationController.StrengthCalibrationFactor
+            return inspirationTime / inputController.GetCalibrationFactor()
 				+holdingBreathTime
-				+expirationTime/CalibrationController.StrengthCalibrationFactor;
-		}
+				+expirationTime/ inputController.GetCalibrationFactor();
+        }
 	}
 	
 	/// <summary>The breathing state of the patient (whether he's expiring, inspiring, holding breath, ...).</summary>

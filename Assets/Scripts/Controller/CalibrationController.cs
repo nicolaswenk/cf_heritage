@@ -58,6 +58,7 @@ public class CalibrationController : MonoBehaviour {
 					characterAnimator.SetBool("isThresholdReached", true);
 					state=CalibrationState.TO_GAME_ANIMATION;
 					volumeMaxCalibrated=volume;
+                    inputController.SetCalibrationFactor(CalibrationController.StrengthCalibrationFactor);
 					levelController.BuildAndStart();
 					calibrationBar.gameObject.SetActive(false);
 				}

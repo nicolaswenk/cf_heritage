@@ -16,12 +16,14 @@ public class KeyboardSimpleInputController:InputController_I
 	/// The expiration speed of a strong expiration.
 	/// </summary>
 	private float strongBreathValue;
-	
-	/// <summary>
-	/// Initializes a new instance of the <see cref="KeyboardIOController"/> class.
-	/// </summary>
-	/// <param name="strongBreathValue">The expiration speed of a strong breath.</param>
-	public KeyboardSimpleInputController (float strongBreathValue)
+
+    private float calibrationFactor = 1.0f;
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="KeyboardIOController"/> class.
+    /// </summary>
+    /// <param name="strongBreathValue">The expiration speed of a strong breath.</param>
+    public KeyboardSimpleInputController (float strongBreathValue)
 	{
 		this.strongBreathValue = strongBreathValue;
 	}
@@ -69,5 +71,16 @@ public class KeyboardSimpleInputController:InputController_I
 	public bool IsMoving(){
 		return Input.GetKey (KeyCode.RightArrow);
 	}
+
+
+    public void SetCalibrationFactor(float calibrationFactor)
+    {
+        this.calibrationFactor = calibrationFactor;
+    }
+
+    public float GetCalibrationFactor()
+    {
+        return calibrationFactor;
+    }
 }
 
