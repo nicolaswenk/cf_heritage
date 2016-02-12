@@ -19,6 +19,12 @@ public class LevelController : MonoBehaviour
 	protected DecreasingAutogenicDrainage exercice;
 	//TODO Doc
 	private float volumeMaxCalibrated;
+
+	public InputController_I InputController{
+		get {
+			return inputController;
+		}
+	}
 	
 	public List<GameObject> listToEnableAtGame;
 
@@ -37,11 +43,6 @@ public class LevelController : MonoBehaviour
 
         StartCoroutine (WaitForGame ());
 	}
-
-    public InputController_I InputController
-    {
-        get { return inputController; }
-    }
 	
 	/// <summary>
 	/// Called once per frame. Check the player progress and move it (after the input controller).

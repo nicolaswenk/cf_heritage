@@ -1,14 +1,16 @@
 fileFormatVersion: 2
-guid: 7ea2da4d00a13bb48862770f0d9d055c
-timeCreated: 1433550211
+guid: 673b3058a9d9e461eaf84ed539c8c425
+timeCreated: 1455201804
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Leg 1
+    21300000: Leg1
     21300002: Head
-    21300004: Leg 2
-    21300006: Body
-    21300008: Arm
+    21300004: Leg2
+    21300006: Mouth_in
+    21300008: Mouth_out
+    21300010: Body
+    21300012: Arm
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -22,17 +24,17 @@ TextureImporter:
   bumpmap:
     convertToNormalMap: 0
     externalNormalMap: 0
-    heightScale: .25
+    heightScale: 0.25
     normalMapFilter: 0
   isReadable: 0
   grayScaleToAlpha: 0
   generateCubemap: 0
   cubemapConvolution: 0
-  cubemapConvolutionSteps: 8
+  cubemapConvolutionSteps: 7
   cubemapConvolutionExponent: 1.5
   seamlessCubemap: 0
   textureFormat: -1
-  maxTextureSize: 256
+  maxTextureSize: 2048
   textureSettings:
     filterMode: -1
     aniso: 16
@@ -42,11 +44,12 @@ TextureImporter:
   lightmap: 0
   rGBM: 0
   compressionQuality: 50
+  allowsAlphaSplitting: 0
   spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
-  spritePivot: {x: .5, y: .5}
+  spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
   alphaIsTransparency: 1
@@ -54,56 +57,100 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: Leg 1
+    - name: Leg1
       rect:
         serializedVersion: 2
-        x: 42
-        y: 209
+        x: 17
+        y: 182
         width: 27
         height: 15
       alignment: 9
-      pivot: {x: .880467474, y: .33694154}
+      pivot: {x: 0.9420901, y: 0.46118164}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
     - name: Head
       rect:
         serializedVersion: 2
-        x: 139
-        y: 136
+        x: 114
+        y: 109
         width: 105
         height: 109
       alignment: 9
-      pivot: {x: .308989763, y: .206795648}
+      pivot: {x: 0.30036634, y: 0.19551268}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Leg 2
+      outline:
+      - - {x: 64.46153, y: 87.68912}
+        - {x: -11.538467, y: 87.68912}
+        - {x: -31.538467, y: 76.68912}
+        - {x: -31.538467, y: -7.3108826}
+        - {x: -24.538467, y: -21.310883}
+        - {x: 62.461533, y: -21.310883}
+        - {x: 68.46153, y: -13.310883}
+        - {x: 73.46153, y: 7.6891174}
+        - {x: 73.46153, y: 74.68912}
+    - name: Leg2
       rect:
         serializedVersion: 2
-        x: 42
-        y: 154
+        x: 17
+        y: 127
         width: 28
         height: 13
       alignment: 9
-      pivot: {x: .89599663, y: .600341797}
+      pivot: {x: 0.9366988, y: 0.81352705}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Mouth_in
+      rect:
+        serializedVersion: 2
+        x: 138
+        y: 58
+        width: 42
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Mouth_out
+      rect:
+        serializedVersion: 2
+        x: 190
+        y: 69
+        width: 4
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
     - name: Body
       rect:
         serializedVersion: 2
-        x: 25
-        y: 27
+        x: 0
+        y: 0
         width: 77
-        height: 61
+        height: 59
       alignment: 9
-      pivot: {x: .837596536, y: .688487828}
+      pivot: {x: 0.85540843, y: 0.5296066}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -65.86645, y: 27.753212}
+        - {x: -65.86645, y: -28.246788}
+        - {x: -59.866447, y: -31.246788}
+        - {x: 9.133553, y: -31.246788}
+        - {x: 11.133553, y: -20.246788}
+        - {x: 11.133553, y: 25.753212}
+        - {x: 6.1335526, y: 27.753212}
     - name: Arm
       rect:
         serializedVersion: 2
-        x: 189
-        y: 36
+        x: 164
+        y: 9
         width: 32
         height: 21
       alignment: 9
-      pivot: {x: .926403999, y: .874497175}
+      pivot: {x: 0.9457965, y: 0.88817626}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    outline: []
   spritePackingTag: 
   userData: 
   assetBundleName: 
