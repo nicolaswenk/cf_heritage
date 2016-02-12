@@ -58,13 +58,14 @@ public class GeneratedLevelController : LevelController
 	/// </summary>
 	public override void BuildAndStart ()
 	{
+        PlayerProfileData profileDataObj = PlayerProfileData.profileData;
 		endCycleController = GetComponentInChildren<EndCycleController> ();
 
         //inputController = new FlapiInputController (exercice, GetComponent<AudioSource>());
         inputController = new KeyboardInputController(10.0f);
         //inputController = new PepInputController();
 
-        exercice = new DecreasingAutogenicDrainage(3, 3, 3, 1.5f, 3.0f, 10.0f, 0.5f, inputController);
+        exercice = new DecreasingAutogenicDrainage(profileDataObj.nbBreathingsHigh, profileDataObj.nbBreathingsMedium, profileDataObj.nbBreathingsLow, profileDataObj.inspirationTime, profileDataObj.holdingBreathTime, profileDataObj.expirationMinTime, profileDataObj.volumeRange, inputController);
         ((OnlyExpirationInputController)inputController).SetExercice(exercice);
 
 
