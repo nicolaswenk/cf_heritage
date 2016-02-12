@@ -18,8 +18,10 @@ public class Breathe : MonoBehaviour {
 	
 		InputController_I inputController = levelController.InputController;
 
+		//check if we are in the game
 		if (levelController.GameState == GameState.GAME) {
 
+			//if we are in breathing state set the animation to breathe_in if not set to breathe_out
 			if (inputController.GetInputState () == BreathingState.INSPIRATION) {
 				animator.SetBool ("Breathe_in", true);
 			} else {
